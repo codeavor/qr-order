@@ -1,4 +1,9 @@
-# QR Order
+# QR Order &middot;
+
+![Tests](https://github.com/codeavor/qr-order/workflows/Test/badge.svg)
+![Deploy](https://github.com/codeavor/qr-order/workflows/Deploy/badge.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e65d412d543bd395b213/maintainability)](https://codeclimate.com/github/codeavor/qr-order/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e65d412d543bd395b213/test_coverage)](https://codeclimate.com/github/codeavor/qr-order/test_coverage)
 
 App that lets you order just by scanning a QR Code.
 
