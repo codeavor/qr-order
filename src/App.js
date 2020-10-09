@@ -1,19 +1,19 @@
 import React from "react";
-import "./App.css";
+import { Route, Switch } from "react-router-dom";
+import ScanQRCodeContainer from "./containers/ScanQRCodeContainer";
+import UmbrellaContainer from "./containers/UmbrellaContainer";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route path="/" exact component={ScanQRCodeContainer} />
+        <Route path="/umbrella" component={UmbrellaContainer} />
+        {/* <Route path="/item/:id" component={itemContainer} /> */}
+        {/* <Route path='/cart' component={cartContainer} /> */}
+        {/* <Route path='/checkout' component={checkoutContainer} /> */}
+        {/* <Route component={pageNotFoundContainer} /> */}
+      </Switch>
     </div>
   );
 }
