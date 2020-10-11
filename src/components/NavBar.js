@@ -24,7 +24,7 @@ NavBar.propTypes = {
   back: PropTypes.bool,
   text: PropTypes.string,
   search: PropTypes.bool,
-  menu: PropTypes.object,
+  menu: PropTypes.array,
 };
 
 export default function NavBar({ back, text, search, menu }) {

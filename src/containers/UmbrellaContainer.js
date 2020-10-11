@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { fetchMenu } from "../actions/menuActions";
 import NavBar from "../components/NavBar";
 import CategoriesBar from "../components/CategoriesBar";
+import MenuArea from "../components/MenuArea";
+import BottomButton from "../components/BottomButton";
 
 function UmbrellaContainer({ menuData, fetchMenu }) {
   useEffect(() => {
@@ -17,6 +19,8 @@ function UmbrellaContainer({ menuData, fetchMenu }) {
     <div>
       <NavBar back={false} text="Welcome" search={true} menu={menuData.menu} />
       <CategoriesBar menu={menuData.menu} />
+      <MenuArea menu={menuData.menu} />
+      <BottomButton icon={true} text={"Cart"} price={2.45} />
     </div>
   );
 }
