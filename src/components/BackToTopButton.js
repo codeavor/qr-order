@@ -1,10 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import Zoom from "@material-ui/core/Zoom";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles } from "@material-ui/core/styles";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Zoom from "@material-ui/core/Zoom";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   backButton: {
@@ -15,7 +16,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function BackToTopButton({ handleBackToTop }) {
+BackToTopButton.propTypes = {
+  handleBackToTop: PropTypes.func,
+};
+
+BackToTopButton.defaultProps = {
+  handleBackToTop: () => {},
+};
+
+export default function BackToTopButton({ handleBackToTop }) {
   const classes = useStyles();
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -25,6 +34,7 @@ function BackToTopButton({ handleBackToTop }) {
   return (
     <Zoom in={trigger}>
       <div
+        data-testid="back-to-top-button"
         onClick={handleBackToTop}
         role="presentation"
         className={classes.backButton}
@@ -36,9 +46,3 @@ function BackToTopButton({ handleBackToTop }) {
     </Zoom>
   );
 }
-
-BackToTopButton.propTypes = {
-  handleBackToTop: PropTypes.func,
-};
-
-export default BackToTopButton;

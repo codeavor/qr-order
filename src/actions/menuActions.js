@@ -1,37 +1,44 @@
 import axios from "axios";
 import C from "../constants";
 
-export const fetchMenuRequest = () => {
+export const getMenuRequest = () => {
   return {
-    type: C.FETCH_MENU,
+    type: C.GET_MENU,
   };
 };
 
-export const fetchMenuSuccess = (users) => {
+export const getMenuSuccess = (menu) => {
   return {
-    type: C.FETCH_MENU_SUCCESS,
-    payload: users,
+    type: C.GET_MENU_SUCCESS,
+    payload: menu,
   };
 };
 
-export const fetchMenuFailure = (error) => {
+export const getMenuFailure = (error) => {
   return {
-    type: C.FETCH_MENU_FAILURE,
+    type: C.GET_MENU_FAILURE,
     payload: error,
   };
 };
 
-export const fetchMenu = () => {
+export const getMenu = () => {
   return function (dispatch) {
-    dispatch(fetchMenuRequest());
+    dispatch(getMenuRequest());
     axios
       .get("https://qr-order-api.herokuapp.com/api/menu")
       .then((response) => {
         const menu = response.data;
-        dispatch(fetchMenuSuccess(menu));
+        dispatch(getMenuSuccess(menu));
       })
-      .catch((error) => {
-        dispatch(fetchMenuFailure(error));
+      .catch((err) => {
+        let error = null;
+        console.log(err);
+        if (err.response) {
+          error = err.response.data.message;
+        } else {
+          error = err.message.message;
+        }
+        dispatch(getMenuFailure(error));
       });
   };
 };

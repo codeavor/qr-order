@@ -1,23 +1,27 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { fetchMenu } from "../actions/menuActions";
-import NavBar from "../components/NavBar";
-import CategoriesBar from "../components/CategoriesBar";
-import MenuArea from "../components/MenuArea";
-import BottomButton from "../components/BottomButton";
 
-function UmbrellaContainer({ menuData, fetchMenu }) {
+import { connect } from "react-redux";
+
+import { getMenu } from "../actions/menuActions";
+import BottomButton from "../components/BottomButton";
+import CategoriesBar from "../components/CategoriesBar";
+import Error from "../components/Error";
+import Loading from "../components/Loading";
+import MenuArea from "../components/MenuArea";
+import NavBar from "../components/NavBar";
+
+export function UmbrellaContainer({ menuData, getMenu }) {
   useEffect(() => {
-    fetchMenu();
-  }, [fetchMenu]);
+    getMenu();
+  }, [getMenu]);
 
   return menuData.loading ? (
-    <h2>Loading</h2>
+    <Loading />
   ) : menuData.error ? (
-    <h2>{menuData.error}</h2>
+    <Error error={menuData.error} />
   ) : (
     <div>
-      <NavBar back={false} text="Welcome" search={true} menu={menuData.menu} />
+      <NavBar back={false} text="Welcome" search={true} />
       <CategoriesBar menu={menuData.menu} />
       <MenuArea menu={menuData.menu} />
       <BottomButton icon={true} text={"Cart"} price={2.45} />
@@ -33,7 +37,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchMenu: () => dispatch(fetchMenu()),
+    getMenu: () => dispatch(getMenu()),
   };
 };
 

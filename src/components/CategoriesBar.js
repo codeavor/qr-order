@@ -1,23 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
+
+import AppBar from "@material-ui/core/AppBar";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import AppBar from "@material-ui/core/AppBar";
+import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 import * as Scroll from "react-scroll";
+
 import BackToTopButton from "./BackToTopButton";
-
-CategoriesBar.propTypes = {
-  menu: PropTypes.array,
-};
-
-function a11yProps(index) {
-  return {
-    id: `full-width-tab-${index}`,
-    "aria-controls": `full-width-tabpanel-${index}`,
-  };
-}
 
 const useStyles = makeStyles((theme) => ({
   tabText: {
@@ -29,6 +20,14 @@ const useStyles = makeStyles((theme) => ({
     willChange: "transform",
   },
 }));
+
+CategoriesBar.propTypes = {
+  menu: PropTypes.array,
+};
+
+CategoriesBar.defaultProps = {
+  menu: [],
+};
 
 export default function CategoriesBar({ menu }) {
   const classes = useStyles();
@@ -48,7 +47,9 @@ export default function CategoriesBar({ menu }) {
     <>
       <AppBar position="sticky" color="default" className={classes.appBar}>
         <Tabs
+          data-testid="categories-bar"
           position="sticky"
+          selectionFollowsFocus={true}
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
@@ -58,6 +59,7 @@ export default function CategoriesBar({ menu }) {
         >
           {menu.map((category, index) => (
             <Tab
+              data-testid={`tab-${index}`}
               className={classes.tabText}
               label={category.name}
               key={category.id}
@@ -65,7 +67,7 @@ export default function CategoriesBar({ menu }) {
               to={`menu-${category.id}`}
               smooth={true}
               offset={-50}
-              {...a11yProps(index)}
+              id={`tab-${index}`}
             />
           ))}
         </Tabs>

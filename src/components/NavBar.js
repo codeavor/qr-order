@@ -1,11 +1,12 @@
 import React from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import SearchIcon from "@material-ui/icons/Search";
-import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,21 +25,21 @@ NavBar.propTypes = {
   back: PropTypes.bool,
   text: PropTypes.string,
   search: PropTypes.bool,
-  menu: PropTypes.array,
 };
 
-export default function NavBar({ back, text, search, menu }) {
+export default function NavBar({ back, text, search }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" color="default" data-testid="nav-bar">
         <Toolbar>
-          {!back ? (
+          {back ? (
             <IconButton
               edge="start"
               className={classes.menuButton}
               aria-label="back-button"
+              data-testid="back-button"
             >
               <KeyboardBackspaceIcon />
             </IconButton>
@@ -51,6 +52,7 @@ export default function NavBar({ back, text, search, menu }) {
               edge="end"
               className={classes.menuButton}
               aria-label="search-button"
+              data-testid="search-button"
             >
               <SearchIcon />
             </IconButton>

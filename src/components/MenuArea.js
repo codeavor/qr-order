@@ -1,13 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import MenuItem from "./MenuItem";
-import { makeStyles } from "@material-ui/core/styles";
 
-MenuArea.propTypes = {
-  menu: PropTypes.array,
-};
+import Container from "@material-ui/core/Container";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
+
+import MenuItem from "./MenuItem";
 
 const useStyles = makeStyles((theme) => ({
   categoryName: {
@@ -23,11 +21,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+MenuArea.propTypes = {
+  menu: PropTypes.array,
+};
+
+MenuArea.defaultProps = {
+  menu: [],
+};
+
 export default function MenuArea({ menu }) {
   const classes = useStyles();
 
   return (
-    <div>
+    <div data-testid="menu-area">
       {menu.map((category, index) => (
         <Container
           className={classes.section}

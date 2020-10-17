@@ -1,5 +1,6 @@
-import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
+import { combineReducers } from "redux";
+
 import menuReducer from "./reducers/menuReducer";
 
 const createRootReducer = (history) =>

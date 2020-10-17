@@ -1,28 +1,30 @@
 import C from "../constants";
 
 const initialState = {
-  loading: false,
   menu: [],
+  loading: true,
   error: "",
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case C.FETCH_MENU_REQUEST:
+    case C.GET_MENU:
       return {
         ...state,
         loading: true,
       };
-    case C.FETCH_MENU_SUCCESS:
+    case C.GET_MENU_SUCCESS:
       return {
-        loading: false,
+        ...state,
         menu: payload,
+        loading: false,
         error: "",
       };
-    case C.FETCH_MENU_FAILURE:
+    case C.GET_MENU_FAILURE:
       return {
-        loading: false,
+        ...state,
         menu: [],
+        loading: false,
         error: payload,
       };
     default:
