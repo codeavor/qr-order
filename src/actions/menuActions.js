@@ -30,15 +30,11 @@ export const getMenu = () => {
         const menu = response.data;
         dispatch(getMenuSuccess(menu));
       })
-      .catch((err) => {
-        let error = null;
-        console.log(err);
-        if (err.response) {
-          error = err.response.data.message;
-        } else {
-          error = err.message.message;
-        }
-        dispatch(getMenuFailure(error));
+      .catch((error) => {
+        // let err = null;
+        // if (error.response) err = error.response.data.message;
+        // else err = error.data.message;
+        dispatch(getMenuFailure(error.response.data.message));
       });
   };
 };

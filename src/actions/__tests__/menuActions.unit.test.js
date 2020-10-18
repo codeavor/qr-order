@@ -1,4 +1,3 @@
-// src/actions/users.test.js
 import mockAxios from "axios";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
@@ -37,7 +36,11 @@ describe("Menu Actions", () => {
 
       mockAxios.get.mockImplementationOnce(() =>
         Promise.reject({
-          error: errorMsg,
+          response: {
+            data: {
+              message: errorMsg,
+            },
+          },
         })
       );
 

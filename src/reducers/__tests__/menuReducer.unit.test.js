@@ -3,7 +3,7 @@ import menuReducer from "../menuReducer";
 describe("menu Reducer", () => {
   const initialState = {
     menu: [],
-    loading: false,
+    loading: true,
     error: "",
   };
 
