@@ -34,7 +34,7 @@
     "coverage": "npm run coverage:clean && npm run coverage:integration && npm run coverage:unit && npm run coverage:merge",
     "coverage:clean": "rm -rf .nyc_output && rm -rf coverage",
     "coverage:integration": "start-server-and-test http://localhost:3000/qr-order test:integration",
-    "coverage:merge": "istanbul-combine -d coverage/merged -p summary -r lcov coverage/*/coverage-final.json",
+    "coverage:merge": "istanbul-combine -d coverage/merged -p summary -r lcov -r json coverage/*/coverage-final.json",
     "coverage:unit": "react-scripts test --watchAll=false --coverage --coverageDirectory=coverage/unit",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
