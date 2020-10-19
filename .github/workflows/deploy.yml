@@ -27,7 +27,8 @@ jobs:
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
           npm run coverage
-          ./cc-test-reporter upload-coverage --input "${{github.workspace}}/coverage/merged/lcov.info"
+          cp "${{github.workspace}}/coverage/merged/lcov.info" "${{github.workspace}}/coverage/lcov.info"
+          ./cc-test-reporter after-build --debug --exit-code $?
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           GIT_BRANCH: ${{ github.base_ref }}
