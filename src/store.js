@@ -6,7 +6,9 @@ import createRootReducer from "./reducer";
 
 const thunkMiddleware = require("redux-thunk").default;
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({
+  basename: process.env.PUBLIC_URL,
+});
 
 export default function configureStore(preloadedState) {
   const store = createStore(
