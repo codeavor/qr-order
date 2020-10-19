@@ -1,5 +1,3 @@
-import { cyan } from "@material-ui/core/colors";
-
 import { apiUrl } from "../../settings";
 
 export const getMenu = (response, status = 200) => {

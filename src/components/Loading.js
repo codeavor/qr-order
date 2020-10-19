@@ -1,7 +1,6 @@
 import React from "react";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 
 export default function Loading() {

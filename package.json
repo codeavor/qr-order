@@ -13,7 +13,9 @@
     "connected-react-router": "^6.8.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
+    "eslint-plugin-cypress": "^2.11.2",
     "istanbul-lib-coverage": "^3.0.0",
+    "lcov-result-merger": "^3.1.0",
     "nyc": "^15.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -32,7 +34,7 @@
     "coverage": "npm run coverage:clean && npm run coverage:integration && npm run coverage:unit && npm run coverage:merge",
     "coverage:clean": "rm -rf .nyc_output && rm -rf coverage",
     "coverage:integration": "start-server-and-test http://localhost:3000/qr-order test:integration",
-    "coverage:merge": "istanbul-combine -d coverage/merged -p summary -r lcov coverage/unit/coverage-final.json coverage/integration/coverage-final.json",
+    "coverage:merge": "istanbul-combine -d coverage/merged -p summary -r lcov coverage/*/coverage-final.json",
     "coverage:unit": "react-scripts test --watchAll=false --coverage --coverageDirectory=coverage/unit",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
@@ -40,7 +42,10 @@
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "plugin:cypress/recommended"
+    ]
   },
   "browserslist": {
     "production": [

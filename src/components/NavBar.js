@@ -30,32 +30,31 @@ NavBar.propTypes = {
 export default function NavBar({ back, text, search }) {
   const classes = useStyles();
 
+  const BarButton = ({ edge = "start", name, icon }) => {
+    return (
+      <IconButton
+        edge={edge}
+        className={classes.menuButton}
+        aria-label={`${name}-button`}
+        data-testid={`${name}-button`}
+      >
+        {icon}
+      </IconButton>
+    );
+  };
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default" data-testid="nav-bar">
         <Toolbar>
           {back ? (
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              aria-label="back-button"
-              data-testid="back-button"
-            >
-              <KeyboardBackspaceIcon />
-            </IconButton>
+            <BarButton name="back" icon={<KeyboardBackspaceIcon />} />
           ) : null}
           <div className={classes.grow} />
           <Typography variant="h5">{text}</Typography>
           <div className={classes.grow} />
           {search ? (
-            <IconButton
-              edge="end"
-              className={classes.menuButton}
-              aria-label="search-button"
-              data-testid="search-button"
-            >
-              <SearchIcon />
-            </IconButton>
+            <BarButton edge="end" name="search" icon={<SearchIcon />} />
           ) : null}
         </Toolbar>
       </AppBar>
