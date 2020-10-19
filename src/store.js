@@ -1,12 +1,12 @@
 import { routerMiddleware } from "connected-react-router";
-import { createBrowserHistory } from "history";
+import { createHashHistory } from "history";
 import { applyMiddleware, compose, createStore } from "redux";
 
 import createRootReducer from "./reducer";
 
 const thunkMiddleware = require("redux-thunk").default;
 
-export const history = createBrowserHistory({
+export const history = createHashHistory({
   basename: process.env.PUBLIC_URL,
 });
 
