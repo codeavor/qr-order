@@ -28,7 +28,7 @@ jobs:
           ./cc-test-reporter before-build
           npm run coverage
           cp "${{github.workspace}}/coverage/merged/coverage-final.json" "${{github.workspace}}/coverage/codeclimate.json"
-          ./cc-test-reporter upload-coverage --input -
+          ./cc-test-reporter upload-coverage -i ${{github.workspace}}/coverage/codeclimate.json
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           GIT_BRANCH: ${{ github.base_ref }}
