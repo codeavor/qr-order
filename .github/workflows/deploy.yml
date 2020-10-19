@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   pull_request:
-    types: [closed]
+    # types: [closed]
     branches: [master]
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
       matrix:
         node-version: [14.x]
 
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -27,7 +27,7 @@ jobs:
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
           npm run coverage
-          ./cc-test-reporter upload-coverage -i ${{github.workspace}}/coverage/merged/lcov.info
+          ./cc-test-reporter upload-coverage --debug --input "${{github.workspace}}/coverage/merged/lcov.info"
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           GIT_BRANCH: ${{ github.base_ref }}
