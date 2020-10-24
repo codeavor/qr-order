@@ -16,6 +16,7 @@
     "eslint-plugin-cypress": "^2.11.2",
     "istanbul-combine": "^0.3.0",
     "istanbul-lib-coverage": "^3.0.0",
+    "jwt-decode": "^3.0.0",
     "nyc": "^15.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -24,6 +25,7 @@
     "react-scripts": "3.4.3",
     "react-scroll": "^1.8.1",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.3.0"
   },
