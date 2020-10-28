@@ -1,8 +1,14 @@
 import { url } from "../settings";
 import * as menuMocks from "../support/mocks/menuMocks";
 
-describe("Testing /Umbrella", () => {
+describe("Testing /umbrella", () => {
+  before(() => {
+    cy.login();
+    cy.saveLocalStorage();
+  });
+
   beforeEach(() => {
+    cy.restoreLocalStorage();
     cy.server();
   });
 
@@ -22,7 +28,7 @@ describe("Testing /Umbrella", () => {
 
   it("Shows an error after loading", () => {
     cy.fixture("menu_mock_data.json").then((rc) => {
-      menuMocks.getMenu(rc.getError, 404);
+      menuMocks.getMenu(rc.getError, 401);
     });
     cy.visit(url + "/umbrella");
 

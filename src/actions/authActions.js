@@ -40,9 +40,7 @@ export const getToken = (id) => {
     axios(options)
       .then((response) => {
         const { token, orderId } = response.data;
-
         setAuthorizationToken(token);
-
         dispatch(getTokenSuccess(orderId));
       })
       .catch((error) => {

@@ -34,7 +34,7 @@ export const getMenu = () => {
         // let err = null;
         // if (error.response) err = error.response.data.message;
         // else err = error.data.message;
-        dispatch(getMenuFailure(error.response.data.message));
+        dispatch(getMenuFailure(error.response.data.error));
       });
   };
 };

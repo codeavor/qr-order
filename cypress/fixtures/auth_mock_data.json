@@ -1,0 +1,10 @@
+{
+    "wrongToken": {
+        "token": "",
+        "orderId": 1
+    },
+    "getError":{
+        "error": "Something went wrong :("
+    }
+}
+  

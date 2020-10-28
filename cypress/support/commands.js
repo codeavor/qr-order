@@ -1,26 +1,21 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import "@testing-library/cypress/add-commands";
+import "cypress-localstorage-commands";
+
+Cypress.Commands.add("login", () => {
+  cy.request({
+    method: "POST",
+    url: "https://qr-order-api.herokuapp.com/api/auth/register",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      umbrella_id: 1,
+      role_name: "customer",
+    },
+  })
+    .its("body")
+    .then((body) => {
+      cy.log(body);
+      cy.setLocalStorage("jwtToken", body.token);
+    });
+});

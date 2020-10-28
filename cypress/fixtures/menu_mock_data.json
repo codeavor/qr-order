@@ -40,6 +40,6 @@
     }
   ],
   "getError": {
-    "message": "Something went wrong :("
+    "error": "Something went wrong :("
   }
 }
