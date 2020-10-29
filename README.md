@@ -13,3 +13,7 @@ App that lets you order just by scanning a QR Code.
 - Run: `npm start` to start the app.
 - To run the test, run: `npm test`.
 - To create a test coverage, run: `npm run coverage`
+
+## How to run
+
+- You are supposed to scan from a QR code a link like this: `https://qr-order.netlify.app/authentication/1`

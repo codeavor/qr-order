@@ -1,20 +1,20 @@
 import { routerMiddleware } from "connected-react-router";
 import { createBrowserHistory } from "history";
-import { applyMiddleware, compose, createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 import createRootReducer from "./reducer";
 
 const thunkMiddleware = require("redux-thunk").default;
 
-export const history = createBrowserHistory({
-  basename: process.env.PUBLIC_URL,
-});
+export const history = createBrowserHistory();
 
 export default function configureStore(preloadedState) {
+  const composeEnhancers = composeWithDevTools({ trace: true });
   const store = createStore(
     createRootReducer(history), // root reducer with router state
     preloadedState,
-    compose(
+    composeEnhancers(
       applyMiddleware(
         routerMiddleware(history), // for dispatching history actions
         thunkMiddleware

@@ -1,5 +1,10 @@
 const C = {
-  //Menu actions
+  //Auth action types
+  GET_TOKEN: "GET_TOKEN",
+  GET_TOKEN_SUCCESS: "GET_TOKEN_SUCCESS",
+  GET_TOKEN_FAILURE: "GET_TOKEN_FAILURE",
+
+  //Menu action types
   GET_MENU: "GET_MENU",
   GET_MENU_SUCCESS: "GET_MENU_SUCCESS",
   GET_MENU_FAILURE: "GET_MENU_FAILURE",

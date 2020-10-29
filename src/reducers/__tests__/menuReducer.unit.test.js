@@ -1,4 +1,5 @@
 import menuReducer from "../menuReducer";
+import C from "../../constants";
 
 describe("menu Reducer", () => {
   const initialState = {
@@ -13,7 +14,7 @@ describe("menu Reducer", () => {
   });
 
   it("handles GET_MENU_REQUEST as expected", () => {
-    const reducer = menuReducer(initialState, { type: "GET_MENU" });
+    const reducer = menuReducer(initialState, { type: C.GET_MENU });
 
     expect(reducer).toEqual({
       menu: [],
@@ -24,7 +25,7 @@ describe("menu Reducer", () => {
 
   it("handles GET_MENU_SUCCESS as expected", () => {
     const reducer = menuReducer(initialState, {
-      type: "GET_MENU_SUCCESS",
+      type: C.GET_MENU_SUCCESS,
       payload: {
         id: 1,
         name: "foo",
@@ -43,7 +44,7 @@ describe("menu Reducer", () => {
 
   it("handles GET_MENU_FAILURE as expected", () => {
     const reducer = menuReducer(initialState, {
-      type: "GET_MENU_FAILURE",
+      type: C.GET_MENU_FAILURE,
       payload: "Error",
     });
 
