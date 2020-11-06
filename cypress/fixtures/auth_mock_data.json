@@ -1,4 +1,8 @@
 {
+    "register": {
+        "token": 12345,
+        "orderId": 1
+    },
     "wrongToken": {
         "token": "",
         "orderId": 1
