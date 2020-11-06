@@ -1,6 +1,6 @@
 import axios from "axios";
 import C from "../constants";
-import setAuthorizationToken from "../utils/setAuthorizationToken";
+import setAuthorizationToken from "../utils/auth/setAuthorizationToken";
 
 export const getTokenRequest = () => {
   return {
@@ -24,7 +24,7 @@ export const getTokenFailure = (error) => {
 
 export const getToken = (id) => {
   const options = {
-    url: "https://qr-order-api.herokuapp.com/api/auth/register",
+    url: C.API_URL + "/auth/register",
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -1,5 +1,7 @@
 import { url } from "../settings";
 import * as authMocks from "../support/mocks/authMocks";
+import * as cartMocks from "../support/mocks/cartMocks";
+import * as menuMocks from "../support/mocks/menuMocks";
 
 describe("Testing /authentication/:id", () => {
   beforeEach(() => {
@@ -12,31 +14,41 @@ describe("Testing /authentication/:id", () => {
   });
 
   it("Authenticating and redirecting to umbrella", () => {
+    cy.fixture("auth_mock_data.json").then((rc) => {
+      authMocks.register(rc.register);
+    });
+    cy.fixture("menu_mock_data.json").then((rc) => {
+      menuMocks.getMenu(rc.getMenu);
+    });
+    cy.fixture("cart_mock_data.json").then((rc) => {
+      cartMocks.getCart(rc.getCart);
+    });
+
     cy.visit(url + "/authentication/1");
     cy.findByTestId("loading").should("exist");
-
+    cy.wait("@register");
+    cy.wait("@getMenu");
+    cy.wait("@getCart");
     cy.url().should("eq", url + "/umbrella");
-    cy.findByTestId("categories-bar").should("exist");
   });
 
   it("Server returns wrong token, user get redirected to /", () => {
     cy.fixture("auth_mock_data.json").then((rc) => {
-      authMocks.wrongToken(rc.wrongToken);
+      authMocks.register(rc.wrongToken);
     });
     cy.visit(url + "/authentication/1");
     cy.findByTestId("loading").should("exist");
-    cy.wait("@wrongToken");
+    cy.wait("@register");
     cy.url().should("eq", url + "/");
   });
 
   it("Server returns error", () => {
     cy.fixture("auth_mock_data.json").then((rc) => {
-      authMocks.wrongToken(rc.getError, 401);
+      authMocks.register(rc.getError, 401);
     });
     cy.visit(url + "/authentication/1");
     cy.findByTestId("loading").should("exist");
-    cy.wait("@wrongToken");
+    cy.wait("@register");
     cy.findByTestId("error").should("exist");
-    cy.findByTestId("categories-bar").should("not.exist");
   });
 });

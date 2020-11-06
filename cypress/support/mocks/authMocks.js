@@ -1,6 +1,6 @@
 import { apiUrl } from "../../settings";
 
-export const wrongToken = (response, status = 200) => {
+export const register = (response, status = 200) => {
   let endpoint = "/api/auth/register";
 
   cy.route({
@@ -12,5 +12,5 @@ export const wrongToken = (response, status = 200) => {
       umbrella_id: 1,
       role_name: "customer",
     },
-  }).as("wrongToken");
+  }).as("register");
 };

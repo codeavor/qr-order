@@ -70,7 +70,7 @@
       "!__mocks__/**",
       "!src/*.js",
       "!src/containers/*.js",
-      "!src/utils/*.js"
+      "!src/utils/auth/*.js"
     ]
   },
   "nyc": {
@@ -89,7 +89,8 @@
       "**/test.js",
       "**/*.stories.js",
       "**/stories.js",
-      "__mocks__/**"
+      "__mocks__/**",
+      "src/utils/cart/*.js"
     ]
   },
   "devDependencies": {

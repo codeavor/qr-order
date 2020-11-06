@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   backButton: {
@@ -20,9 +21,15 @@ BottomButton.propTypes = {
   icon: PropTypes.bool,
   text: PropTypes.string,
   price: PropTypes.number,
+  route: PropTypes.string,
 };
 
-export default function BottomButton({ icon, text, price }) {
+BottomButton.defaultProps = {
+  price: 0,
+  route: "/",
+};
+
+export default function BottomButton({ icon, text, price, route }) {
   const classes = useStyles();
 
   return (
@@ -32,8 +39,10 @@ export default function BottomButton({ icon, text, price }) {
       color="primary"
       className={classes.backButton}
       startIcon={icon ? <ShoppingCartIcon data-testid="cart-icon" /> : null}
+      component={Link}
+      to={route}
     >
-      {text} {price}€
+      {text} {price.toFixed(2)}€
     </Button>
   );
 }

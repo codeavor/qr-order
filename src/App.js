@@ -5,7 +5,8 @@ import { Route, Switch } from "react-router-dom";
 import AuthenticationContainer from "./containers/AuthenticationContainer";
 import ScanQRCodeContainer from "./containers/ScanQRCodeContainer";
 import UmbrellaContainer from "./containers/UmbrellaContainer";
-import ProtectedRoute from "./utils/ProtectedRoute";
+import ProtectedRoute from "./utils/auth/ProtectedRoute";
+import CartContainer from "./containers/CartContainer";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Route path="/authentication/:id" component={AuthenticationContainer} />
       <ProtectedRoute path="/umbrella" component={UmbrellaContainer} />
       {/* <Route path="/item/:id" component={itemContainer} /> */}
-      {/* <Route path='/cart' component={cartContainer} /> */}
+      <ProtectedRoute path="/cart" component={CartContainer} />
       {/* <Route path='/checkout' component={checkoutContainer} /> */}
       {/* <Route component={pageNotFoundContainer} /> */}
     </Switch>
@@ -22,11 +23,5 @@ function App() {
 }
 
 export default App;
-
-// TODO: create a protected route
-// If user is authenticated, redirect to /umbrella,
-// if not, redirect to /
-// You can access url variables with const { name } = useParams()
-// Auth reducer and actions
 
 // TODO: change umbrella to menu, everywhere

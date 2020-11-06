@@ -19,7 +19,7 @@ export function AuthenticationContainer({ userData, getToken }) {
   ) : userData.error || userData.orderId == null ? (
     <Error error={userData.error} />
   ) : (
-    <Redirect to="/umbrella" />
+    <Redirect push to="/umbrella" />
   );
 }
 
