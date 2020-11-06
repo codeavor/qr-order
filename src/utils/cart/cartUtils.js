@@ -1,8 +1,8 @@
-export function fixCart(cart) {
-  const turnNullToZero = (price) => {
-    return price === null ? 0 : price;
-  };
+const turnNullToZero = (price) => {
+  return price === null ? 0 : price;
+};
 
+export function fixCart(cart) {
   if (cart.length === 0) return cart;
   let tempItem = {
     ...cart[0],

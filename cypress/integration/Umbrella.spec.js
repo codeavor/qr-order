@@ -16,13 +16,13 @@ describe("Testing /umbrella", () => {
       menuMocks.getMenu(rc.getMenu);
     });
     cy.fixture("cart_mock_data.json").then((rc) => {
-      cartMocks.getCart(rc.getCart);
+      cartMocks.cart("/api/cart/1", "GET", rc.getCart);
     });
     cy.visit(url + "/authentication/1");
     cy.findByTestId("loading").should("exist");
     cy.wait("@register");
     cy.wait("@getMenu");
-    cy.wait("@getCart");
+    cy.wait("@cart");
 
     cy.url().should("eq", url + "/umbrella");
 
@@ -40,13 +40,13 @@ describe("Testing /umbrella", () => {
       menuMocks.getMenu(rc.getError, 401);
     });
     cy.fixture("cart_mock_data.json").then((rc) => {
-      cartMocks.getCart(rc.getCart);
+      cartMocks.cart("/api/cart/1", "GET", rc.getCart);
     });
     cy.visit(url + "/authentication/1");
     cy.findByTestId("loading").should("exist");
     cy.wait("@register");
     cy.wait("@getMenu");
-    cy.wait("@getCart");
+    cy.wait("@cart");
 
     cy.url().should("eq", url + "/umbrella");
 
