@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BottomBox({ text, quantity }) {
+export default function BottomBox({ text, quantity, price, route }) {
   const classes = useStyles();
 
   return (
@@ -32,8 +32,8 @@ export default function BottomBox({ text, quantity }) {
         </Box>
       ) : null}
 
-      <Box pl={2}>
-        <BottomButton icon={true} text={text} price={2.45} />
+      <Box pl={quantity ? 2 : 0}>
+        <BottomButton text={text} price={price} route={route} />
       </Box>
     </Box>
   );

@@ -1,4 +1,6 @@
 const C = {
+  API_URL: "https://qr-order-api.herokuapp.com/api",
+
   //Auth action types
   GET_TOKEN: "GET_TOKEN",
   GET_TOKEN_SUCCESS: "GET_TOKEN_SUCCESS",
@@ -13,6 +15,11 @@ const C = {
   GET_ITEM: "GET_ITEM",
   GET_ITEM_SUCCESS: "GET_ITEM_SUCCESS",
   GET_ITEM_FAILURE: "GET_ITEM_FAILURE",
+
+  //Cart action types
+  GET_CART: "GET_CART",
+  GET_CART_SUCCESS: "GET_CART_SUCCESS",
+  GET_CART_FAILURE: "GET_CART_FAILURE",
 };
 
 export default C;

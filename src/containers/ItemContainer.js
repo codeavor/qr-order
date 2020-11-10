@@ -25,7 +25,12 @@ export function ItemContainer({ itemData, getItem }) {
     <div>
       <NavBar back={true} text={itemData.item.name} search={false} />
       <ItemArea item={itemData.item} />
-      <BottomBox text={"Add To Cart"} quantity={true} />
+      <BottomBox
+        text={"Add To Cart"}
+        price={2.45}
+        route={"/umbrella"}
+        quantity={true}
+      />
     </div>
   );
 }

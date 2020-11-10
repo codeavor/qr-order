@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import SearchIcon from "@material-ui/icons/Search";
 import PropTypes from "prop-types";
+import { useHistory, withRouter } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,16 +28,18 @@ NavBar.propTypes = {
   search: PropTypes.bool,
 };
 
-export default function NavBar({ back, text, search }) {
+export function NavBar({ back, text, search }) {
   const classes = useStyles();
+  const history = useHistory();
 
-  const BarButton = ({ edge = "start", name, icon }) => {
+  const BarButton = ({ edge = "start", name, icon, ...props }) => {
     return (
       <IconButton
         edge={edge}
         className={classes.menuButton}
         aria-label={`${name}-button`}
         data-testid={`${name}-button`}
+        {...props}
       >
         {icon}
       </IconButton>
@@ -48,7 +51,11 @@ export default function NavBar({ back, text, search }) {
       <AppBar position="static" color="default" data-testid="nav-bar">
         <Toolbar>
           {back ? (
-            <BarButton name="back" icon={<KeyboardBackspaceIcon />} />
+            <BarButton
+              name="back"
+              icon={<KeyboardBackspaceIcon />}
+              onClick={() => history.goBack()}
+            />
           ) : (
             <BarButton />
           )}
@@ -65,3 +72,5 @@ export default function NavBar({ back, text, search }) {
     </div>
   );
 }
+
+export default withRouter(NavBar);

@@ -6,6 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Zoom from "@material-ui/core/Zoom";
 import PropTypes from "prop-types";
+import * as Scroll from "react-scroll";
+let scroll = Scroll.animateScroll;
 
 const useStyles = makeStyles((theme) => ({
   backButton: {
@@ -21,7 +23,7 @@ BackToTopButton.propTypes = {
 };
 
 BackToTopButton.defaultProps = {
-  handleBackToTop: () => {},
+  handleBackToTop: () => scroll.scrollToTop(),
 };
 
 export default function BackToTopButton({ handleBackToTop }) {
