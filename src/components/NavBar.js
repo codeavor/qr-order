@@ -49,13 +49,17 @@ export default function NavBar({ back, text, search }) {
         <Toolbar>
           {back ? (
             <BarButton name="back" icon={<KeyboardBackspaceIcon />} />
-          ) : null}
+          ) : (
+            <BarButton />
+          )}
           <div className={classes.grow} />
           <Typography variant="h5">{text}</Typography>
           <div className={classes.grow} />
           {search ? (
             <BarButton edge="end" name="search" icon={<SearchIcon />} />
-          ) : null}
+          ) : (
+            <BarButton edge="end" />
+          )}
         </Toolbar>
       </AppBar>
     </div>

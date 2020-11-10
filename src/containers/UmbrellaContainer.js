@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { getMenu } from "../actions/menuActions";
-import BottomButton from "../components/BottomButton";
+import BottomBox from "../components/BottomBox";
 import CategoriesBar from "../components/CategoriesBar";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
@@ -24,7 +24,7 @@ export function UmbrellaContainer({ menuData, getMenu }) {
       <NavBar back={false} text="Welcome" search={true} />
       <CategoriesBar menu={menuData.menu} />
       <MenuArea menu={menuData.menu} />
-      <BottomButton icon={true} text={"Cart"} price={2.45} />
+      <BottomBox text="Cart" quantity={false} />
     </div>
   );
 }

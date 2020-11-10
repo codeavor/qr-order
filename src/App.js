@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import AuthenticationContainer from "./containers/AuthenticationContainer";
 import ScanQRCodeContainer from "./containers/ScanQRCodeContainer";
 import UmbrellaContainer from "./containers/UmbrellaContainer";
+import ItemContainer from "./containers/ItemContainer";
 import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
       <Route path="/" exact component={ScanQRCodeContainer} />
       <Route path="/authentication/:id" component={AuthenticationContainer} />
       <ProtectedRoute path="/umbrella" component={UmbrellaContainer} />
-      {/* <Route path="/item/:id" component={itemContainer} /> */}
+      <ProtectedRoute path="/item/:id" component={ItemContainer} />
       {/* <Route path='/cart' component={cartContainer} /> */}
       {/* <Route path='/checkout' component={checkoutContainer} /> */}
       {/* <Route component={pageNotFoundContainer} /> */}
