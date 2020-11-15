@@ -1,5 +1,6 @@
 import axios from "axios";
 import C from "../constants";
+import { fixItem, getInitializedExtras } from "../utils/extra/extraUtils";
 
 export const getItemRequest = () => {
   return {
@@ -21,17 +22,25 @@ export const getItemFailure = (error) => {
   };
 };
 
+export const setExtraValues = (values) => {
+  return {
+    type: C.SET_EXTRA_VALUES,
+    payload: values,
+  };
+};
+
 export const getItem = (id) => {
   return function (dispatch) {
     dispatch(getItemRequest());
     axios
-      .get("https://qr-order-api.herokuapp.com/api/menu/" + id)
+      .get(C.API_URL + "/menu/" + id)
       .then((response) => {
-        const item = response.data;
+        const item = fixItem(response.data);
         dispatch(getItemSuccess(item));
+        dispatch(setExtraValues(getInitializedExtras(item.extra_categories)));
       })
       .catch((error) => {
-        dispatch(getItemFailure(error.response.data.error));
+        dispatch(getItemFailure(JSON.stringify(error)));
       });
   };
 };

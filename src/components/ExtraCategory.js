@@ -36,22 +36,13 @@ ExtraCategory.defaultProps = {
   },
 };
 
-export default function ExtraCategory({ extra_category }) {
+export default function ExtraCategory({
+  extra_category,
+  handleChange,
+  values,
+  setFieldValue,
+}) {
   const classes = useStyles();
-
-  const ExtraItem = ({ extra_category, controlComponent }) => {
-    return (
-      <>
-        {extra_category.extras.map((extra) => (
-          <Extras
-            extra={extra}
-            controlComponent={controlComponent}
-            key={extra.id}
-          />
-        ))}
-      </>
-    );
-  };
 
   return (
     <div className={classes.root}>
@@ -62,24 +53,46 @@ export default function ExtraCategory({ extra_category }) {
           </Typography>
         </FormLabel>
         {extra_category.type === "checkBox" ? (
-          <FormGroup
-            aria-label={extra_category.name}
-            name={extra_category.name}
-          >
-            <ExtraItem
-              extra_category={extra_category}
-              controlComponent={<Checkbox />}
-            />
+          <FormGroup aria-label={extra_category.name}>
+            {extra_category.extras.map((extra) => (
+              <Extras
+                extra={extra}
+                controlComponent={
+                  <Checkbox
+                    checked={
+                      values[extra.price * 100 + " " + extra.id] === undefined
+                        ? false
+                        : values[extra.price * 100 + " " + extra.id]
+                    }
+                    onChange={() =>
+                      setFieldValue(
+                        extra.price * 100 + " " + extra.id,
+                        !values[extra.price * 100 + " " + extra.id]
+                      )
+                    }
+                    id={extra_category.name}
+                  />
+                }
+                key={extra.id}
+              />
+            ))}
           </FormGroup>
         ) : extra_category.type === "radioButton" ? (
           <RadioGroup
-            aria-label={extra_category.name}
             name={extra_category.name}
+            value={
+              values[extra_category.name] === undefined
+                ? ""
+                : values[extra_category.name]
+            }
           >
-            <ExtraItem
-              extra_category={extra_category}
-              controlComponent={<Radio />}
-            />
+            {extra_category.extras.map((extra) => (
+              <Extras
+                extra={extra}
+                controlComponent={<Radio onChange={handleChange} />}
+                key={extra.id}
+              />
+            ))}
           </RadioGroup>
         ) : null}
       </FormControl>

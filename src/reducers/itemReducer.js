@@ -2,6 +2,7 @@ import C from "../constants";
 
 const initialState = {
   item: [],
+  extraValues: {},
   loading: true,
   error: "",
 };
@@ -26,6 +27,11 @@ export default (state = initialState, { type, payload }) => {
         item: null,
         loading: false,
         error: payload,
+      };
+    case C.SET_EXTRA_VALUES:
+      return {
+        ...state,
+        extraValues: payload,
       };
     default:
       return state;

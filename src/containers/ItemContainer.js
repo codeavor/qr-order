@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { getItem } from "../actions/itemActions";
+import { addItemToCart } from "../actions/cartActions";
 import Error from "../components/Error";
 import ItemArea from "../components/ItemArea";
 import Loading from "../components/Loading";
 import NavBar from "../components/NavBar";
-import BottomBox from "../components/BottomBox";
 
-export function ItemContainer({ itemData, getItem }) {
+export function ItemContainer({ itemData, getItem, userData, addItemToCart }) {
   const { id } = useParams();
 
   useEffect(() => {
@@ -24,12 +24,11 @@ export function ItemContainer({ itemData, getItem }) {
   ) : (
     <div>
       <NavBar back={true} text={itemData.item.name} search={false} />
-      <ItemArea item={itemData.item} />
-      <BottomBox
-        text={"Add To Cart"}
-        price={2.45}
-        route={"/umbrella"}
-        quantity={true}
+      <ItemArea
+        initialValues={itemData.extraValues}
+        item={itemData.item}
+        orderId={userData.orderId}
+        addItemToCart={addItemToCart}
       />
     </div>
   );
@@ -38,12 +37,15 @@ export function ItemContainer({ itemData, getItem }) {
 const mapStateToProps = (state) => {
   return {
     itemData: state.item,
+    userData: state.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getItem: (id) => dispatch(getItem(id)),
+    addItemToCart: (orderId, itemId, quantity, extrasId) =>
+      dispatch(addItemToCart(orderId, itemId, quantity, extrasId)),
   };
 };
 

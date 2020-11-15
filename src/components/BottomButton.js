@@ -17,7 +17,7 @@ BottomButton.defaultProps = {
   route: "/",
 };
 
-export default function BottomButton({ text, price, route }) {
+export default function BottomButton({ text, price, route, ...props }) {
   return (
     <Button
       data-testid="bottom-button"
@@ -26,6 +26,7 @@ export default function BottomButton({ text, price, route }) {
       startIcon={<ShoppingCartIcon data-testid="cart-icon" />}
       component={Link}
       to={route}
+      {...props}
     >
       {text} {price.toFixed(2)}€
     </Button>

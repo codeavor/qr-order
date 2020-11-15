@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 Extra.propTypes = {
   extra: PropTypes.object,
-  type: PropTypes.string,
 };
 
 Extra.defaultProps = {
@@ -45,7 +44,7 @@ export default function Extra({ extra, controlComponent }) {
       <Box className={classes.formControlLabel}>
         <FormControlLabel
           className={classes.formControlLabel}
-          value={"extra-" + extra.id}
+          value={extra.price * 100 + " " + extra.id}
           control={controlComponent}
           label={extra.name}
         />

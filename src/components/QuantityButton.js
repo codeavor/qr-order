@@ -13,8 +13,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function QuantityButtonComponent() {
-  const [count, setCount] = React.useState(1);
+export default function QuantityButtonComponent({
+  setQuantityNum,
+  quantityNum,
+}) {
   const classes = useStyles();
 
   return (
@@ -26,7 +28,7 @@ export default function QuantityButtonComponent() {
         variant="contained"
         color="primary"
         onClick={() => {
-          setCount(Math.max(count - 1, 1));
+          setQuantityNum(Math.max(quantityNum - 1, 1));
         }}
       >
         <RemoveIcon fontSize="small" />
@@ -37,7 +39,7 @@ export default function QuantityButtonComponent() {
         size="small"
         disabled
       >
-        {count}
+        {quantityNum}
       </Button>
       <Button
         data-testid="plus-quantity-button"
@@ -46,7 +48,7 @@ export default function QuantityButtonComponent() {
         variant="contained"
         color="primary"
         onClick={() => {
-          setCount(count + 1);
+          setQuantityNum(quantityNum + 1);
         }}
       >
         <AddIcon fontSize="small" />
