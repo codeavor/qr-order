@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
+import Divider from '@material-ui/core/Divider';
 
 import { totalItemPrice } from "../utils/cart/cartUtils";
 
@@ -73,6 +74,7 @@ export default function CartItem({
                   <Typography className={classes.grow} />
                   <Typography>
                     {totalItemPrice(price, extraPrice, quantity).toFixed(2)}€
+                    <Divider  display="flex" flexWrap="nowrap"/>
                   </Typography>
                 </Box>
               </>

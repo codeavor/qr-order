@@ -5,15 +5,16 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { Box, Grid } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 
 const defaultProps = {
-  border : 3,
-  borderColor:'grey.500',
+  border : 2,
+  borderColor:'grey.600',
   marginTop:"3%",
   justifyContent:"center",
   display:"flex",
   flexWrap:"nowrap",
-  style: { width: '45%', height: '45%' }
+  style: { width: '80%', height: '70%' }
 };
 
 export default function RadioButtonsGroup() {
@@ -34,7 +35,9 @@ export default function RadioButtonsGroup() {
           <FormLabel component="legend"></FormLabel>
             <RadioGroup  aria-label="gender" name="gender1" value={value} onChange={handleChange}>
               <FormControlLabel value="Cash" control={<Radio />} label="Pay with Cash" />
+              <Divider  display="flex" flexWrap="nowrap"/>
               <FormControlLabel value="Card" control={<Radio />} label="Pay with Card" />
+              <Divider  display="flex" flexWrap="nowrap"/>
               <FormControlLabel value="disabled" disabled control={<Radio />} label="Paypal" />
             </RadioGroup>
         </FormControl>

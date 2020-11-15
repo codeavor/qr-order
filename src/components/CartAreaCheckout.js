@@ -7,13 +7,13 @@ import CartItemCheckout from "./CartItemCheckout";
 import Box from "@material-ui/core/Box";
 
 const defaultProps = {
-    border : 3,
-    borderColor:'grey.500',
+    border : 2,
+    borderColor:'grey.600',
     marginTop:"3%",
     justifyContent:"center",
     display:"flex",
     flexWrap:"nowrap",
-    style: { width: '40%', height: '40%' }
+    style: { width: '80%', height: '70%' }
   };
 
 const useStyles = makeStyles((theme) => ({
