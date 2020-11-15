@@ -3,22 +3,19 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import {
-  getCart,
-  deleteOrderItem,
-  changeQuantity,
+  getCart
 } from "../actions/cartActions";
 import BackToTopButton from "../components/BackToTopButton";
 import BottomButton from "../components/BottomButton";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
-import CartArea from "../components/CartArea";
+import CartAreaCheckout from "../components/CartAreaCheckout";
 import NavBar from "../components/NavBar";
+import CheckoutPayment from "../components/CheckoutPayment";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 
-export function CartContainer({
+export function CheckoutContainer({
   cartData,
-  deleteOrderItem,
-  changeQuantity,
   userData,
   getCart,
 }) {
@@ -32,15 +29,14 @@ export function CartContainer({
     <Error error={cartData.error} />
   ) : (
     <div>
-      <NavBar back={true} text="My Cart" />
-      <CartArea
+      <NavBar back={true} text="Checkout" />
+      <CheckoutPayment/>
+      <CartAreaCheckout
         cart={cartData.cart}
-        deleteOrderItem={deleteOrderItem}
-        changeQuantity={changeQuantity}
       />
       <BottomButton
-        icon={true}
-        text={"Continue"}
+        icon={false}
+        text={"Checkout"}
         price={totalCartPrice(cartData.cart)}
         route={"/checkout"}
       />
@@ -58,11 +54,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCart: (orderId) => dispatch(getCart(orderId)),
-    deleteOrderItem: (orderItemId) => dispatch(deleteOrderItem(orderItemId)),
-    changeQuantity: (quantity, orderItemId) =>
-      dispatch(changeQuantity(quantity, orderItemId)),
+    getCart: (orderId) => dispatch(getCart(orderId))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutContainer);
