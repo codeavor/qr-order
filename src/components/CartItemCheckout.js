@@ -74,13 +74,13 @@ export default function CartItem({
                   <Typography className={classes.grow} />
                   <Typography>
                     {totalItemPrice(price, extraPrice, quantity).toFixed(2)}€
-                    <Divider  display="flex" flexWrap="nowrap"/>
                   </Typography>
                 </Box>
               </>
             }
           />
         </ListItem>
+        <Divider  display="flex" flexWrap="nowrap"/>
       </List>
     </div>
   );
