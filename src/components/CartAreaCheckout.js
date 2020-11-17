@@ -39,7 +39,7 @@ export default function CartArea({cart}) {
     alignItems="center"
     display="flex"
     flexWrap="nowrap">
-    <Box borderRadius={20} {...defaultProps}>
+    <Box borderRadius={8} {...defaultProps}>
     <div data-testid="cart-area">
         <Container className={classes.section}>
             {cart.map((cartItem) => (

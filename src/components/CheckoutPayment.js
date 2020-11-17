@@ -30,7 +30,7 @@ export default function RadioButtonsGroup() {
     alignItems="center"
     display="flex"
     flexWrap="nowrap">
-      <Box borderRadius={20} {...defaultProps}>
+      <Box borderRadius={8} {...defaultProps}>
         <FormControl component="fieldset">
           <FormLabel component="legend"></FormLabel>
             <RadioGroup  aria-label="gender" name="gender1" value={value} onChange={handleChange}>
