@@ -1,18 +1,12 @@
 import React, { useEffect } from "react";
-
 import { connect } from "react-redux";
-
 import {
   getCart
 } from "../actions/cartActions";
-import BackToTopButton from "../components/BackToTopButton";
-import BottomButton from "../components/BottomButton";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
-import CartAreaCheckout from "../components/CartAreaCheckout";
 import NavBar from "../components/NavBar";
-import CheckoutPayment from "../components/CheckoutPayment";
-import { totalCartPrice } from "../utils/cart/cartUtils";
+import ThankContainer from "../components/ThankContainer";
 
 export function CheckoutContainer({
   cartData,
@@ -29,18 +23,8 @@ export function CheckoutContainer({
     <Error error={cartData.error} />
   ) : (
     <div>
-      <NavBar back={true} text="Checkout" />
-      <CheckoutPayment/>
-      <CartAreaCheckout
-        cart={cartData.cart}
-      />
-      <BottomButton
-        icon={false}
-        text={"Checkout"}
-        price={totalCartPrice(cartData.cart)}
-        route={"/final"}
-      />
-      <BackToTopButton />
+      <NavBar back={true} text="Transaction Completed !" />
+      <ThankContainer></ThankContainer>
     </div>
   );
 }

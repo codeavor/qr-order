@@ -8,6 +8,7 @@ import UmbrellaContainer from "./containers/UmbrellaContainer";
 import ProtectedRoute from "./utils/auth/ProtectedRoute";
 import CartContainer from "./containers/CartContainer";
 import CheckoutContainer from "./containers/CheckoutContainer";
+import FinalContainer from "./containers/FinalContainer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       {/* <Route path="/item/:id" component={itemContainer} /> */}
       <ProtectedRoute path="/cart" component={CartContainer} />
       <ProtectedRoute path='/checkout' component={CheckoutContainer} /> 
+      <ProtectedRoute path='/final' component={FinalContainer} /> 
       {/* <Route component={pageNotFoundContainer} /> */}
     </Switch>
   );
