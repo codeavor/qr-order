@@ -7,8 +7,7 @@ const defaultProps = {
   marginTop:"25%",
   justifyContent:"center",
   display:"flex",
-  flexWrap:"nowrap",
-  style: { width: '80%', height: '70%' }
+  flexWrap:"nowrap"
 };
 
 export default function RadioButtonsGroup() {
@@ -18,8 +17,15 @@ export default function RadioButtonsGroup() {
     justifyContent="center"
     alignItems="center"
     display="flex"
-    flexWrap="nowrap">
-      <Box borderRadius={8} {...defaultProps}>
+    flexWrap="nowrap"
+    width="100%"
+    height="550px">
+      <Box
+      justifyContent="center"
+      alignItems="center"
+      display="flex"
+      flexWrap="nowrap"
+      height="100%" borderRadius={8} {...defaultProps}>
        kalispera thelo na kano ena test genikotera
       </Box>
     </Box>
