@@ -3,7 +3,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import {
-  getCart
+  getCart,
+  orderComplete,
 } from "../actions/cartActions";
 import BackToTopButton from "../components/BackToTopButton";
 import BottomButton from "../components/BottomButton";
@@ -18,6 +19,7 @@ export function CheckoutContainer({
   cartData,
   userData,
   getCart,
+  orderComplete
 }) {
   useEffect(() => {
     getCart(userData.orderId);
@@ -38,7 +40,9 @@ export function CheckoutContainer({
         icon={false}
         text={"Checkout"}
         price={totalCartPrice(cartData.cart)}
+        onClick={() => orderComplete(userData.orderId)}
         route={"/final"}
+        
       />
       <BackToTopButton />
     </div>
@@ -54,7 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCart: (orderId) => dispatch(getCart(orderId))
+    getCart: (orderId) => dispatch(getCart(orderId)),
+    orderComplete : (orderId) => dispatch(orderComplete(orderId))
   };
 };
 

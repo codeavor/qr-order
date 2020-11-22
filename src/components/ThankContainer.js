@@ -19,14 +19,15 @@ export default function RadioButtonsGroup() {
     display="flex"
     flexWrap="nowrap"
     width="100%"
-    height="550px">
+    height="500px">
       <Box
       justifyContent="center"
       alignItems="center"
       display="flex"
       flexWrap="nowrap"
+      width="70%"
       height="100%" borderRadius={8} {...defaultProps}>
-       kalispera thelo na kano ena test genikotera
+        Thank you for your purchase
       </Box>
     </Box>
   );

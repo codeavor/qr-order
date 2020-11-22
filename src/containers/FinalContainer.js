@@ -23,7 +23,7 @@ export function CheckoutContainer({
     <Error error={cartData.error} />
   ) : (
     <div>
-      <NavBar back={false} text="Transaction Completed !" />
+      <NavBar back={true} text="Transaction Completed !" />
       <ThankContainer></ThankContainer>
     </div>
   );

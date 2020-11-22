@@ -65,6 +65,16 @@ export const changeQuantity = (quantity, orderItemId) => {
   };
 };
 
+export const orderComplete = (orderId) => {
+  return function (dispatch) {
+    axios
+      .put(C.API_URL + "/cart/" + orderId + "?order_complete=" + true)
+      .catch((error) => {
+        dispatch(getCartError(error.response.data.error));
+      });
+  };
+};
+
 // export const addItemToCart = (quantity, orderItemId) => {
 //   const options = {
 //     url: "https://qr-order-api.herokuapp.com/api/order_item/" + orderItemId,
