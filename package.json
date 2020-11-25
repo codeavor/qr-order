@@ -92,7 +92,8 @@
       "**/*.stories.js",
       "**/stories.js",
       "__mocks__/**",
-      "src/utils/cart/*.js"
+      "src/utils/cart/*.js",
+      "src/utils/extra/*.js"
     ]
   },
   "devDependencies": {

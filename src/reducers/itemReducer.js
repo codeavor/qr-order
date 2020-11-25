@@ -1,7 +1,7 @@
 import C from "../constants";
 
 const initialState = {
-  item: [],
+  item: null,
   extraValues: {},
   loading: true,
   error: "",

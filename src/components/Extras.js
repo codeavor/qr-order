@@ -4,6 +4,8 @@ import Box from "@material-ui/core/Box";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
+import { combinedPriceId } from "../utils/extra/extraUtils";
+import { CheckBox } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,14 +20,16 @@ const useStyles = makeStyles((theme) => ({
 
 Extra.propTypes = {
   extra: PropTypes.object,
+  controlComponent: PropTypes.element,
 };
 
 Extra.defaultProps = {
   extra: {
     id: 1,
     name: "Coffee",
-    price: 1,
+    price: "0.4",
   },
+  controlComponent: <CheckBox />,
 };
 
 export default function Extra({ extra, controlComponent }) {
@@ -40,11 +44,12 @@ export default function Extra({ extra, controlComponent }) {
       mb={1.5}
       p={2}
       className={classes.root}
+      data-testid="extra"
     >
       <Box className={classes.formControlLabel}>
         <FormControlLabel
           className={classes.formControlLabel}
-          value={extra.price * 100 + " " + extra.id}
+          value={combinedPriceId(extra.price, extra.id)}
           control={controlComponent}
           label={extra.name}
         />

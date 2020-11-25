@@ -40,7 +40,7 @@ export function CartContainer({
       />
       <BottomBox
         text={"Continue"}
-        price={totalCartPrice(cartData.cart)}
+        price={"" + totalCartPrice(cartData.cart)}
         route={"/checkout"}
       />
       <BackToTopButton />

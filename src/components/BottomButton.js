@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 BottomButton.propTypes = {
-  icon: PropTypes.bool,
   text: PropTypes.string,
   price: PropTypes.number,
   route: PropTypes.string,
@@ -28,7 +27,8 @@ export default function BottomButton({ text, price, route, ...props }) {
       to={route}
       {...props}
     >
-      {text} {price.toFixed(2)}€
+      <span data-testid="bottom-button-text">{text}</span> &nbsp;
+      <span data-testid="bottom-button-price">{price.toFixed(2)}</span>€
     </Button>
   );
 }

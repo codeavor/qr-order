@@ -4,7 +4,17 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
+
+QuantityButton.propTypes = {
+  setQuantityNum: PropTypes.func,
+  quantityNum: PropTypes.number,
+};
+
+QuantityButton.defaultProps = {
+  quantityNum: 1,
+};
 
 const useStyles = makeStyles((theme) => ({
   quantityDisabledButton: {
@@ -13,14 +23,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function QuantityButtonComponent({
-  setQuantityNum,
-  quantityNum,
-}) {
+export default function QuantityButton({ setQuantityNum, quantityNum }) {
   const classes = useStyles();
 
   return (
-    <ButtonGroup>
+    <ButtonGroup data-testid="quantity-button-group">
       <Button
         data-testid="minus-quantity-button"
         size="small"
@@ -35,7 +42,7 @@ export default function QuantityButtonComponent({
       </Button>
       <Button
         className={classes.quantityDisabledButton}
-        data-testid="quantity-button"
+        data-testid="quantity-value-button"
         size="small"
         disabled
       >

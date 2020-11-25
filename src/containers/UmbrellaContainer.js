@@ -35,7 +35,7 @@ export function UmbrellaContainer({
       <MenuArea menu={menuData.menu} />
       <BottomBox
         text="Cart"
-        price={totalCartPrice(cartData.cart)}
+        price={"" + totalCartPrice(cartData.cart)}
         route={"/cart"}
         quantity={false}
       />

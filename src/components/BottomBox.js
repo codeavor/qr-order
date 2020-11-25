@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import QuantityButton from "../components/QuantityButton";
+import PropTypes from "prop-types";
 import BottomButton from "../components/BottomButton";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -8,6 +9,24 @@ import {
   getExtrasId,
   getExtrasPrice,
 } from "../utils/extra/extraUtils";
+
+BottomBox.propTypes = {
+  text: PropTypes.string,
+  quantity: PropTypes.bool,
+  price: PropTypes.string,
+  route: PropTypes.string,
+  addItemToCart: PropTypes.func,
+  orderId: PropTypes.number,
+  itemId: PropTypes.number,
+  values: PropTypes.object,
+};
+
+BottomBox.defaultProps = {
+  quantity: false,
+  price: "0",
+  route: "/",
+  values: {},
+};
 
 const useStyles = makeStyles((theme) => ({
   quantityCounter: {
@@ -48,6 +67,7 @@ export default function BottomBox({
       justifyContent="center"
       bgcolor="background.paper"
       boxShadow={3}
+      data-testid="bottom-box"
     >
       {quantity ? (
         <>
@@ -59,6 +79,7 @@ export default function BottomBox({
           </Box>
           <Box pl={2}>
             <BottomButton
+              data-testid="bottom-button"
               onClick={() =>
                 addItemToCart(orderId, itemId, quantityNum, extrasId)
               }
@@ -70,7 +91,7 @@ export default function BottomBox({
         </>
       ) : (
         <Box pl={0}>
-          <BottomButton text={text} price={price} route={route} />
+          <BottomButton text={text} price={parseFloat(price)} route={route} />
         </Box>
       )}
     </Box>

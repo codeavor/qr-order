@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import ExtraCategory from "./ExtraCategory";
 import { Formik, Form } from "formik";
 import BottomBox from "./BottomBox";
+import C from "../constants";
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -21,10 +22,14 @@ const useStyles = makeStyles((theme) => ({
 
 ItemArea.propTypes = {
   item: PropTypes.object,
+  initialValues: PropTypes.object,
+  addItemToCart: PropTypes.func,
+  orderId: PropTypes.number,
 };
 
 ItemArea.defaultProps = {
-  item: [],
+  item: { extra_categories: [] },
+  initialValues: {},
 };
 
 export default function ItemArea({
@@ -35,10 +40,18 @@ export default function ItemArea({
 }) {
   const classes = useStyles();
 
+  const checkIfSketos = (categoryName, values) => {
+    if (Object.keys(values).length === 0 || values === undefined) return false;
+    return (
+      categoryName === C.EPILEKSTE_EIDOS_ZAXARHS &&
+      values[C.EPILEKSTE_ZAXARH].split(" ")[1] === C.SKETOS_ID
+    );
+  };
+
   return (
     <Formik enableReinitialize={true} initialValues={initialValues}>
       {(props) => {
-        const { values, handleChange, setFieldValue } = props;
+        const { values, handleChange, setFieldValue, setValues } = props;
         return (
           <Form>
             <div data-testid="item-area">
@@ -47,18 +60,17 @@ export default function ItemArea({
                 id={`item-${item.id}`}
                 key={item.id}
               >
-                {item.extra_categories.map((extra_category) =>
-                  extra_category.name === "Επιλέξτε είδος ζάχαρης" &&
-                  values["Επιλέξτε ζάχαρη"] === "0 1" ? null : (
-                    <ExtraCategory
-                      setFieldValue={setFieldValue}
-                      handleChange={handleChange}
-                      extra_category={extra_category}
-                      key={extra_category.id}
-                      values={values}
-                    />
-                  )
-                )}
+                {item.extra_categories.map((extra_category) => (
+                  <ExtraCategory
+                    setFieldValue={setFieldValue}
+                    handleChange={handleChange}
+                    setValues={setValues}
+                    extra_category={extra_category}
+                    key={extra_category.id}
+                    values={values}
+                    disabled={checkIfSketos(extra_category.name, values)}
+                  />
+                ))}
               </Container>
             </div>
             <BottomBox

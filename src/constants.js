@@ -21,6 +21,11 @@ const C = {
   GET_CART: "GET_CART",
   GET_CART_SUCCESS: "GET_CART_SUCCESS",
   GET_CART_FAILURE: "GET_CART_FAILURE",
+
+  SUGAR_IDS: ["0 4", "0 5", "0 6"],
+  SKETOS_ID: "1",
+  EPILEKSTE_EIDOS_ZAXARHS: "Επιλέξτε είδος ζάχαρης",
+  EPILEKSTE_ZAXARH: "Επιλέξτε ζάχαρη",
 };
 
 export default C;

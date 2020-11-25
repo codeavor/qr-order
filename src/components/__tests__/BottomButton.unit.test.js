@@ -5,7 +5,6 @@ import BottomButton from "../BottomButton";
 
 describe("BottomButton", () => {
   const props = {
-    icon: true,
     text: "My Cart",
     price: 1.24,
     route: "/umbrella",
@@ -22,7 +21,8 @@ describe("BottomButton", () => {
       </MemoryRouter>
     );
     expect(queryByTestId(/cart-icon/i)).toBeTruthy();
-    expect(getByText("My Cart 1.24€")).toBeInTheDocument();
+    expect(getByText("My Cart")).toBeInTheDocument();
+    expect(getByText("1.24")).toBeInTheDocument();
   });
 
   it("renders a <BottomButton/> component without props", () => {
@@ -32,6 +32,7 @@ describe("BottomButton", () => {
       </MemoryRouter>
     );
 
-    expect(queryByTestId(/bottom-button/i)).toBeTruthy();
+    expect(queryByTestId(/bottom-button-text/i)).toBeTruthy();
+    expect(queryByTestId(/bottom-button-price/i)).toBeTruthy();
   });
 });
