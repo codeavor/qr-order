@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { getCart } from "../actions/cartActions";
 import { getMenu } from "../actions/menuActions";
-import BottomButton from "../components/BottomButton";
+import BottomBox from "../components/BottomBox";
 import CategoriesBar from "../components/CategoriesBar";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
@@ -33,11 +33,11 @@ export function UmbrellaContainer({
       <NavBar back={false} text="Welcome" search={true} />
       <CategoriesBar menu={menuData.menu} />
       <MenuArea menu={menuData.menu} />
-      <BottomButton
-        icon={true}
-        text={"Cart"}
-        price={totalCartPrice(cartData.cart)}
+      <BottomBox
+        text="Cart"
+        price={"" + totalCartPrice(cartData.cart)}
         route={"/cart"}
+        quantity={false}
       />
     </div>
   );

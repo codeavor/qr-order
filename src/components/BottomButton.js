@@ -2,23 +2,10 @@ import React from "react";
 
 import Button from "@material-ui/core/Button";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-  backButton: {
-    position: "fixed",
-    bottom: theme.spacing(2),
-    left: "50%",
-    transform: "translateX(-50%)",
-    zIndex: "1",
-    textTransform: "capitalize",
-  },
-}));
-
 BottomButton.propTypes = {
-  icon: PropTypes.bool,
   text: PropTypes.string,
   price: PropTypes.number,
   route: PropTypes.string,
@@ -29,20 +16,19 @@ BottomButton.defaultProps = {
   route: "/",
 };
 
-export default function BottomButton({ icon, text, price, route }) {
-  const classes = useStyles();
-
+export default function BottomButton({ text, price, route, ...props }) {
   return (
     <Button
       data-testid="bottom-button"
       variant="contained"
       color="primary"
-      className={classes.backButton}
-      startIcon={icon ? <ShoppingCartIcon data-testid="cart-icon" /> : null}
+      startIcon={<ShoppingCartIcon data-testid="cart-icon" />}
       component={Link}
       to={route}
+      {...props}
     >
-      {text} {price.toFixed(2)}€
+      <span data-testid="bottom-button-text">{text}</span> &nbsp;
+      <span data-testid="bottom-button-price">{price.toFixed(2)}</span>€
     </Button>
   );
 }

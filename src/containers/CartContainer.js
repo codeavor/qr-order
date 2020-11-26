@@ -8,12 +8,12 @@ import {
   changeQuantity,
 } from "../actions/cartActions";
 import BackToTopButton from "../components/BackToTopButton";
-import BottomButton from "../components/BottomButton";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import CartArea from "../components/CartArea";
 import NavBar from "../components/NavBar";
 import { totalCartPrice } from "../utils/cart/cartUtils";
+import BottomBox from "../components/BottomBox";
 
 export function CartContainer({
   cartData,
@@ -32,16 +32,15 @@ export function CartContainer({
     <Error error={cartData.error} />
   ) : (
     <div>
-      <NavBar back={true} text="My Cart" search={true} />
+      <NavBar back={true} text="My Cart" />
       <CartArea
         cart={cartData.cart}
         deleteOrderItem={deleteOrderItem}
         changeQuantity={changeQuantity}
       />
-      <BottomButton
-        icon={true}
+      <BottomBox
         text={"Continue"}
-        price={totalCartPrice(cartData.cart)}
+        price={"" + totalCartPrice(cartData.cart)}
         route={"/checkout"}
       />
       <BackToTopButton />
