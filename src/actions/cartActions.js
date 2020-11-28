@@ -1,5 +1,6 @@
 import axios from "axios";
 import C from "../constants";
+import { removeToken } from "../utils/auth/removeToken";
 import { fixCart } from "../utils/cart/cartUtils";
 
 export const getCartRequest = () => {
@@ -69,6 +70,9 @@ export const orderComplete = (orderId) => {
   return function (dispatch) {
     axios
       .put(C.API_URL + "/cart/" + orderId + "?order_complete=" + true)
+      .then(() => {
+        removeToken();
+      })
       .catch((error) => {
         dispatch(getCartError(error.response.data.error));
       });

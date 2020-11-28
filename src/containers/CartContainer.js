@@ -39,6 +39,7 @@ export function CartContainer({
         changeQuantity={changeQuantity}
       />
       <BottomButton
+        disable={totalCartPrice(cartData.cart) === 0}
         icon={true}
         text={"Continue"}
         price={totalCartPrice(cartData.cart)}

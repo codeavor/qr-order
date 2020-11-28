@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-
 const useStyles = makeStyles((theme) => ({
   backButton: {
     position: "fixed",
@@ -23,6 +22,7 @@ BottomButton.propTypes = {
   text: PropTypes.string,
   price: PropTypes.number,
   route: PropTypes.string,
+  disable: PropTypes.bool,
 };
 
 BottomButton.defaultProps = {
@@ -30,7 +30,14 @@ BottomButton.defaultProps = {
   route: "/",
 };
 
-export default function BottomButton({ icon, text, price, route,...props }) {
+export default function BottomButton({
+  icon,
+  text,
+  price,
+  route,
+  disable,
+  ...props
+}) {
   const classes = useStyles();
 
   return (
@@ -42,6 +49,7 @@ export default function BottomButton({ icon, text, price, route,...props }) {
       startIcon={icon ? <ShoppingCartIcon data-testid="cart-icon" /> : null}
       component={Link}
       to={route}
+      disabled={disable}
       {...props}
     >
       {text} {price.toFixed(2)}€

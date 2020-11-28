@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
 
-import {
-  getCart,
-  orderComplete,
-} from "../actions/cartActions";
+import { getCart, orderComplete } from "../actions/cartActions";
 import BackToTopButton from "../components/BackToTopButton";
 import BottomButton from "../components/BottomButton";
 import Error from "../components/Error";
@@ -19,7 +16,7 @@ export function CheckoutContainer({
   cartData,
   userData,
   getCart,
-  orderComplete
+  orderComplete,
 }) {
   useEffect(() => {
     getCart(userData.orderId);
@@ -32,17 +29,14 @@ export function CheckoutContainer({
   ) : (
     <div>
       <NavBar back={true} text="Checkout" />
-      <CheckoutPayment/>
-      <CartAreaCheckout
-        cart={cartData.cart}
-      />
+      <CheckoutPayment />
+      <CartAreaCheckout cart={cartData.cart} />
       <BottomButton
         icon={false}
         text={"Checkout"}
         price={totalCartPrice(cartData.cart)}
         onClick={() => orderComplete(userData.orderId)}
         route={"/final"}
-        
       />
       <BackToTopButton />
     </div>
@@ -59,7 +53,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCart: (orderId) => dispatch(getCart(orderId)),
-    orderComplete : (orderId) => dispatch(orderComplete(orderId))
+    orderComplete: (orderId) => dispatch(orderComplete(orderId)),
   };
 };
 
