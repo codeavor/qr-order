@@ -2,25 +2,12 @@ import React from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 
 import { totalItemPrice } from "../utils/cart/cartUtils";
-
-const useStyles = makeStyles((theme) => ({
-  smallButton: {
-    maxWidth: "30px",
-    maxHeight: "30px",
-    minWidth: "30px",
-    minHeight: "30px",
-  },
-  grow: {
-    flexGrow: 1,
-  },
-}));
 
 CheckoutItem.propTypes = {
   name: PropTypes.string,
@@ -42,8 +29,6 @@ export default function CheckoutItem({
   quantity,
   price,
 }) {
-  const classes = useStyles();
-
   return (
     <div style={{ maxWidth: "300px" }} data-testid="checkout-item">
       <List>
