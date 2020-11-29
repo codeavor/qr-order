@@ -45,7 +45,7 @@ export default function CheckoutItem({
   const classes = useStyles();
 
   return (
-    <div style={{ maxWidth: "300px" }} data-testid="cart-item">
+    <div style={{ maxWidth: "300px" }} data-testid="checkout-item">
       <List>
         <ListItem>
           <ListItemText
@@ -64,14 +64,6 @@ export default function CheckoutItem({
                   wrap="nowrap"
                   alignItems="center"
                 >
-                  <Box>
-                    <Box
-                      display="inline"
-                      px={2}
-                      data-testid="cart-item-quantity"
-                    ></Box>
-                  </Box>
-                  <Typography className={classes.grow} />
                   <Typography>
                     {totalItemPrice(price, extraPrice, quantity).toFixed(2)}€
                   </Typography>
