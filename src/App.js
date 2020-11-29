@@ -7,6 +7,8 @@ import ScanQRCodeContainer from "./containers/ScanQRCodeContainer";
 import UmbrellaContainer from "./containers/UmbrellaContainer";
 import ItemContainer from "./containers/ItemContainer";
 import CartContainer from "./containers/CartContainer";
+import CheckoutContainer from "./containers/CheckoutContainer";
+import FinalContainer from "./containers/FinalContainer";
 import ProtectedRoute from "./utils/auth/ProtectedRoute";
 
 function App() {
@@ -17,7 +19,8 @@ function App() {
       <ProtectedRoute path="/umbrella" component={UmbrellaContainer} />
       <ProtectedRoute path="/item/:id" component={ItemContainer} />
       <ProtectedRoute path="/cart" component={CartContainer} />
-      {/* <Route path='/checkout' component={checkoutContainer} /> */}
+      <ProtectedRoute path="/checkout" component={CheckoutContainer} />
+      <ProtectedRoute path="/final" component={FinalContainer} />
       {/* <Route component={pageNotFoundContainer} /> */}
     </Switch>
   );

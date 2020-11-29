@@ -46,7 +46,9 @@ export default function BottomBox({
   addItemToCart,
   orderId,
   itemId,
+  disable,
   values,
+  completeOrder,
 }) {
   const classes = useStyles();
   const [quantityNum, setQuantityNum] = React.useState(1);
@@ -91,7 +93,15 @@ export default function BottomBox({
         </>
       ) : (
         <Box pl={0}>
-          <BottomButton text={text} price={parseFloat(price)} route={route} />
+          <BottomButton
+            text={text}
+            price={parseFloat(price)}
+            onClick={() =>
+              completeOrder !== undefined ? completeOrder(orderId) : null
+            }
+            route={route}
+            disable={disable}
+          />
         </Box>
       )}
     </Box>

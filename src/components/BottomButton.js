@@ -9,6 +9,7 @@ BottomButton.propTypes = {
   text: PropTypes.string,
   price: PropTypes.number,
   route: PropTypes.string,
+  disable: PropTypes.bool,
 };
 
 BottomButton.defaultProps = {
@@ -16,7 +17,13 @@ BottomButton.defaultProps = {
   route: "/",
 };
 
-export default function BottomButton({ text, price, route, ...props }) {
+export default function BottomButton({
+  text,
+  price,
+  route,
+  disable,
+  ...props
+}) {
   return (
     <Button
       data-testid="bottom-button"
@@ -25,6 +32,7 @@ export default function BottomButton({ text, price, route, ...props }) {
       startIcon={<ShoppingCartIcon data-testid="cart-icon" />}
       component={Link}
       to={route}
+      disabled={disable}
       {...props}
     >
       <span data-testid="bottom-button-text">{text}</span> &nbsp;

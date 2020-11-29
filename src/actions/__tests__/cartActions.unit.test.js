@@ -6,6 +6,7 @@ import {
   deleteOrderItem,
   changeQuantity,
   addItemToCart,
+  orderComplete,
 } from "../cartActions";
 import C from "../../constants";
 import { fixCart } from "../../utils/cart/cartUtils";
@@ -229,6 +230,43 @@ describe("cartActions", () => {
 
       try {
         await store.dispatch(addItemToCart(1, 1, 2, [5, 6]));
+      } catch {
+        const expectedActions = [
+          { type: C.GET_CART_FAILURE, payload: errorMsg },
+        ];
+
+        expect(store.getActions()).toEqual(expectedActions);
+      }
+    });
+  });
+
+  describe("orderComplete action", () => {
+    it("dispatches orderComplete action", async () => {
+      jest.spyOn(Object.getPrototypeOf(window.localStorage), "removeItem");
+      mockAxios.put.mockImplementationOnce(() =>
+        Promise.resolve({
+          data: [],
+        })
+      );
+
+      await store.dispatch(orderComplete(1));
+      expect(localStorage.removeItem).toHaveBeenCalled();
+    });
+
+    it("dispatches orderComplete action and returns an error", async () => {
+      const errorMsg = "Something bad happened :(";
+      mockAxios.put.mockImplementationOnce(() =>
+        Promise.reject({
+          response: {
+            data: {
+              error: errorMsg,
+            },
+          },
+        })
+      );
+
+      try {
+        await store.dispatch(orderComplete(1));
       } catch {
         const expectedActions = [
           { type: C.GET_CART_FAILURE, payload: errorMsg },

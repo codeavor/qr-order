@@ -8,6 +8,7 @@ import { fireEvent, render } from "@testing-library/react";
 
 describe("BottomBox", () => {
   const mockAddItemToCart = jest.fn();
+  const mockCompleteOrder = jest.fn();
 
   const props = {
     text: "My Cart",
@@ -15,6 +16,16 @@ describe("BottomBox", () => {
     route: "/umbrella",
     quantity: true,
     addItemToCart: mockAddItemToCart,
+    orderId: 1,
+    itemId: 1,
+    values: { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" },
+  };
+
+  const props2 = {
+    text: "My Cart",
+    price: "1.24",
+    route: "/umbrella",
+    completeOrder: mockCompleteOrder,
     orderId: 1,
     itemId: 1,
     values: { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" },
@@ -53,5 +64,20 @@ describe("BottomBox", () => {
     expect(QuantityButtons).toHaveLength(0);
     const BottomButtons = wrapper.find(BottomButton);
     expect(BottomButtons).toHaveLength(1);
+
+    BottomButtons.simulate("click");
+  });
+
+  it("renders a <BottomBox/> component with expected props and runs complete order", () => {
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <BottomBox {...props2} />
+      </MemoryRouter>
+    );
+
+    expect(getByTestId("bottom-button")).toBeTruthy();
+
+    fireEvent.click(getByTestId("bottom-button"));
+    expect(mockCompleteOrder).toBeCalled();
   });
 });
