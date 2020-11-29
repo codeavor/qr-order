@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 
 import { getCart, orderComplete } from "../actions/cartActions";
 import BackToTopButton from "../components/BackToTopButton";
-import BottomButton from "../components/BottomButton";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
-import CartAreaCheckout from "../components/CartAreaCheckout";
+import CheckoutArea from "../components/CheckoutArea";
 import NavBar from "../components/NavBar";
 import CheckoutPayment from "../components/CheckoutPayment";
 import { totalCartPrice } from "../utils/cart/cartUtils";
+import BottomBox from "../components/BottomBox";
 
 export function CheckoutContainer({
   cartData,
@@ -30,12 +30,12 @@ export function CheckoutContainer({
     <div>
       <NavBar back={true} text="Checkout" />
       <CheckoutPayment />
-      <CartAreaCheckout cart={cartData.cart} />
-      <BottomButton
-        icon={false}
+      <CheckoutArea cart={cartData.cart} />
+      <BottomBox
         text={"Checkout"}
         price={totalCartPrice(cartData.cart)}
-        onClick={() => orderComplete(userData.orderId)}
+        completeOrder={orderComplete}
+        orderId={userData.orderId}
         route={"/final"}
       />
       <BackToTopButton />

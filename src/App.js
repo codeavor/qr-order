@@ -5,10 +5,11 @@ import { Route, Switch } from "react-router-dom";
 import AuthenticationContainer from "./containers/AuthenticationContainer";
 import ScanQRCodeContainer from "./containers/ScanQRCodeContainer";
 import UmbrellaContainer from "./containers/UmbrellaContainer";
-import ProtectedRoute from "./utils/auth/ProtectedRoute";
+import ItemContainer from "./containers/ItemContainer";
 import CartContainer from "./containers/CartContainer";
 import CheckoutContainer from "./containers/CheckoutContainer";
 import FinalContainer from "./containers/FinalContainer";
+import ProtectedRoute from "./utils/auth/ProtectedRoute";
 
 function App() {
   return (
@@ -16,10 +17,10 @@ function App() {
       <Route path="/" exact component={ScanQRCodeContainer} />
       <Route path="/authentication/:id" component={AuthenticationContainer} />
       <ProtectedRoute path="/umbrella" component={UmbrellaContainer} />
-      {/* <Route path="/item/:id" component={itemContainer} /> */}
+      <ProtectedRoute path="/item/:id" component={ItemContainer} />
       <ProtectedRoute path="/cart" component={CartContainer} />
-      <ProtectedRoute path='/checkout' component={CheckoutContainer} /> 
-      <ProtectedRoute path='/final' component={FinalContainer} /> 
+      <ProtectedRoute path="/checkout" component={CheckoutContainer} />
+      <ProtectedRoute path="/final" component={FinalContainer} />
       {/* <Route component={pageNotFoundContainer} /> */}
     </Switch>
   );

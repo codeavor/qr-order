@@ -12,9 +12,9 @@ let scroll = Scroll.animateScroll;
 const useStyles = makeStyles((theme) => ({
   backButton: {
     position: "fixed",
-    bottom: theme.spacing(2),
+    bottom: theme.spacing(1.5),
     right: theme.spacing(2),
-    zIndex: "1",
+    zIndex: "2",
   },
 }));
 

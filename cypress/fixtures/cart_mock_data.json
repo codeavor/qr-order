@@ -47,6 +47,33 @@
     ],
     "getError": {
       "error": "Something went wrong :("
-    }
+    },
+    "emptyCart": [],
+    "cartWithOrderItem": [
+      {
+        "order_item_id": 1,
+        "quantity": 1,
+        "extras": "Μονός",
+        "extra_price": null,
+        "name": "Espresso",
+        "price": "1"
+      },
+      {
+        "order_item_id": 1,
+        "quantity": 1,
+        "extras": "Σκέτος",
+        "extra_price": null,
+        "name": "Espresso",
+        "price": "1"
+      },
+      {
+        "order_item_id": 1,
+        "quantity": 1,
+        "extras": "Σιρόπι φράουλα",
+        "extra_price": 0.2,
+        "name": "Espresso",
+        "price": "1"
+      }
+    ]
   }
   

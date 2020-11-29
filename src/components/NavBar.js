@@ -56,13 +56,17 @@ export function NavBar({ back, text, search }) {
               icon={<KeyboardBackspaceIcon />}
               onClick={() => history.goBack()}
             />
-          ) : null}
+          ) : (
+            <BarButton />
+          )}
           <div className={classes.grow} />
           <Typography variant="h5">{text}</Typography>
           <div className={classes.grow} />
           {search ? (
             <BarButton edge="end" name="search" icon={<SearchIcon />} />
-          ) : null}
+          ) : (
+            <BarButton edge="end" />
+          )}
         </Toolbar>
       </AppBar>
     </div>

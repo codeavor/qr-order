@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "capitalize",
   },
   section: {
-    marginBottom: "30px",
+    marginBottom: "60px",
   },
 }));
 

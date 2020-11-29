@@ -1,45 +1,43 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import {
-  getCart
-} from "../actions/cartActions";
-import Error from "../components/Error";
-import Loading from "../components/Loading";
+import React from "react";
 import NavBar from "../components/NavBar";
-import ThankContainer from "../components/ThankContainer";
+import { Box } from "@material-ui/core";
 
-export function CheckoutContainer({
-  cartData,
-  userData,
-  getCart,
-}) {
-  useEffect(() => {
-    getCart(userData.orderId);
-  }, [getCart, userData]);
+const defaultProps = {
+  border: 2,
+  borderColor: "grey.600",
+  marginTop: "25%",
+  justifyContent: "center",
+  display: "flex",
+  flexWrap: "nowrap",
+};
 
-  return cartData.loading ? (
-    <Loading />
-  ) : cartData.error ? (
-    <Error error={cartData.error} />
-  ) : (
+export function FinalContainer() {
+  return (
     <div>
       <NavBar back={true} text="Transaction Completed !" />
-      <ThankContainer></ThankContainer>
+      <Box
+        justifyContent="center"
+        alignItems="center"
+        display="flex"
+        flexWrap="nowrap"
+        width="100%"
+        height="500px"
+      >
+        <Box
+          justifyContent="center"
+          alignItems="center"
+          display="flex"
+          flexWrap="nowrap"
+          width="70%"
+          height="100%"
+          borderRadius={8}
+          {...defaultProps}
+        >
+          Thank you for your purchase
+        </Box>
+      </Box>
     </div>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    cartData: state.cart,
-    userData: state.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getCart: (orderId) => dispatch(getCart(orderId))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CheckoutContainer);
+export default FinalContainer;

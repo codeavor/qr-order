@@ -79,26 +79,24 @@ export const orderComplete = (orderId) => {
   };
 };
 
-// export const addItemToCart = (quantity, orderItemId) => {
-//   const options = {
-//     url: "https://qr-order-api.herokuapp.com/api/order_item/" + orderItemId,
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     params: {
-//       quantity: quantity,
-//     },
-//   };
+export const addItemToCart = (orderId, itemId, quantity, extrasId) => {
+  const options = {
+    url: C.API_URL + "/order_item",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: {
+      order_id: orderId,
+      item_id: itemId,
+      quantity: quantity,
+      extras_id: extrasId,
+    },
+  };
 
-//   return function (dispatch) {
-//     axios(options)
-//       .then((response) => {
-//         const cart = response.data;
-//         dispatch(getCartSuccess(cart));
-//       })
-//       .catch((error) => {
-//         dispatch(getCartError(error.response.data.error));
-//       });
-//   };
-// };
+  return function (dispatch) {
+    axios(options).catch((error) => {
+      dispatch(getCartError(error.response.data.error));
+    });
+  };
+};

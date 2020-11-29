@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
-import Divider from '@material-ui/core/Divider';
+import Divider from "@material-ui/core/Divider";
 
 import { totalItemPrice } from "../utils/cart/cartUtils";
 
@@ -22,29 +22,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-CartItem.propTypes = {
+CheckoutItem.propTypes = {
   name: PropTypes.string,
   extras: PropTypes.array,
   extraPrice: PropTypes.array,
   quantity: PropTypes.number,
   price: PropTypes.string,
   id: PropTypes.number,
-  deleteOrderItem: PropTypes.func,
-  changeQuantity: PropTypes.func,
 };
 
-CartItem.defaultProps = {
+CheckoutItem.defaultProps = {
   extras: [],
-  deleteOrderItem: () => {},
-  changeQuantity: () => {},
 };
 
-export default function CartItem({
+export default function CheckoutItem({
   name,
   extras,
   extraPrice,
   quantity,
-  price
+  price,
 }) {
   const classes = useStyles();
 
@@ -54,22 +50,26 @@ export default function CartItem({
         <ListItem>
           <ListItemText
             disableTypography
-            primary={<Typography>{quantity}X {name}</Typography>}
+            primary={
+              <Typography>
+                {quantity}X {name}
+              </Typography>
+            }
             secondary={
               <>
                 <Typography>{extras.join(", ")}</Typography>
                 <Box
                   display="flex"
                   flexDirection="col"
-                  flexWrap="nowrap"
+                  wrap="nowrap"
                   alignItems="center"
                 >
                   <Box>
                     <Box
                       display="inline"
                       px={2}
-                      data-testid="cart-item-quantity">
-                    </Box>
+                      data-testid="cart-item-quantity"
+                    ></Box>
                   </Box>
                   <Typography className={classes.grow} />
                   <Typography>
@@ -80,7 +80,7 @@ export default function CartItem({
             }
           />
         </ListItem>
-        <Divider  display="flex" flexWrap="nowrap"/>
+        <Divider display="flex" wrap="nowrap" />
       </List>
     </div>
   );

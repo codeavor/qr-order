@@ -1,7 +1,13 @@
 import mockAxios from "axios";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import { getCart, deleteOrderItem, changeQuantity } from "../cartActions";
+import {
+  getCart,
+  deleteOrderItem,
+  changeQuantity,
+  addItemToCart,
+  orderComplete,
+} from "../cartActions";
 import C from "../../constants";
 import { fixCart } from "../../utils/cart/cartUtils";
 
@@ -69,7 +75,7 @@ describe("cartActions", () => {
       } catch {
         const expectedActions = [
           { type: C.GET_CART },
-          { type: C.GET_CART_ERROR, payload: errorMsg },
+          { type: C.GET_CART_FAILURE, payload: errorMsg },
         ];
 
         expect(store.getActions()).toEqual(expectedActions);
@@ -129,7 +135,9 @@ describe("cartActions", () => {
       try {
         await store.dispatch(deleteOrderItem(1));
       } catch {
-        const expectedActions = [{ type: C.GET_CART_ERROR, payload: errorMsg }];
+        const expectedActions = [
+          { type: C.GET_CART_FAILURE, payload: errorMsg },
+        ];
 
         expect(store.getActions()).toEqual(expectedActions);
       }
@@ -188,7 +196,81 @@ describe("cartActions", () => {
       try {
         await store.dispatch(changeQuantity(1, 1));
       } catch {
-        const expectedActions = [{ type: C.GET_CART_ERROR, payload: errorMsg }];
+        const expectedActions = [
+          { type: C.GET_CART_FAILURE, payload: errorMsg },
+        ];
+
+        expect(store.getActions()).toEqual(expectedActions);
+      }
+    });
+  });
+
+  describe("addItemToCart action", () => {
+    it("dispatches addItemToCart action", async () => {
+      mockAxios.mockImplementationOnce(() =>
+        Promise.resolve({
+          data: [],
+        })
+      );
+
+      await store.dispatch(addItemToCart(1, 1, 2, [5, 6]));
+    });
+
+    it("dispatches addItemToCart action and returns an error", async () => {
+      const errorMsg = "Something bad happened :(";
+      mockAxios.mockImplementationOnce(() =>
+        Promise.reject({
+          response: {
+            data: {
+              error: errorMsg,
+            },
+          },
+        })
+      );
+
+      try {
+        await store.dispatch(addItemToCart(1, 1, 2, [5, 6]));
+      } catch {
+        const expectedActions = [
+          { type: C.GET_CART_FAILURE, payload: errorMsg },
+        ];
+
+        expect(store.getActions()).toEqual(expectedActions);
+      }
+    });
+  });
+
+  describe("orderComplete action", () => {
+    it("dispatches orderComplete action", async () => {
+      jest.spyOn(Object.getPrototypeOf(window.localStorage), "removeItem");
+      mockAxios.put.mockImplementationOnce(() =>
+        Promise.resolve({
+          data: [],
+        })
+      );
+
+      await store.dispatch(orderComplete(1));
+      expect(localStorage.removeItem).toHaveBeenCalled();
+    });
+
+    it("dispatches orderComplete action and returns an error", async () => {
+      const errorMsg = "Something bad happened :(";
+      mockAxios.put.mockImplementationOnce(() =>
+        Promise.reject({
+          response: {
+            data: {
+              error: errorMsg,
+            },
+          },
+        })
+      );
+
+      try {
+        await store.dispatch(orderComplete(1));
+      } catch {
+        const expectedActions = [
+          { type: C.GET_CART_FAILURE, payload: errorMsg },
+        ];
 
         expect(store.getActions()).toEqual(expectedActions);
       }

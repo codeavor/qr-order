@@ -8,12 +8,12 @@ import {
   changeQuantity,
 } from "../actions/cartActions";
 import BackToTopButton from "../components/BackToTopButton";
-import BottomButton from "../components/BottomButton";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import CartArea from "../components/CartArea";
 import NavBar from "../components/NavBar";
 import { totalCartPrice } from "../utils/cart/cartUtils";
+import BottomBox from "../components/BottomBox";
 
 export function CartContainer({
   cartData,
@@ -38,11 +38,10 @@ export function CartContainer({
         deleteOrderItem={deleteOrderItem}
         changeQuantity={changeQuantity}
       />
-      <BottomButton
+      <BottomBox
         disable={totalCartPrice(cartData.cart) === 0}
-        icon={true}
         text={"Continue"}
-        price={totalCartPrice(cartData.cart)}
+        price={"" + totalCartPrice(cartData.cart)}
         route={"/checkout"}
       />
       <BackToTopButton />
