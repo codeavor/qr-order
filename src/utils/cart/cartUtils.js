@@ -36,7 +36,9 @@ export function totalItemPrice(price, extra_price, quantity) {
     quantity === undefined
   )
     return 0;
-  let extraPrice = extra_price.reduce((sum, price) => sum + parseFloat(price));
+  let extraPrice = extra_price.reduce(
+    (sum, price) => parseFloat(sum) + parseFloat(price)
+  );
   return (parseFloat(price) + parseFloat(extraPrice)) * parseFloat(quantity);
 }
 

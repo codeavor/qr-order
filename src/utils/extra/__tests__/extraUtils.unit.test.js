@@ -145,7 +145,8 @@ describe("extraUtils", () => {
 
   it("getExtrasPrice works correctly", () => {
     expect(getExtrasPrice(fixedValues, 1, 1)).toEqual(1);
-    expect(getExtrasPrice([], 1, 1)).toEqual(0);
+    expect(getExtrasPrice([], 1, 1)).toEqual(1);
+    expect(getExtrasPrice([], undefined, undefined)).toEqual(0);
   });
 
   it("getInitializedExtras works correctly", () => {
