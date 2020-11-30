@@ -30,7 +30,10 @@ export function getExtrasId(extras) {
 
 // extras = [{ extra_id: "7", extra_price: 0 },{ extra_id: "1", extra_price: 0 },], itemPrice = 1, quantity = 1
 export function getExtrasPrice(extras, itemPrice, quantity) {
-  if (Array.isArray(extras) && extras.length === 0) return 0;
+  if (Array.isArray(extras) && extras.length === 0)
+    if (itemPrice !== undefined && quantity !== undefined)
+      return parseFloat(itemPrice) * parseInt(quantity);
+    else return 0;
   let sum = parseFloat(itemPrice);
   for (let extra in extras) {
     sum += extras[extra].extra_price;
