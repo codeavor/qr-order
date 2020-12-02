@@ -14,17 +14,17 @@ import CartArea from "../components/CartArea";
 import NavBar from "../components/NavBar";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 import BottomBox from "../components/BottomBox";
+import C from "../constants";
 
 export function CartContainer({
   cartData,
   deleteOrderItem,
   changeQuantity,
-  userData,
   getCart,
 }) {
   useEffect(() => {
-    getCart(userData.orderId);
-  }, [getCart, userData]);
+    getCart(window.localStorage.getItem(C.ORDER_ID));
+  }, [getCart]);
 
   return cartData.loading ? (
     <Loading />
@@ -52,7 +52,6 @@ export function CartContainer({
 const mapStateToProps = (state) => {
   return {
     cartData: state.cart,
-    userData: state.user,
   };
 };
 

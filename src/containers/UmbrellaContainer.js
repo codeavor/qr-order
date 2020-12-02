@@ -10,19 +10,14 @@ import Error from "../components/Error";
 import Loading from "../components/Loading";
 import MenuArea from "../components/MenuArea";
 import NavBar from "../components/NavBar";
+import C from "../constants";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 
-export function UmbrellaContainer({
-  menuData,
-  cartData,
-  userData,
-  getMenu,
-  getCart,
-}) {
+export function UmbrellaContainer({ menuData, cartData, getMenu, getCart }) {
   useEffect(() => {
     getMenu();
-    getCart(userData.orderId);
-  }, [getMenu, getCart, userData]);
+    getCart(window.localStorage.getItem(C.ORDER_ID));
+  }, [getMenu, getCart]);
 
   return menuData.loading || cartData.loading ? (
     <Loading />
@@ -47,7 +42,6 @@ const mapStateToProps = (state) => {
   return {
     menuData: state.menu,
     cartData: state.cart,
-    userData: state.user,
   };
 };
 

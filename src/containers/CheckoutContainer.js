@@ -11,16 +11,12 @@ import NavBar from "../components/NavBar";
 import CheckoutPayment from "../components/CheckoutPayment";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 import BottomBox from "../components/BottomBox";
+import C from "../constants";
 
-export function CheckoutContainer({
-  cartData,
-  userData,
-  getCart,
-  orderComplete,
-}) {
+export function CheckoutContainer({ cartData, getCart, orderComplete }) {
   useEffect(() => {
-    getCart(userData.orderId);
-  }, [getCart, userData]);
+    getCart(window.localStorage.getItem(C.ORDER_ID));
+  }, [getCart]);
 
   return cartData.loading ? (
     <Loading />
@@ -35,7 +31,7 @@ export function CheckoutContainer({
         text={"Checkout"}
         price={totalCartPrice(cartData.cart)}
         completeOrder={orderComplete}
-        orderId={userData.orderId}
+        orderId={window.localStorage.getItem(C.ORDER_ID)}
         route={"/final"}
       />
       <BackToTopButton />
@@ -46,7 +42,6 @@ export function CheckoutContainer({
 const mapStateToProps = (state) => {
   return {
     cartData: state.cart,
-    userData: state.user,
   };
 };
 

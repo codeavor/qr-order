@@ -8,10 +8,9 @@ export const getTokenRequest = () => {
   };
 };
 
-export const getTokenSuccess = (orderId) => {
+export const getTokenSuccess = () => {
   return {
     type: C.GET_TOKEN_SUCCESS,
-    payload: orderId,
   };
 };
 
@@ -24,14 +23,14 @@ export const getTokenFailure = (error) => {
 
 export const getToken = (id) => {
   const options = {
-    url: C.API_URL + "/auth/register",
+    url: C.API_URL + C.REGISTER_ENDPOINT,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     data: {
       umbrella_id: id,
-      role_name: "customer",
+      role_name: C.CUSTOMER_ROLE,
     },
   };
 
@@ -40,8 +39,8 @@ export const getToken = (id) => {
     axios(options)
       .then((response) => {
         const { token, orderId } = response.data;
-        setAuthorizationToken(token);
-        dispatch(getTokenSuccess(orderId));
+        setAuthorizationToken(token, orderId);
+        dispatch(getTokenSuccess());
       })
       .catch((error) => {
         dispatch(getTokenFailure(JSON.stringify(error.response.data.error)));

@@ -33,7 +33,7 @@ export const getItem = (id) => {
   return function (dispatch) {
     dispatch(getItemRequest());
     axios
-      .get(C.API_URL + "/menu/" + id)
+      .get(`${C.API_URL + C.MENU_ENDPOINT}/${id}`)
       .then((response) => {
         const item = fixItem(response.data);
         dispatch(getItemSuccess(item));

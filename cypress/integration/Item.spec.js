@@ -102,9 +102,7 @@ describe("Testing /item", () => {
 
   it("Add item to cart", () => {
     // Add item with selected extras
-    cy.fixture("item_mock_data.json").then(() => {
-      itemMocks.orderItem("/api/order_item", "POST");
-    });
+    itemMocks.orderItem("/api/order_item", "POST");
     cy.fixture("menu_mock_data.json").then((rc) => {
       menuMocks.getMenu(rc.getMenu);
     });

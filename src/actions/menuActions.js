@@ -25,7 +25,7 @@ export const getMenu = () => {
   return function (dispatch) {
     dispatch(getMenuRequest());
     axios
-      .get(C.API_URL + "/menu")
+      .get(C.API_URL + C.MENU_ENDPOINT)
       .then((response) => {
         const menu = response.data;
         dispatch(getMenuSuccess(menu));

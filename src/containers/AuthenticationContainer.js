@@ -16,7 +16,7 @@ export function AuthenticationContainer({ userData, getToken }) {
 
   return userData.loading ? (
     <Loading />
-  ) : userData.error || userData.orderId == null ? (
+  ) : userData.error ? (
     <Error error={userData.error} />
   ) : (
     <Redirect push to="/umbrella" />

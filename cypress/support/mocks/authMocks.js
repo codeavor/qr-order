@@ -8,9 +8,5 @@ export const register = (response, status = 200) => {
     status: status,
     url: apiUrl + endpoint,
     response,
-    data: {
-      umbrella_id: 1,
-      role_name: "customer",
-    },
   }).as("register");
 };

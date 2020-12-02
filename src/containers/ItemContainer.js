@@ -9,8 +9,9 @@ import Error from "../components/Error";
 import ItemArea from "../components/ItemArea";
 import Loading from "../components/Loading";
 import NavBar from "../components/NavBar";
+import C from "../constants";
 
-export function ItemContainer({ itemData, getItem, userData, addItemToCart }) {
+export function ItemContainer({ itemData, getItem, addItemToCart }) {
   const { id } = useParams();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export function ItemContainer({ itemData, getItem, userData, addItemToCart }) {
       <ItemArea
         initialValues={itemData.extraValues}
         item={itemData.item}
-        orderId={userData.orderId}
+        orderId={window.localStorage.getItem(C.ORDER_ID)}
         addItemToCart={addItemToCart}
       />
     </div>
@@ -37,7 +38,6 @@ export function ItemContainer({ itemData, getItem, userData, addItemToCart }) {
 const mapStateToProps = (state) => {
   return {
     itemData: state.item,
-    userData: state.user,
   };
 };
 
