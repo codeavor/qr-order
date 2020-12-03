@@ -1,41 +1,26 @@
 import React from "react";
 import NavBar from "../components/NavBar";
-import { Box } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 
-const defaultProps = {
-  border: 2,
-  borderColor: "grey.600",
-  marginTop: "25%",
-  justifyContent: "center",
-  display: "flex",
-  flexWrap: "nowrap",
-};
+const useStyles = makeStyles((theme) => ({
+  finalBox: {
+    margin: "25% auto",
+    width: "75%",
+    border: "2px solid rgb(117, 117, 117)",
+    borderRadius: 8,
+    height: "30em",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+}));
 
 export function FinalContainer() {
+  const classes = useStyles();
   return (
     <div>
-      <NavBar back={true} text="Transaction Completed !" />
-      <Box
-        justifyContent="center"
-        alignItems="center"
-        display="flex"
-        flexWrap="nowrap"
-        width="100%"
-        height="500px"
-      >
-        <Box
-          justifyContent="center"
-          alignItems="center"
-          display="flex"
-          flexWrap="nowrap"
-          width="70%"
-          height="100%"
-          borderRadius={8}
-          {...defaultProps}
-        >
-          Thank you for your purchase
-        </Box>
-      </Box>
+      <NavBar back={true} text="Transaction Completed!" />
+      <Box className={classes.finalBox}>Thank you for your purchase</Box>
     </div>
   );
 }
