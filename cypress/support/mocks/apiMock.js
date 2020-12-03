@@ -1,10 +1,10 @@
-import { apiUrl } from "../../settings";
+import C from "../../../src/constants";
 
-export const api = (endpoint, method, response, status = 200) => {
+export const apiMock = (endpoint, method, response, name, status = 200) => {
   cy.route({
     method: method,
     status: status,
-    url: apiUrl + endpoint,
-    response
-  });
+    url: C.API_URL + endpoint,
+    response,
+  }).as(name);
 };

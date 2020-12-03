@@ -4,8 +4,10 @@ const C = {
   API_URL: "https://qr-order-api.herokuapp.com/api",
   LOGIN_PATH: "/authentication",
   MENU_PATH: "/umbrella",
+  ITEM_PATH: "/item",
   CART_PATH: "/cart",
   CHECKOUT_PATH: "/checkout",
+  FINAL_PATH: "/final",
 
   // API Endpoints
   REGISTER_ENDPOINT: "/auth/register",
