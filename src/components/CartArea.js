@@ -23,22 +23,20 @@ export default function CartArea({ cart, deleteOrderItem, changeQuantity }) {
   const classes = useStyles();
 
   return (
-    <div data-testid="cart-area">
-      <Container className={classes.section}>
-        {cart.map((cartItem, index) => (
-          <CartItem
-            name={cartItem.name}
-            extras={cartItem.extras}
-            extraPrice={cartItem.extra_price}
-            quantity={cartItem.quantity}
-            price={cartItem.price}
-            id={cartItem.order_item_id}
-            key={cartItem.order_item_id}
-            deleteOrderItem={deleteOrderItem}
-            changeQuantity={changeQuantity}
-          />
-        ))}
-      </Container>
-    </div>
+    <Container data-testid="cart-area" className={classes.section}>
+      {cart.map((cartItem, index) => (
+        <CartItem
+          name={cartItem.name}
+          extras={cartItem.extras}
+          extraPrice={cartItem.extra_price}
+          quantity={cartItem.quantity}
+          price={cartItem.price}
+          id={cartItem.order_item_id}
+          key={cartItem.order_item_id}
+          deleteOrderItem={deleteOrderItem}
+          changeQuantity={changeQuantity}
+        />
+      ))}
+    </Container>
   );
 }

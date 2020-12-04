@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "capitalize",
   },
   section: {
-    marginBottom: "60px",
+    margin: "30px 0px",
   },
 }));
 
@@ -28,13 +28,9 @@ export default function MenuArea({ menu }) {
   const classes = useStyles();
 
   return (
-    <div data-testid="menu-area">
+    <Container data-testid="menu-area">
       {menu.map((category, index) => (
-        <Container
-          className={classes.section}
-          id={`menu-${category.id}`}
-          key={category.id}
-        >
+        <section className={classes.section} id={`menu-${category.id}`}>
           <Typography className={classes.categoryName} variant="h6">
             {category.name}
           </Typography>
@@ -42,8 +38,8 @@ export default function MenuArea({ menu }) {
           {category.items.map((item) => (
             <MenuItem item={item} key={item.id} />
           ))}
-        </Container>
+        </section>
       ))}
-    </div>
+    </Container>
   );
 }

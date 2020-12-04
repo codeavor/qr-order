@@ -2,18 +2,25 @@ import React from "react";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Box from "@material-ui/core/Box";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  finalBox: {
+    margin: "auto",
+    height: "100vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+}));
 
 export default function Loading() {
+  const classes = useStyles();
   return (
-    <div style={{ width: "100%" }}>
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: "100vh" }}
-      >
+    <React.Fragment>
+      <Box className={classes.finalBox}>
         <CircularProgress data-testid="loading" />
       </Box>
-    </div>
+    </React.Fragment>
   );
 }

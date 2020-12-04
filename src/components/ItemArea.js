@@ -24,7 +24,7 @@ ItemArea.propTypes = {
   item: PropTypes.object,
   initialValues: PropTypes.object,
   addItemToCart: PropTypes.func,
-  orderId: PropTypes.number,
+  orderId: PropTypes.string,
 };
 
 ItemArea.defaultProps = {

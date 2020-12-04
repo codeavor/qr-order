@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 
 import { getItem } from "../actions/itemActions";
 import { addItemToCart } from "../actions/cartActions";
-import Error from "../components/Error";
 import ItemArea from "../components/ItemArea";
 import Loading from "../components/Loading";
 import NavBar from "../components/NavBar";
@@ -20,10 +19,8 @@ export function ItemContainer({ itemData, getItem, addItemToCart }) {
 
   return itemData.loading ? (
     <Loading />
-  ) : itemData.error ? (
-    <Error error={itemData.error} />
   ) : (
-    <div>
+    <React.Fragment>
       <NavBar back={true} text={itemData.item.name} search={false} />
       <ItemArea
         initialValues={itemData.extraValues}
@@ -31,7 +28,7 @@ export function ItemContainer({ itemData, getItem, addItemToCart }) {
         orderId={window.localStorage.getItem(C.ORDER_ID)}
         addItemToCart={addItemToCart}
       />
-    </div>
+    </React.Fragment>
   );
 }
 

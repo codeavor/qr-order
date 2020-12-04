@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import { getCart, orderComplete } from "../actions/cartActions";
 import BackToTopButton from "../components/BackToTopButton";
-import Error from "../components/Error";
 import Loading from "../components/Loading";
 import CheckoutArea from "../components/CheckoutArea";
 import NavBar from "../components/NavBar";
@@ -12,6 +11,7 @@ import CheckoutPayment from "../components/CheckoutPayment";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 import BottomBox from "../components/BottomBox";
 import C from "../constants";
+import { Container } from "@material-ui/core";
 
 export function CheckoutContainer({ cartData, getCart, orderComplete }) {
   useEffect(() => {
@@ -20,13 +20,13 @@ export function CheckoutContainer({ cartData, getCart, orderComplete }) {
 
   return cartData.loading ? (
     <Loading />
-  ) : cartData.error ? (
-    <Error error={cartData.error} />
   ) : (
-    <div>
+    <React.Fragment>
       <NavBar back={true} text="Checkout" />
-      <CheckoutPayment />
-      <CheckoutArea cart={cartData.cart} />
+      <Container>
+        <CheckoutPayment />
+        <CheckoutArea cart={cartData.cart} />
+      </Container>
       <BottomBox
         text={"Checkout"}
         price={totalCartPrice(cartData.cart)}
@@ -35,7 +35,7 @@ export function CheckoutContainer({ cartData, getCart, orderComplete }) {
         route={"/final"}
       />
       <BackToTopButton />
-    </div>
+    </React.Fragment>
   );
 }
 

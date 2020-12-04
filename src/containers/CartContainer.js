@@ -8,7 +8,6 @@ import {
   changeQuantity,
 } from "../actions/cartActions";
 import BackToTopButton from "../components/BackToTopButton";
-import Error from "../components/Error";
 import Loading from "../components/Loading";
 import CartArea from "../components/CartArea";
 import NavBar from "../components/NavBar";
@@ -28,10 +27,8 @@ export function CartContainer({
 
   return cartData.loading ? (
     <Loading />
-  ) : cartData.error ? (
-    <Error error={cartData.error} />
   ) : (
-    <div>
+    <React.Fragment>
       <NavBar back={true} text="My Cart" />
       <CartArea
         cart={cartData.cart}
@@ -45,7 +42,7 @@ export function CartContainer({
         route={"/checkout"}
       />
       <BackToTopButton />
-    </div>
+    </React.Fragment>
   );
 }
 

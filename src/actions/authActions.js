@@ -1,25 +1,8 @@
 import axios from "axios";
 import C from "../constants";
 import setAuthorizationToken from "../utils/auth/setAuthorizationToken";
-
-export const getTokenRequest = () => {
-  return {
-    type: C.GET_TOKEN,
-  };
-};
-
-export const getTokenSuccess = () => {
-  return {
-    type: C.GET_TOKEN_SUCCESS,
-  };
-};
-
-export const getTokenFailure = (error) => {
-  return {
-    type: C.GET_TOKEN_FAILURE,
-    payload: error,
-  };
-};
+import { push } from "connected-react-router";
+import { handleError } from "./errorActions";
 
 export const getToken = (id) => {
   const options = {
@@ -35,15 +18,14 @@ export const getToken = (id) => {
   };
 
   return function (dispatch) {
-    dispatch(getTokenRequest());
     axios(options)
       .then((response) => {
         const { token, orderId } = response.data;
         setAuthorizationToken(token, orderId);
-        dispatch(getTokenSuccess());
+        dispatch(push(C.MENU_PATH));
       })
       .catch((error) => {
-        dispatch(getTokenFailure(JSON.stringify(error.response.data.error)));
+        dispatch(handleError(error.response.data.error));
       });
   };
 };

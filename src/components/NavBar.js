@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    margin: theme.spacing(1),
+    minWidth: "50px",
   },
 }));
 
@@ -57,15 +58,15 @@ export function NavBar({ back, text, search }) {
               onClick={() => history.goBack()}
             />
           ) : (
-            <BarButton />
+            <BarButton disabled />
           )}
           <div className={classes.grow} />
-          <Typography variant="h5">{text}</Typography>
+          <Typography variant="h6">{text}</Typography>
           <div className={classes.grow} />
           {search ? (
             <BarButton edge="end" name="search" icon={<SearchIcon />} />
           ) : (
-            <BarButton edge="end" />
+            <BarButton edge="end" disabled />
           )}
         </Toolbar>
       </AppBar>

@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 
 import { totalItemPrice } from "../utils/cart/cartUtils";
+import { Divider } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   smallButton: {
@@ -60,13 +61,13 @@ export default function CartItem({
         className={classes.smallButton}
         {...props}
       >
-        {symbol}
+        <Typography>{symbol}</Typography>
       </Button>
     );
   };
 
   return (
-    <div style={{ maxWidth: "300px" }} data-testid="cart-item">
+    <div data-testid="cart-item">
       <List>
         <ListItem>
           <ListItemText
@@ -92,7 +93,7 @@ export default function CartItem({
                       px={2}
                       data-testid="cart-item-quantity"
                     >
-                      {quantity}
+                      <Typography display="inline">{quantity}</Typography>
                     </Box>
                     <QuantityButton
                       data-testid="decrease-quantity"
@@ -116,6 +117,7 @@ export default function CartItem({
             }
           />
         </ListItem>
+        <Divider />
       </List>
     </div>
   );

@@ -3,7 +3,6 @@ import C from "../constants";
 const initialState = {
   menu: [],
   loading: true,
-  error: "",
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -18,14 +17,12 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         menu: payload,
         loading: false,
-        error: "",
       };
     case C.GET_MENU_FAILURE:
       return {
         ...state,
         menu: [],
         loading: false,
-        error: payload,
       };
     default:
       return state;

@@ -1,12 +1,14 @@
 import React from "react";
 import NavBar from "../components/NavBar";
-import { Box, makeStyles } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
+import { makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   finalBox: {
     margin: "25% auto",
-    width: "75%",
-    border: "2px solid rgb(117, 117, 117)",
+    width: "80%",
+    border: "0.8px solid rgb(188,188,188)",
     borderRadius: 8,
     height: "30em",
     display: "flex",
@@ -18,10 +20,12 @@ const useStyles = makeStyles((theme) => ({
 export function FinalContainer() {
   const classes = useStyles();
   return (
-    <div>
+    <React.Fragment>
       <NavBar back={true} text="Transaction Completed!" />
-      <Box className={classes.finalBox}>Thank you for your purchase</Box>
-    </div>
+      <Box className={classes.finalBox}>
+        <Typography>Thank you for your purchase</Typography>
+      </Box>
+    </React.Fragment>
   );
 }
 

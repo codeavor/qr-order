@@ -4,7 +4,6 @@ const initialState = {
   item: null,
   extraValues: {},
   loading: true,
-  error: "",
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -19,14 +18,12 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         item: payload,
         loading: false,
-        error: "",
       };
     case C.GET_ITEM_FAILURE:
       return {
         ...state,
         item: null,
         loading: false,
-        error: payload,
       };
     case C.SET_EXTRA_VALUES:
       return {

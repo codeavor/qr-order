@@ -1,5 +1,6 @@
 import axios from "axios";
 import C from "../constants";
+import { handleError } from "../actions/errorActions";
 
 export const getMenuRequest = () => {
   return {
@@ -14,10 +15,9 @@ export const getMenuSuccess = (menu) => {
   };
 };
 
-export const getMenuFailure = (error) => {
+export const getMenuFailure = () => {
   return {
     type: C.GET_MENU_FAILURE,
-    payload: error,
   };
 };
 
@@ -31,7 +31,8 @@ export const getMenu = () => {
         dispatch(getMenuSuccess(menu));
       })
       .catch((error) => {
-        dispatch(getMenuFailure(error.response.data.error));
+        dispatch(getMenuFailure());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };

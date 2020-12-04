@@ -6,7 +6,6 @@ import { getCart } from "../actions/cartActions";
 import { getMenu } from "../actions/menuActions";
 import BottomBox from "../components/BottomBox";
 import CategoriesBar from "../components/CategoriesBar";
-import Error from "../components/Error";
 import Loading from "../components/Loading";
 import MenuArea from "../components/MenuArea";
 import NavBar from "../components/NavBar";
@@ -21,20 +20,18 @@ export function UmbrellaContainer({ menuData, cartData, getMenu, getCart }) {
 
   return menuData.loading || cartData.loading ? (
     <Loading />
-  ) : menuData.error || cartData.error ? (
-    <Error error={menuData.error ? menuData.error : cartData.error} />
   ) : (
-    <div>
+    <React.Fragment>
       <NavBar back={false} text="Welcome" search={true} />
       <CategoriesBar menu={menuData.menu} />
       <MenuArea menu={menuData.menu} />
       <BottomBox
         text="Cart"
         price={"" + totalCartPrice(cartData.cart)}
-        route={"/cart"}
+        route={C.CART_PATH}
         quantity={false}
       />
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -22,6 +22,10 @@ const C = {
   JWT_TOKEN: "jwtToken",
   ORDER_ID: "orderId",
 
+  // Error action types
+  SET_ERROR: "SET_ERROR",
+  RESET_ERROR: "RESET_ERROR",
+
   //Auth action types
   GET_TOKEN: "GET_TOKEN",
   GET_TOKEN_SUCCESS: "GET_TOKEN_SUCCESS",

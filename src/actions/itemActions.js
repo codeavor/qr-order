@@ -1,6 +1,7 @@
 import axios from "axios";
 import C from "../constants";
 import { fixItem, getInitializedExtras } from "../utils/extra/extraUtils";
+import { handleError } from "./errorActions";
 
 export const getItemRequest = () => {
   return {
@@ -15,10 +16,9 @@ export const getItemSuccess = (item) => {
   };
 };
 
-export const getItemFailure = (error) => {
+export const getItemFailure = () => {
   return {
     type: C.GET_ITEM_FAILURE,
-    payload: error,
   };
 };
 
@@ -40,7 +40,8 @@ export const getItem = (id) => {
         dispatch(setExtraValues(getInitializedExtras(item.extra_categories)));
       })
       .catch((error) => {
-        dispatch(getItemFailure(JSON.stringify(error)));
+        dispatch(getItemFailure());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };

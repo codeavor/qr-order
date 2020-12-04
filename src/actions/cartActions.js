@@ -2,6 +2,7 @@ import axios from "axios";
 import C from "../constants";
 import { removeToken } from "../utils/auth/removeToken";
 import { fixCart } from "../utils/cart/cartUtils";
+import { handleError } from "./errorActions";
 
 export const getCartRequest = () => {
   return {
@@ -16,10 +17,9 @@ export const getCartSuccess = (cart) => {
   };
 };
 
-export const getCartError = (error) => {
+export const getCartError = () => {
   return {
     type: C.GET_CART_FAILURE,
-    payload: error,
   };
 };
 
@@ -33,7 +33,8 @@ export const getCart = (orderId) => {
         dispatch(getCartSuccess(cart));
       })
       .catch((error) => {
-        dispatch(getCartError(error.response.data.error));
+        dispatch(getCartError());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };
@@ -47,7 +48,8 @@ export const deleteOrderItem = (orderItemId) => {
         dispatch(getCartSuccess(cart));
       })
       .catch((error) => {
-        dispatch(getCartError(error.response.data.error));
+        dispatch(getCartError());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };
@@ -63,7 +65,8 @@ export const changeQuantity = (quantity, orderItemId) => {
         dispatch(getCartSuccess(cart));
       })
       .catch((error) => {
-        dispatch(getCartError(error.response.data.error));
+        dispatch(getCartError());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };
@@ -76,7 +79,8 @@ export const orderComplete = (orderId) => {
         removeToken();
       })
       .catch((error) => {
-        dispatch(getCartError(error.response.data.error));
+        dispatch(getCartError());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };
@@ -98,7 +102,8 @@ export const addItemToCart = (orderId, itemId, quantity, extrasId) => {
 
   return function (dispatch) {
     axios(options).catch((error) => {
-      dispatch(getCartError(error.response.data.error));
+      dispatch(getCartError());
+      dispatch(handleError(error.response.data.error));
     });
   };
 };
