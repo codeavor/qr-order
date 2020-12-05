@@ -32,7 +32,7 @@ export function CheckoutContainer({ cartData, getCart, orderComplete }) {
         price={totalCartPrice(cartData.cart)}
         completeOrder={orderComplete}
         orderId={window.localStorage.getItem(C.ORDER_ID)}
-        route={"/final"}
+        route={C.FINAL_PATH}
       />
       <BackToTopButton />
     </React.Fragment>

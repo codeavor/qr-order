@@ -42,7 +42,7 @@ export default function CheckoutPayment() {
       <Box mt={3}>
         <Typography>Payment Methods</Typography>
       </Box>
-      <Box px={2} className={classes.box} data-testid="checkout-payment">
+      <Box px={2} className={classes.box} data-testid="payment-options">
         <FormControl fullWidth component="fieldset">
           <RadioGroup aria-label="payment-options" name="options">
             <Option value="Cash" label="Pay with Cash" />

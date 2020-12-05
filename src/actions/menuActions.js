@@ -1,6 +1,6 @@
 import axios from "axios";
 import C from "../constants";
-import { handleError } from "../actions/errorActions";
+import { handleError, resetError } from "../actions/errorActions";
 
 export const getMenuRequest = () => {
   return {
@@ -28,6 +28,7 @@ export const getMenu = () => {
       .get(C.API_URL + C.MENU_ENDPOINT)
       .then((response) => {
         const menu = response.data;
+        dispatch(resetError());
         dispatch(getMenuSuccess(menu));
       })
       .catch((error) => {

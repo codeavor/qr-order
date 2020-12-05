@@ -39,7 +39,7 @@ export function CartContainer({
         disable={totalCartPrice(cartData.cart) === 0}
         text={"Continue"}
         price={"" + totalCartPrice(cartData.cart)}
-        route={"/checkout"}
+        route={C.CHECKOUT_PATH}
       />
       <BackToTopButton />
     </React.Fragment>

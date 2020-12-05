@@ -59,7 +59,7 @@ describe("cartActions", () => {
 
     it("dispatches getCart action and returns an error", async () => {
       const errorMsg = "Something bad happened :(";
-
+      const routerData = { args: ["/"], method: "push" };
       mockAxios.get.mockImplementationOnce(() =>
         Promise.reject({
           response: {
@@ -75,7 +75,8 @@ describe("cartActions", () => {
       } catch {
         const expectedActions = [
           { type: C.GET_CART },
-          { type: C.GET_CART_FAILURE, payload: errorMsg },
+          { type: C.GET_CART_FAILURE },
+          { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
         expect(store.getActions()).toEqual(expectedActions);
@@ -121,7 +122,7 @@ describe("cartActions", () => {
 
     it("dispatches deleteOrderItem action and returns an error", async () => {
       const errorMsg = "Something bad happened :(";
-
+      const routerData = { args: ["/"], method: "push" };
       mockAxios.delete.mockImplementationOnce(() =>
         Promise.reject({
           response: {
@@ -136,7 +137,8 @@ describe("cartActions", () => {
         await store.dispatch(deleteOrderItem(1));
       } catch {
         const expectedActions = [
-          { type: C.GET_CART_FAILURE, payload: errorMsg },
+          { type: C.GET_CART_FAILURE },
+          { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
         expect(store.getActions()).toEqual(expectedActions);
@@ -182,7 +184,7 @@ describe("cartActions", () => {
 
     it("dispatches changeQuantity action and returns an error", async () => {
       const errorMsg = "Something bad happened :(";
-
+      const routerData = { args: ["/"], method: "push" };
       mockAxios.put.mockImplementationOnce(() =>
         Promise.reject({
           response: {
@@ -198,6 +200,7 @@ describe("cartActions", () => {
       } catch {
         const expectedActions = [
           { type: C.GET_CART_FAILURE, payload: errorMsg },
+          { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
         expect(store.getActions()).toEqual(expectedActions);
@@ -218,6 +221,7 @@ describe("cartActions", () => {
 
     it("dispatches addItemToCart action and returns an error", async () => {
       const errorMsg = "Something bad happened :(";
+      const routerData = { args: ["/"], method: "push" };
       mockAxios.mockImplementationOnce(() =>
         Promise.reject({
           response: {
@@ -232,7 +236,8 @@ describe("cartActions", () => {
         await store.dispatch(addItemToCart(1, 1, 2, [5, 6]));
       } catch {
         const expectedActions = [
-          { type: C.GET_CART_FAILURE, payload: errorMsg },
+          { type: C.GET_CART_FAILURE },
+          { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
         expect(store.getActions()).toEqual(expectedActions);
@@ -255,6 +260,7 @@ describe("cartActions", () => {
 
     it("dispatches orderComplete action and returns an error", async () => {
       const errorMsg = "Something bad happened :(";
+      const routerData = { args: ["/"], method: "push" };
       mockAxios.put.mockImplementationOnce(() =>
         Promise.reject({
           response: {
@@ -269,7 +275,8 @@ describe("cartActions", () => {
         await store.dispatch(orderComplete(1));
       } catch {
         const expectedActions = [
-          { type: C.GET_CART_FAILURE, payload: errorMsg },
+          { type: C.GET_CART_FAILURE },
+          { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
         expect(store.getActions()).toEqual(expectedActions);

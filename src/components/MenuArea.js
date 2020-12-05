@@ -30,7 +30,11 @@ export default function MenuArea({ menu }) {
   return (
     <Container data-testid="menu-area">
       {menu.map((category, index) => (
-        <section className={classes.section} id={`menu-${category.id}`}>
+        <section
+          className={classes.section}
+          id={`menu-${category.id}`}
+          key={category.id}
+        >
           <Typography className={classes.categoryName} variant="h6">
             {category.name}
           </Typography>

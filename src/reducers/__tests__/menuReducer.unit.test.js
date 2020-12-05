@@ -5,7 +5,6 @@ describe("menu Reducer", () => {
   const initialState = {
     menu: [],
     loading: true,
-    error: "",
   };
 
   it("returns the initial state when an action type is not passed", () => {
@@ -19,7 +18,6 @@ describe("menu Reducer", () => {
     expect(reducer).toEqual({
       menu: [],
       loading: true,
-      error: "",
     });
   });
 
@@ -38,7 +36,6 @@ describe("menu Reducer", () => {
         name: "foo",
       },
       loading: false,
-      error: "",
     });
   });
 
@@ -51,7 +48,6 @@ describe("menu Reducer", () => {
     expect(reducer).toEqual({
       menu: [],
       loading: false,
-      error: "Error",
     });
   });
 });

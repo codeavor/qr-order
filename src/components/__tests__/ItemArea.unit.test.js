@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
-import { render } from "@testing-library/react";
+import { render, wait } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ItemArea from "../ItemArea";
 
@@ -54,7 +54,7 @@ describe("ItemArea", () => {
     },
     initialValues: { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" },
     addItemToCart: mockaddItemToCart,
-    orderId: 1,
+    orderId: "1",
   };
 
   const noValuesProps = {
@@ -92,43 +92,46 @@ describe("ItemArea", () => {
     },
     initialValues: {},
     addItemToCart: mockaddItemToCart,
-    orderId: 1,
+    orderId: "1",
   };
 
-  it("renders a <ItemArea/> component with expected props", () => {
+  it("renders a <ItemArea/> component with expected props", async () => {
     const { getAllByTestId, getByTestId } = render(
       <MemoryRouter>
         <ItemArea {...props} />
       </MemoryRouter>
     );
-
-    expect(getAllByTestId("extra-category")).toHaveLength(
-      props.item.extra_categories.length
-    );
-    expect(getByTestId("bottom-box")).toBeTruthy();
+    await wait(() => {
+      expect(getAllByTestId("extra-category")).toHaveLength(
+        props.item.extra_categories.length
+      );
+      expect(getByTestId("bottom-box")).toBeTruthy();
+    });
   });
 
-  it("renders a <ItemArea/> component with expected props and no values", () => {
+  it("renders a <ItemArea/> component with expected props and no values", async () => {
     const { getAllByTestId, getByTestId } = render(
       <MemoryRouter>
         <ItemArea {...noValuesProps} />
       </MemoryRouter>
     );
-
-    expect(getAllByTestId("extra-category")).toHaveLength(
-      noValuesProps.item.extra_categories.length
-    );
-    expect(getByTestId("bottom-box")).toBeTruthy();
+    await wait(() => {
+      expect(getAllByTestId("extra-category")).toHaveLength(
+        noValuesProps.item.extra_categories.length
+      );
+      expect(getByTestId("bottom-box")).toBeTruthy();
+    });
   });
 
-  it("renders a <ItemArea/> component without props", () => {
+  it("renders a <ItemArea/> component without props", async () => {
     const { queryAllByTestId, getByTestId } = render(
       <MemoryRouter>
         <ItemArea />
       </MemoryRouter>
     );
-
-    expect(queryAllByTestId("extra-category")).toHaveLength(0);
-    expect(getByTestId("bottom-box")).toBeTruthy();
+    await wait(() => {
+      expect(queryAllByTestId("extra-category")).toHaveLength(0);
+      expect(getByTestId("bottom-box")).toBeTruthy();
+    });
   });
 });

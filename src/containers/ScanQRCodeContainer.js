@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 import NavBar from "../components/NavBar";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   box: {
-    margin: "25% auto",
+    margin: "10% auto",
     width: "75%",
-    height: "30em",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
 }));
-export default function ScanQRCodeContainer() {
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+export function ScanQRCodeContainer(errorData) {
   const classes = useStyles();
+  const [open, setOpen] = useState(errorData.error !== undefined);
   return (
     <React.Fragment>
       <NavBar text="Scan QR Code!" />
@@ -26,6 +33,23 @@ export default function ScanQRCodeContainer() {
           alt="qr code"
         />
       </Box>
+      <Snackbar
+        open={open}
+        autoHideDuration={10000}
+        onClose={() => setOpen(false)}
+      >
+        <Alert onClose={() => setOpen(false)} severity="error">
+          {JSON.stringify(errorData.error)}
+        </Alert>
+      </Snackbar>
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    errorData: state.error,
+  };
+};
+
+export default connect(mapStateToProps)(ScanQRCodeContainer);

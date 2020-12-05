@@ -5,7 +5,6 @@ describe("cart Reducer", () => {
   const initialState = {
     cart: [],
     loading: true,
-    error: "",
   };
 
   it("returns the initial state when an action type is not passed", () => {
@@ -19,7 +18,6 @@ describe("cart Reducer", () => {
     expect(reducer).toEqual({
       cart: [],
       loading: true,
-      error: "",
     });
   });
 
@@ -51,7 +49,6 @@ describe("cart Reducer", () => {
     expect(reducer).toEqual({
       cart: cartResponse,
       loading: false,
-      error: "",
     });
   });
 
@@ -64,7 +61,6 @@ describe("cart Reducer", () => {
     expect(reducer).toEqual({
       cart: [],
       loading: false,
-      error: "Error",
     });
   });
 });

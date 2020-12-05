@@ -8,7 +8,7 @@ describe("Loading", () => {
   });
 
   it("renders a <Loading/> component", () => {
-    const { queryByTestId, getByText } = render(<Loading />);
+    const { queryByTestId } = render(<Loading />);
     expect(queryByTestId(/loading/i)).toBeTruthy();
   });
 });

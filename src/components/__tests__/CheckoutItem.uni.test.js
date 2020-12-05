@@ -16,7 +16,8 @@ describe("CheckoutItem", () => {
   it("renders a <CheckoutItem/> component with expected props", () => {
     const { getByText } = render(<CheckoutItem {...props} />);
 
-    expect(getByText("2X Espresso")).toBeInTheDocument();
+    expect(getByText("2x")).toBeInTheDocument();
+    expect(getByText("Espresso")).toBeInTheDocument();
   });
 
   it("renders a <CheckoutItem/> component without props", () => {

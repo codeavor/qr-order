@@ -1,21 +1,20 @@
 import C from "../constants";
 
-const initState = {
+const initialState = {
   error: null,
 };
 
-export function errorReducer(state = initState, action) {
-  const { error } = action;
-
-  if (error) {
-    return {
-      error: error,
-    };
-  } else if (action.type === C.RESET_ERROR) {
-    return {
-      error: null,
-    };
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
+    case C.SET_ERROR:
+      return {
+        error: payload,
+      };
+    case C.RESET_ERROR:
+      return {
+        error: null,
+      };
+    default:
+      return state;
   }
-
-  return state;
-}
+};

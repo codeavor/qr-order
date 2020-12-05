@@ -35,7 +35,7 @@ export default function CheckoutArea({ cart }) {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <div>
       <Typography>Order Resume</Typography>
       <Box px={2} className={classes.box} data-testid="checkout-area">
         <List className={classes.item}>
@@ -52,6 +52,6 @@ export default function CheckoutArea({ cart }) {
           ))}
         </List>
       </Box>
-    </React.Fragment>
+    </div>
   );
 }

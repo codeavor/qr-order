@@ -8,9 +8,7 @@ const useStyles = makeStyles((theme) => ({
   finalBox: {
     margin: "25% auto",
     width: "80%",
-    border: "0.8px solid rgb(188,188,188)",
-    borderRadius: 8,
-    height: "30em",
+    height: "20rem",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -23,7 +21,7 @@ export function FinalContainer() {
     <React.Fragment>
       <NavBar back={true} text="Transaction Completed!" />
       <Box className={classes.finalBox}>
-        <Typography>Thank you for your purchase</Typography>
+        <Typography>Thank you for your purchase!</Typography>
       </Box>
     </React.Fragment>
   );

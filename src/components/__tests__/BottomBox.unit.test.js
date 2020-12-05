@@ -16,7 +16,7 @@ describe("BottomBox", () => {
     route: "/umbrella",
     quantity: true,
     addItemToCart: mockAddItemToCart,
-    orderId: 1,
+    orderId: "1",
     itemId: 1,
     values: { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" },
   };
@@ -26,7 +26,7 @@ describe("BottomBox", () => {
     price: "1.24",
     route: "/umbrella",
     completeOrder: mockCompleteOrder,
-    orderId: 1,
+    orderId: "1",
     itemId: 1,
     values: { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" },
   };

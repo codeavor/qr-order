@@ -76,7 +76,7 @@ export default function ItemArea({
             <BottomBox
               text={"Add To Cart"}
               price={item.price}
-              route={"/umbrella"}
+              route={C.MENU_PATH}
               quantity={true}
               addItemToCart={addItemToCart}
               orderId={orderId}

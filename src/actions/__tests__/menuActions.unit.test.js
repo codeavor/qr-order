@@ -27,6 +27,7 @@ describe("Menu Actions", () => {
 
       const expectedActions = [
         { type: C.GET_MENU },
+        { type: C.RESET_ERROR },
         { type: C.GET_MENU_SUCCESS, payload: mockData },
       ];
 
@@ -35,7 +36,7 @@ describe("Menu Actions", () => {
 
     it("dispatches GET_MENU action and returns an error", async () => {
       const errorMsg = "Something bad happened :(";
-
+      const routerData = { args: ["/"], method: "push" };
       mockAxios.get.mockImplementationOnce(() =>
         Promise.reject({
           response: {
@@ -51,7 +52,8 @@ describe("Menu Actions", () => {
       } catch {
         const expectedActions = [
           { type: C.GET_MENU },
-          { type: C.GET_MENU_FAILURE, payload: errorMsg },
+          { type: C.GET_MENU_FAILURE },
+          { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
         expect(store.getActions()).toEqual(expectedActions);
