@@ -28,4 +28,15 @@ describe("Testing /authentication/:id", () => {
     cy.wait("@getCart");
     cy.url().should("eq", C.URL + C.MENU_PATH);
   });
+
+  it("Getting wrong token", () => {
+    cy.fixture("auth_mock_data.json").then((rc) => {
+      apiMock(C.REGISTER_ENDPOINT, "POST", rc.wrongToken, "register");
+    });
+
+    cy.visit(`${C.URL + C.LOGIN_PATH}/1`);
+    cy.wait("@register");
+
+    cy.url().should("eq", `${C.URL}/`);
+  });
 });

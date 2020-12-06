@@ -43,6 +43,6 @@ describe("Testing /checkout", () => {
     cy.findByTestId("bottom-button").click();
     cy.wait("@completeOrder");
     cy.url().should("eq", C.URL + C.FINAL_PATH);
-    cy.findByText("Thank you for your purchase").should("exist");
+    cy.findByText("Thank you for your purchase!").should("exist");
   });
 });

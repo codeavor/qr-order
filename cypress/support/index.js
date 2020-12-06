@@ -20,3 +20,4 @@ import "./commands";
 // require('./commands')
 import "@cypress/code-coverage/support";
 import "cypress-localstorage-commands";
+import "cypress-wait-until";

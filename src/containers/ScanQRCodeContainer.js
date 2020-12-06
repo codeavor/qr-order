@@ -6,6 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -20,9 +22,10 @@ const useStyles = makeStyles((theme) => ({
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-export function ScanQRCodeContainer(errorData) {
+export function ScanQRCodeContainer({ errorData }) {
   const classes = useStyles();
-  const [open, setOpen] = useState(errorData.error !== undefined);
+  const [open, setOpen] = useState(errorData.error !== "");
+
   return (
     <React.Fragment>
       <NavBar text="Scan QR Code!" />
@@ -35,11 +38,26 @@ export function ScanQRCodeContainer(errorData) {
       </Box>
       <Snackbar
         open={open}
-        autoHideDuration={10000}
+        data-testid="error"
+        autoHideDuration={8000}
+        message={errorData.error}
         onClose={() => setOpen(false)}
       >
-        <Alert onClose={() => setOpen(false)} severity="error">
-          {JSON.stringify(errorData.error)}
+        <Alert
+          severity="error"
+          action={
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              data-testid="close-error-button"
+              onClick={() => setOpen(false)}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          }
+        >
+          {errorData.error}
         </Alert>
       </Snackbar>
     </React.Fragment>

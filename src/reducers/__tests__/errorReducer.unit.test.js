@@ -3,7 +3,7 @@ import C from "../../constants";
 
 describe("error Reducer", () => {
   const initialState = {
-    error: null,
+    error: "",
   };
 
   it("returns the initial state when an action type is not passed", () => {
@@ -24,7 +24,7 @@ describe("error Reducer", () => {
     const reducer = errorReducer(initialState, { type: C.RESET_ERROR });
 
     expect(reducer).toEqual({
-      error: null,
+      error: "",
     });
   });
 });

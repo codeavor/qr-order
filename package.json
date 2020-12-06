@@ -19,7 +19,6 @@
     "formik": "^2.2.5",
     "istanbul-combine": "^0.3.0",
     "istanbul-lib-coverage": "^3.0.0",
-    "jwt-decode": "^3.1.2",
     "nyc": "^15.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -29,7 +28,6 @@
     "react-scroll": "^1.8.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-form": "^8.3.7",
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.3.0"
   },
@@ -92,7 +90,7 @@
       "**/test.js",
       "**/*.stories.js",
       "**/stories.js",
-      "__mocks__/**",
+      "src/__mocks__/*.js",
       "src/utils/cart/*.js",
       "src/utils/extra/*.js"
     ]

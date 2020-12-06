@@ -1,7 +1,7 @@
 import C from "../constants";
 
 const initialState = {
-  error: null,
+  error: "",
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -12,7 +12,7 @@ export default (state = initialState, { type, payload }) => {
       };
     case C.RESET_ERROR:
       return {
-        error: null,
+        error: "",
       };
     default:
       return state;
