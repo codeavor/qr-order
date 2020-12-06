@@ -49,7 +49,11 @@ export function NavBar({ back, text, search }) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default" data-testid="nav-bar">
+      <AppBar
+        position={search ? "static" : "fixed"}
+        color="default"
+        data-testid="nav-bar"
+      >
         <Toolbar>
           {back ? (
             <BarButton

@@ -8,6 +8,7 @@ import ExtraCategory from "./ExtraCategory";
 import { Formik, Form } from "formik";
 import BottomBox from "./BottomBox";
 import C from "../constants";
+import { checkIfSketos, disableSugars } from "../utils/extra/extraUtils";
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -39,40 +40,28 @@ export default function ItemArea({
   orderId,
 }) {
   const classes = useStyles();
-
-  const checkIfSketos = (categoryName, values) => {
-    if (Object.keys(values).length === 0 || values === undefined) return false;
-    return (
-      categoryName === C.EPILEKSTE_EIDOS_ZAXARHS &&
-      values[C.EPILEKSTE_ZAXARH].split(" ")[1] === C.SKETOS_ID
-    );
-  };
-
   return (
     <Formik enableReinitialize={true} initialValues={initialValues}>
       {(props) => {
         const { values, handleChange, setFieldValue, setValues } = props;
         return (
           <Form>
-            <div data-testid="item-area">
-              <Container
-                className={classes.section}
-                id={`item-${item.id}`}
-                key={item.id}
-              >
-                {item.extra_categories.map((extra_category) => (
-                  <ExtraCategory
-                    setFieldValue={setFieldValue}
-                    handleChange={handleChange}
-                    setValues={setValues}
-                    extra_category={extra_category}
-                    key={extra_category.id}
-                    values={values}
-                    disabled={checkIfSketos(extra_category.name, values)}
-                  />
-                ))}
-              </Container>
-            </div>
+            <Container className={classes.section} data-testid="item-area">
+              {item.extra_categories.map((extra_category) => (
+                <ExtraCategory
+                  setFieldValue={setFieldValue}
+                  handleChange={handleChange}
+                  setValues={setValues}
+                  extra_category={extra_category}
+                  key={extra_category.id}
+                  values={values}
+                  disabled={
+                    checkIfSketos(extra_category.name, values) &&
+                    disableSugars(values, setValues)
+                  }
+                />
+              ))}
+            </Container>
             <BottomBox
               text={"Add To Cart"}
               price={item.price}

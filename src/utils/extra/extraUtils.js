@@ -1,3 +1,5 @@
+import C from "../../constants";
+
 /**
  * Gets an extras(values) object from Formik and transforms it into a readable object.
  * Radio buttons are represented as: Radio Group Name: "price*100 id".
@@ -8,14 +10,17 @@
 export function fixExtras(extras) {
   if (extras === undefined) return [];
   let extrasArray = [];
-  for (let extra in extras) { //"Επιλέξτε μέγεθος", "20 10", etc
+  for (let extra in extras) {
+    //"Επιλέξτε μέγεθος", "20 10", etc
     let extraAr;
-    if (typeof(extras[extra]) === "boolean") { // It's a checkbox
+    if (typeof extras[extra] === "boolean") {
+      // It's a checkbox
       // if its false, its not checked and so, we dont need it
       if (extras[extra] === false) continue;
       // It's checked, we split the name of the property
       extraAr = extra.toString().split(" ");
-    } else { // It's a radio button group
+    } else {
+      // It's a radio button group
       // we split the value
       extraAr = extras[extra].split(" ");
     }
@@ -69,21 +74,18 @@ export function getInitializedExtras(extrasCat) {
   let extras = {};
   for (let extraCat of extrasCat) {
     if (extraCat.type !== "radioButton") continue;
-    
+
     // It is a radio group, pick the first one for Formik
     let firstExtra = extraCat.extras[0];
-    extras[extraCat.name] = combinedPriceId(
-      firstExtra.price,
-      firstExtra.id
-    );
+    extras[extraCat.name] = combinedPriceId(firstExtra.price, firstExtra.id);
   }
   return extras;
 }
 
 /**
- * Sorts the extras of an itam by id. 
+ * Sorts the extras of an itam by id.
  * @param  {Object} item
- * @return {String} 
+ * @return {String}
  */
 export function fixItem(item) {
   let categories = item.extra_categories.sort((a, b) => a.id - b.id);
@@ -99,4 +101,37 @@ export function fixItem(item) {
  */
 export function combinedPriceId(price, id) {
   return price * 100 + " " + id;
+}
+
+/**
+ * Used to disable sugar category if Sketos is checked
+ * @param  {Object} values        { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" }
+ * @param  {Function} setValues   Function that set the values of Formik
+ * @return {Boolean}
+ */
+export function disableSugars(values, setValues) {
+  let changed = false;
+  let tempValues = { ...values };
+  for (let i = 0; i < C.SUGAR_IDS.length; i++) {
+    if (tempValues[C.SUGAR_IDS[i]] === true) {
+      tempValues[C.SUGAR_IDS[i]] = false;
+      changed = true;
+    }
+  }
+  if (!changed) return true;
+  setValues(tempValues);
+}
+
+/**
+ * Used to disable sugar category if Sketos is checked
+ * @param  {String} categoryName    "Επιλέξτε είδος ζάχαρης"
+ * @param  {Object} values          { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" }
+ * @return {Boolean}
+ */
+export function checkIfSketos(categoryName, values, setValues) {
+  if (Object.keys(values).length === 0 || values === undefined) return false;
+  return (
+    categoryName === C.EPILEKSTE_EIDOS_ZAXARHS &&
+    values[C.EPILEKSTE_ZAXARH].split(" ")[1] === C.SKETOS_ID
+  );
 }

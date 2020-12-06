@@ -9,6 +9,7 @@ import ItemArea from "../components/ItemArea";
 import Loading from "../components/Loading";
 import NavBar from "../components/NavBar";
 import C from "../constants";
+import Box from "@material-ui/core/Box";
 
 export function ItemContainer({ itemData, getItem, addItemToCart }) {
   const { id } = useParams();
@@ -22,12 +23,14 @@ export function ItemContainer({ itemData, getItem, addItemToCart }) {
   ) : (
     <React.Fragment>
       <NavBar back={true} text={itemData.item.name} search={false} />
-      <ItemArea
-        initialValues={itemData.extraValues}
-        item={itemData.item}
-        orderId={window.localStorage.getItem(C.ORDER_ID)}
-        addItemToCart={addItemToCart}
-      />
+      <Box p={5} mt={5}>
+        <ItemArea
+          initialValues={itemData.extraValues}
+          item={itemData.item}
+          orderId={window.localStorage.getItem(C.ORDER_ID)}
+          addItemToCart={addItemToCart}
+        />
+      </Box>
     </React.Fragment>
   );
 }

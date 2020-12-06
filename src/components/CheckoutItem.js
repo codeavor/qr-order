@@ -35,7 +35,10 @@ export default function CheckoutItem({
       <ListItemText primary={name} secondary={extras.join(", ")} />
       <ListItemSecondaryAction>
         <Typography>
-          {totalItemPrice(price, extraPrice, quantity).toFixed(2)}€
+          {totalItemPrice(price, extraPrice, quantity)
+            .toFixed(2)
+            .replace(".", ",")}
+          €
         </Typography>
       </ListItemSecondaryAction>
     </ListItem>

@@ -11,7 +11,7 @@ import CheckoutPayment from "../components/CheckoutPayment";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 import BottomBox from "../components/BottomBox";
 import C from "../constants";
-import { Container } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 
 export function CheckoutContainer({ cartData, getCart, orderComplete }) {
   useEffect(() => {
@@ -23,10 +23,10 @@ export function CheckoutContainer({ cartData, getCart, orderComplete }) {
   ) : (
     <React.Fragment>
       <NavBar back={true} text="Checkout" />
-      <Container>
+      <Box p={5} mt={5}>
         <CheckoutPayment />
         <CheckoutArea cart={cartData.cart} />
-      </Container>
+      </Box>
       <BottomBox
         text={"Checkout"}
         price={totalCartPrice(cartData.cart)}

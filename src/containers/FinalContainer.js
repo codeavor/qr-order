@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   finalBox: {
     margin: "25% auto",
     width: "80%",
-    height: "20rem",
+    height: "50%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

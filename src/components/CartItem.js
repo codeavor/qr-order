@@ -67,58 +67,57 @@ export default function CartItem({
   };
 
   return (
-    <div data-testid="cart-item">
-      <List>
-        <ListItem>
-          <ListItemText
-            disableTypography
-            primary={<Typography>{name}</Typography>}
-            secondary={
-              <>
-                <Typography>{extras.join(", ")}</Typography>
-                <Box
-                  display="flex"
-                  flexDirection="col"
-                  flexWrap="nowrap"
-                  alignItems="center"
-                >
-                  <Box>
-                    <QuantityButton
-                      data-testid="increase-quantity"
-                      symbol="+"
-                      onClick={() => changeQuantity(quantity + 1, id)}
-                    />
-                    <Box
-                      display="inline"
-                      px={2}
-                      data-testid="cart-item-quantity"
-                    >
-                      <Typography display="inline">{quantity}</Typography>
-                    </Box>
-                    <QuantityButton
-                      data-testid="decrease-quantity"
-                      symbol="-"
-                      onClick={() => changeQuantity(quantity - 1, id)}
-                    />
-                    <IconButton
-                      data-testid="delete-item"
-                      aria-label="delete"
-                      onClick={() => deleteOrderItem(id)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
+    <List data-testid="cart-item">
+      <ListItem>
+        <ListItemText
+          disableTypography
+          primary={<Typography>{name}</Typography>}
+          secondary={
+            <React.Fragment>
+              <Typography variant="body2" color="textSecondary">
+                {extras.join(", ")}
+              </Typography>
+              <Box
+                display="flex"
+                flexDirection="col"
+                flexWrap="nowrap"
+                alignItems="center"
+              >
+                <Box>
+                  <QuantityButton
+                    data-testid="increase-quantity"
+                    symbol="+"
+                    onClick={() => changeQuantity(quantity + 1, id)}
+                  />
+                  <Box display="inline" px={2} data-testid="cart-item-quantity">
+                    <Typography display="inline">{quantity}</Typography>
                   </Box>
-                  <Typography className={classes.grow} />
-                  <Typography>
-                    {totalItemPrice(price, extraPrice, quantity).toFixed(2)}€
-                  </Typography>
+                  <QuantityButton
+                    data-testid="decrease-quantity"
+                    symbol="-"
+                    onClick={() => changeQuantity(quantity - 1, id)}
+                  />
+                  <IconButton
+                    data-testid="delete-item"
+                    aria-label="delete"
+                    onClick={() => deleteOrderItem(id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
                 </Box>
-              </>
-            }
-          />
-        </ListItem>
-        <Divider />
-      </List>
-    </div>
+                <Typography className={classes.grow} />
+                <Typography>
+                  {totalItemPrice(price, extraPrice, quantity)
+                    .toFixed(2)
+                    .replace(".", ",")}
+                  €
+                </Typography>
+              </Box>
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+      <Divider />
+    </List>
   );
 }

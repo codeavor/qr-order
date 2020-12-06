@@ -14,6 +14,7 @@ import NavBar from "../components/NavBar";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 import BottomBox from "../components/BottomBox";
 import C from "../constants";
+import { Box } from "@material-ui/core";
 
 export function CartContainer({
   cartData,
@@ -30,11 +31,13 @@ export function CartContainer({
   ) : (
     <React.Fragment>
       <NavBar back={true} text="My Cart" />
-      <CartArea
-        cart={cartData.cart}
-        deleteOrderItem={deleteOrderItem}
-        changeQuantity={changeQuantity}
-      />
+      <Box p={5} mt={5}>
+        <CartArea
+          cart={cartData.cart}
+          deleteOrderItem={deleteOrderItem}
+          changeQuantity={changeQuantity}
+        />
+      </Box>
       <BottomBox
         disable={totalCartPrice(cartData.cart) === 0}
         text={"Continue"}

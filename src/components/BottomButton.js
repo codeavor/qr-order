@@ -36,7 +36,9 @@ export default function BottomButton({
       {...props}
     >
       <span data-testid="bottom-button-text">{text}</span> &nbsp;
-      <span data-testid="bottom-button-price">{price.toFixed(2)}</span>€
+      <span data-testid="bottom-button-price">
+        {price.toFixed(2).replace(".", ",")}€
+      </span>
     </Button>
   );
 }
