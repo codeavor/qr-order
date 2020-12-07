@@ -24,7 +24,7 @@ describe("MenuItem", () => {
     );
 
     expect(getByText("Coffee")).toBeInTheDocument();
-    expect(getByText("2.13 €")).toBeInTheDocument();
+    expect(getByText("2,13 €")).toBeInTheDocument();
   });
 
   it("renders a <MenuItem/> component without props", () => {

@@ -128,8 +128,8 @@ export function disableSugars(values, setValues) {
  * @param  {Object} values          { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" }
  * @return {Boolean}
  */
-export function checkIfSketos(categoryName, values, setValues) {
-  if (Object.keys(values).length === 0 || values === undefined) return false;
+export function checkIfSketos(categoryName, values) {
+  if (values === undefined || Object.keys(values).length === 0) return false;
   return (
     categoryName === C.EPILEKSTE_EIDOS_ZAXARHS &&
     values[C.EPILEKSTE_ZAXARH].split(" ")[1] === C.SKETOS_ID

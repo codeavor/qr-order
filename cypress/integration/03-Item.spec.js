@@ -58,7 +58,7 @@ describe("Testing /item", () => {
 
   it("Check if we can select anything and disables/enables", () => {
     // Check if item price is correct
-    cy.findByTestId("bottom-button-price").should("have.text", "1.00");
+    cy.findByTestId("bottom-button-price").should("have.text", "1,00€");
 
     // Check if disabled
     cy.findByText("Επιλέξτε είδος ζάχαρης")
@@ -91,7 +91,7 @@ describe("Testing /item", () => {
       .parent()
       .should("have.class", "Mui-checked");
 
-    cy.findByTestId("bottom-button-price").should("have.text", "1.20");
+    cy.findByTestId("bottom-button-price").should("have.text", "1,20€");
   });
 
   it("Add item to cart", () => {
@@ -109,6 +109,6 @@ describe("Testing /item", () => {
     cy.wait("@getCart");
 
     cy.url().should("eq", C.URL + C.MENU_PATH);
-    cy.findByTestId("bottom-button-price").should("have.text", "1.20");
+    cy.findByTestId("bottom-button-price").should("have.text", "1,20€");
   });
 });

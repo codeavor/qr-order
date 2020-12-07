@@ -22,7 +22,7 @@ describe("BottomButton", () => {
     );
     expect(queryByTestId(/cart-icon/i)).toBeTruthy();
     expect(getByText("My Cart")).toBeInTheDocument();
-    expect(getByText("1.24")).toBeInTheDocument();
+    expect(getByText("1,24€")).toBeInTheDocument();
   });
 
   it("renders a <BottomButton/> component without props", () => {
