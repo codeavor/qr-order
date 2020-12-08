@@ -12,7 +12,7 @@ import NavBar from "../components/NavBar";
 import C from "../constants";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 
-export function UmbrellaContainer({ menuData, cartData, getMenu, getCart }) {
+export function MenuContainer({ menuData, cartData, getMenu, getCart }) {
   useEffect(() => {
     getMenu();
     getCart(window.localStorage.getItem(C.ORDER_ID));
@@ -49,4 +49,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UmbrellaContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer);

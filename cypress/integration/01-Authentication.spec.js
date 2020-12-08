@@ -20,7 +20,7 @@ describe("Testing /authentication/:id", () => {
     cy.url().should("eq", `${C.URL}/`);
   });
 
-  it("Authenticating and redirecting to umbrella", () => {
+  it("Authenticating and redirecting to menu", () => {
     cy.visit(`${C.URL + C.LOGIN_PATH}/1`);
     cy.findByTestId("loading").should("exist");
     cy.wait("@register");
