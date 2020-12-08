@@ -9,6 +9,7 @@ import { Formik, Form } from "formik";
 import BottomBox from "./BottomBox";
 import C from "../constants";
 import { checkIfSketos, disableSugars } from "../utils/extra/extraUtils";
+import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -46,22 +47,24 @@ export default function ItemArea({
         const { values, handleChange, setFieldValue, setValues } = props;
         return (
           <Form>
-            <Container className={classes.section} data-testid="item-area">
-              {item.extra_categories.map((extra_category) => (
-                <ExtraCategory
-                  setFieldValue={setFieldValue}
-                  handleChange={handleChange}
-                  setValues={setValues}
-                  extra_category={extra_category}
-                  key={extra_category.id}
-                  values={values}
-                  disabled={
-                    checkIfSketos(extra_category.name, values) &&
-                    disableSugars(values, setValues)
-                  }
-                />
-              ))}
-            </Container>
+            <Box mt={5} pt={5}>
+              <Container className={classes.section} data-testid="item-area">
+                {item.extra_categories.map((extra_category) => (
+                  <ExtraCategory
+                    setFieldValue={setFieldValue}
+                    handleChange={handleChange}
+                    setValues={setValues}
+                    extra_category={extra_category}
+                    key={extra_category.id}
+                    values={values}
+                    disabled={
+                      checkIfSketos(extra_category.name, values) &&
+                      disableSugars(values, setValues)
+                    }
+                  />
+                ))}
+              </Container>
+            </Box>
             <BottomBox
               text={"Add To Cart"}
               price={item.price}

@@ -23,7 +23,7 @@ export function CheckoutContainer({ cartData, getCart, orderComplete }) {
   ) : (
     <React.Fragment>
       <NavBar back={true} text="Checkout" />
-      <Box p={5} mt={5}>
+      <Box p={5} my={5}>
         <CheckoutPayment />
         <CheckoutArea cart={cartData.cart} />
       </Box>

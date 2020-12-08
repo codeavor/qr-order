@@ -31,7 +31,7 @@ export function CartContainer({
   ) : (
     <React.Fragment>
       <NavBar back={true} text="My Cart" />
-      <Box p={5} mt={5}>
+      <Box py={5} mt={5}>
         <CartArea
           cart={cartData.cart}
           deleteOrderItem={deleteOrderItem}
