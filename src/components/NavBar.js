@@ -11,9 +11,6 @@ import PropTypes from "prop-types";
 import { useHistory, withRouter } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   grow: {
     flexGrow: 1,
   },
@@ -48,7 +45,7 @@ export function NavBar({ back, text, search }) {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.grow}>
       <AppBar
         position={search ? "static" : "fixed"}
         color="default"

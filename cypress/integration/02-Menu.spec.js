@@ -1,7 +1,7 @@
 import { apiMock } from "../support/mocks/apiMock";
 import C from "../../src/constants";
 
-describe("Testing /umbrella", () => {
+describe("Testing /menu", () => {
   before(() => {
     cy.register();
   });

@@ -1,28 +1,20 @@
 import React from "react";
 import NavBar from "../components/NavBar";
-import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  finalBox: {
-    margin: "25% auto",
-    width: "80%",
-    height: "50%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-}));
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 export function FinalContainer() {
-  const classes = useStyles();
   return (
     <React.Fragment>
       <NavBar back={true} text="Transaction Completed!" />
-      <Box className={classes.finalBox}>
+      <Grid
+        container
+        justify="center"
+        alignItems="center"
+        style={{ minHeight: "100vh" }}
+      >
         <Typography>Thank you for your purchase!</Typography>
-      </Box>
+      </Grid>
     </React.Fragment>
   );
 }

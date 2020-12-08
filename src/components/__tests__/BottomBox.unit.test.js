@@ -13,7 +13,7 @@ describe("BottomBox", () => {
   const props = {
     text: "My Cart",
     price: "1.24",
-    route: "/umbrella",
+    route: "/menu",
     quantity: true,
     addItemToCart: mockAddItemToCart,
     orderId: "1",
@@ -24,7 +24,7 @@ describe("BottomBox", () => {
   const props2 = {
     text: "My Cart",
     price: "1.24",
-    route: "/umbrella",
+    route: "/menu",
     completeOrder: mockCompleteOrder,
     orderId: "1",
     itemId: 1,

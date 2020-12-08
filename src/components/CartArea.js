@@ -1,22 +1,10 @@
 import React from "react";
 
 import Container from "@material-ui/core/Container";
-import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import CartItem from "./CartItem";
-import { Typography } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
-  section: {
-    marginBottom: "30px",
-  },
-  emptyCart: {
-    height: "100vh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-}));
 
 CartArea.propTypes = {
   cart: PropTypes.array,
@@ -27,27 +15,30 @@ CartArea.defaultProps = {
 };
 
 export default function CartArea({ cart, deleteOrderItem, changeQuantity }) {
-  const classes = useStyles();
-
-  return (
-    <Container data-testid="cart-area" className={classes.section}>
-      {cart.length !== 0 ? (
-        cart.map((cartItem) => (
-          <CartItem
-            name={cartItem.name}
-            extras={cartItem.extras}
-            extraPrice={cartItem.extra_price}
-            quantity={cartItem.quantity}
-            price={cartItem.price}
-            id={cartItem.order_item_id}
-            key={cartItem.order_item_id}
-            deleteOrderItem={deleteOrderItem}
-            changeQuantity={changeQuantity}
-          />
-        ))
-      ) : (
-        <Typography className={classes.emptyCart}>Cart is empty!</Typography>
-      )}
+  return cart.length !== 0 ? (
+    <Container data-testid="cart-area" style={{ marginBottom: "30px" }}>
+      {cart.map((cartItem) => (
+        <CartItem
+          name={cartItem.name}
+          extras={cartItem.extras}
+          extraPrice={cartItem.extra_price}
+          quantity={cartItem.quantity}
+          price={cartItem.price}
+          id={cartItem.order_item_id}
+          key={cartItem.order_item_id}
+          deleteOrderItem={deleteOrderItem}
+          changeQuantity={changeQuantity}
+        />
+      ))}
     </Container>
+  ) : (
+    <Grid
+      container
+      justify="center"
+      alignItems="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Typography>Cart is empty!</Typography>
+    </Grid>
   );
 }

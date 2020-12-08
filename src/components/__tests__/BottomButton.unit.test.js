@@ -7,7 +7,7 @@ describe("BottomButton", () => {
   const props = {
     text: "My Cart",
     price: 1.24,
-    route: "/umbrella",
+    route: "/menu",
   };
 
   afterEach(() => {

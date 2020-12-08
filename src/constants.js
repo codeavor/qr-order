@@ -3,7 +3,7 @@ const C = {
   URL: "http://localhost:3000",
   API_URL: "https://qr-order-api.herokuapp.com/api",
   LOGIN_PATH: "/authentication",
-  MENU_PATH: "/umbrella",
+  MENU_PATH: "/menu",
   ITEM_PATH: "/item",
   CART_PATH: "/cart",
   CHECKOUT_PATH: "/checkout",
