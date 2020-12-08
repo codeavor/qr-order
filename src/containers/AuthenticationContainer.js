@@ -1,33 +1,21 @@
 import React, { useEffect } from "react";
 
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { getToken } from "../actions/authActions";
-import Error from "../components/Error";
 import Loading from "../components/Loading";
 
-export function AuthenticationContainer({ userData, getToken }) {
+export function AuthenticationContainer({ getToken }) {
   const { id } = useParams();
 
   useEffect(() => {
+    // if user gets authenticated successfully, he will be redirected
     getToken(id);
   }, [getToken, id]);
 
-  return userData.loading ? (
-    <Loading />
-  ) : userData.error || userData.orderId == null ? (
-    <Error error={userData.error} />
-  ) : (
-    <Redirect push to="/umbrella" />
-  );
+  return <Loading />;
 }
-
-const mapStateToProps = (state) => {
-  return {
-    userData: state.user,
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -35,7 +23,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AuthenticationContainer);
+export default connect(null, mapDispatchToProps)(AuthenticationContainer);

@@ -35,7 +35,10 @@ export default function MenuItem({ item }) {
   return (
     <div className={classes.root}>
       <ListItem button component={Link} to={itemUrl} data-testid="menu-item">
-        <ListItemText primary={item.name} secondary={item.price + " €"} />
+        <ListItemText
+          primary={item.name}
+          secondary={parseFloat(item.price).toFixed(2).replace(".", ",") + " €"}
+        />
       </ListItem>
       <Divider />
     </div>

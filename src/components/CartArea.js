@@ -4,10 +4,17 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import CartItem from "./CartItem";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   section: {
     marginBottom: "30px",
+  },
+  emptyCart: {
+    height: "100vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 }));
 
@@ -23,9 +30,9 @@ export default function CartArea({ cart, deleteOrderItem, changeQuantity }) {
   const classes = useStyles();
 
   return (
-    <div data-testid="cart-area">
-      <Container className={classes.section}>
-        {cart.map((cartItem, index) => (
+    <Container data-testid="cart-area" className={classes.section}>
+      {cart.length !== 0 ? (
+        cart.map((cartItem) => (
           <CartItem
             name={cartItem.name}
             extras={cartItem.extras}
@@ -37,8 +44,10 @@ export default function CartArea({ cart, deleteOrderItem, changeQuantity }) {
             deleteOrderItem={deleteOrderItem}
             changeQuantity={changeQuantity}
           />
-        ))}
-      </Container>
-    </div>
+        ))
+      ) : (
+        <Typography className={classes.emptyCart}>Cart is empty!</Typography>
+      )}
+    </Container>
   );
 }

@@ -2,6 +2,7 @@ import axios from "axios";
 import C from "../constants";
 import { removeToken } from "../utils/auth/removeToken";
 import { fixCart } from "../utils/cart/cartUtils";
+import { handleError } from "./errorActions";
 
 export const getCartRequest = () => {
   return {
@@ -16,10 +17,9 @@ export const getCartSuccess = (cart) => {
   };
 };
 
-export const getCartError = (error) => {
+export const getCartError = () => {
   return {
     type: C.GET_CART_FAILURE,
-    payload: error,
   };
 };
 
@@ -27,13 +27,14 @@ export const getCart = (orderId) => {
   return function (dispatch) {
     dispatch(getCartRequest());
     axios
-      .get(C.API_URL + "/cart/" + orderId)
+      .get(`${C.API_URL + C.CART_ENDPOINT}/${orderId}`)
       .then((response) => {
         const cart = fixCart(response.data);
         dispatch(getCartSuccess(cart));
       })
       .catch((error) => {
-        dispatch(getCartError(error.response.data.error));
+        dispatch(getCartError());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };
@@ -41,13 +42,14 @@ export const getCart = (orderId) => {
 export const deleteOrderItem = (orderItemId) => {
   return function (dispatch) {
     axios
-      .delete(C.API_URL + "/order_item/" + orderItemId)
+      .delete(`${C.API_URL + C.ORDER_ENDPOINT}/${orderItemId}`)
       .then((response) => {
         const cart = fixCart(response.data);
         dispatch(getCartSuccess(cart));
       })
       .catch((error) => {
-        dispatch(getCartError(error.response.data.error));
+        dispatch(getCartError());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };
@@ -55,13 +57,16 @@ export const deleteOrderItem = (orderItemId) => {
 export const changeQuantity = (quantity, orderItemId) => {
   return function (dispatch) {
     axios
-      .put(C.API_URL + "/order_item/" + orderItemId + "?quantity=" + quantity)
+      .put(
+        `${C.API_URL + C.ORDER_ENDPOINT}/${orderItemId}?quantity=${quantity}`
+      )
       .then((response) => {
         const cart = fixCart(response.data);
         dispatch(getCartSuccess(cart));
       })
       .catch((error) => {
-        dispatch(getCartError(error.response.data.error));
+        dispatch(getCartError());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };
@@ -69,19 +74,20 @@ export const changeQuantity = (quantity, orderItemId) => {
 export const orderComplete = (orderId) => {
   return function (dispatch) {
     axios
-      .put(C.API_URL + "/cart/" + orderId + "?order_complete=" + true)
+      .put(`${C.API_URL + C.CART_ENDPOINT}/${orderId}?order_complete=${true}`)
       .then(() => {
         removeToken();
       })
       .catch((error) => {
-        dispatch(getCartError(error.response.data.error));
+        dispatch(getCartError());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };
 
 export const addItemToCart = (orderId, itemId, quantity, extrasId) => {
   const options = {
-    url: C.API_URL + "/order_item",
+    url: C.API_URL + C.ORDER_ENDPOINT,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -96,7 +102,8 @@ export const addItemToCart = (orderId, itemId, quantity, extrasId) => {
 
   return function (dispatch) {
     axios(options).catch((error) => {
-      dispatch(getCartError(error.response.data.error));
+      dispatch(getCartError());
+      dispatch(handleError(error.response.data.error));
     });
   };
 };

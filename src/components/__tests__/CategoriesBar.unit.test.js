@@ -2,7 +2,7 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import Tab from "@material-ui/core/Tab";
 import { createMount } from "@material-ui/core/test-utils";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import CategoriesBar from "../CategoriesBar";
 
 describe("CategoriesBar", () => {

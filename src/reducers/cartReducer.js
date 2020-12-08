@@ -3,7 +3,6 @@ import C from "../constants";
 const initialState = {
   cart: [],
   loading: true,
-  error: "",
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -18,14 +17,12 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         cart: payload,
         loading: false,
-        error: "",
       };
     case C.GET_CART_FAILURE:
       return {
         ...state,
         cart: [],
         loading: false,
-        error: payload,
       };
     default:
       return state;

@@ -1,5 +1,6 @@
 import axios from "axios";
 import C from "../constants";
+import { handleError, resetError } from "../actions/errorActions";
 
 export const getMenuRequest = () => {
   return {
@@ -14,10 +15,9 @@ export const getMenuSuccess = (menu) => {
   };
 };
 
-export const getMenuFailure = (error) => {
+export const getMenuFailure = () => {
   return {
     type: C.GET_MENU_FAILURE,
-    payload: error,
   };
 };
 
@@ -25,13 +25,15 @@ export const getMenu = () => {
   return function (dispatch) {
     dispatch(getMenuRequest());
     axios
-      .get(C.API_URL + "/menu")
+      .get(C.API_URL + C.MENU_ENDPOINT)
       .then((response) => {
         const menu = response.data;
+        dispatch(resetError());
         dispatch(getMenuSuccess(menu));
       })
       .catch((error) => {
-        dispatch(getMenuFailure(error.response.data.error));
+        dispatch(getMenuFailure());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };

@@ -1,8 +1,8 @@
 import React from "react";
-import { createShallow } from "@material-ui/core/test-utils";
+import "@testing-library/jest-dom/extend-expect";
+import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ExtraCategory from "../ExtraCategory";
-import Extra from "../Extras";
 
 describe("ExtraCategory", () => {
   const mockHandleChange = jest.fn();
@@ -30,7 +30,6 @@ describe("ExtraCategory", () => {
     handleChange: mockHandleChange,
     values: { "Επιλέξτε μέγεθος": "0 7" },
     setFieldValue: mockSetFieldValue,
-    disabled: false,
     setValues: mockSetValues,
   };
 
@@ -39,51 +38,56 @@ describe("ExtraCategory", () => {
       id: 6,
       name: "Επιλέξτε είδος ζάχαρης",
       type: "checkBox",
-      extras: [],
+      extras: [
+        {
+          id: 7,
+          name: "Μονός",
+          price: null,
+        },
+        {
+          id: 8,
+          name: "Διπλός",
+          price: "0.4",
+        },
+      ],
     },
     handleChange: mockHandleChange,
     values: {},
     setFieldValue: mockSetFieldValue,
-    disabled: true,
     setValues: mockSetValues,
   };
 
-  let shallow;
-
-  beforeEach(() => {
-    shallow = createShallow({ untilSelector: Extra });
-  });
-
-  it("renders a <ExtraCategory/> component with expected props", () => {
-    const wrapper = shallow(
+  it("renders a <ExtraCategory/> component with expected radioButtonProps", () => {
+    const { getAllByTestId } = render(
       <MemoryRouter>
         <ExtraCategory {...radioButtonProps} />
       </MemoryRouter>
     );
 
-    const extra = wrapper.find(Extra);
-    expect(extra).toHaveLength(radioButtonProps.extra_category.extras.length);
+    expect(getAllByTestId("extra")).toHaveLength(
+      radioButtonProps.extra_category.extras.length
+    );
   });
 
-  it("renders a <ExtraCategory/> component with expected props", () => {
-    const wrapper = shallow(
+  it("renders a <ExtraCategory/> component with expected checkBoxProps", () => {
+    const { getAllByTestId } = render(
       <MemoryRouter>
         <ExtraCategory {...checkBoxProps} />
       </MemoryRouter>
     );
 
-    const extra = wrapper.find(Extra);
-    expect(extra).toHaveLength(checkBoxProps.extra_category.extras.length);
+    expect(getAllByTestId("extra")).toHaveLength(
+      checkBoxProps.extra_category.extras.length
+    );
   });
 
   it("renders a <ExtraCategory/> component without props", () => {
-    const wrapper = shallow(
+    const { queryAllByTestId } = render(
       <MemoryRouter>
         <ExtraCategory />
       </MemoryRouter>
     );
 
-    const extra = wrapper.find(Extra);
-    expect(extra).toHaveLength(0);
+    expect(queryAllByTestId("extra")).toHaveLength(0);
   });
 });

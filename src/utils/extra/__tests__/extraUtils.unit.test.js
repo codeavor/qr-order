@@ -5,7 +5,11 @@ const {
   getInitializedExtras,
   fixItem,
   combinedPriceId,
+  disableSugars,
+  checkIfSketos,
 } = require("../extraUtils");
+
+const mockSetValue = jest.fn();
 
 describe("extraUtils", () => {
   const values = {
@@ -17,6 +21,11 @@ describe("extraUtils", () => {
   const values2 = {
     "Επιλέξτε μέγεθος": "0 7",
     "Επιλέξτε ζάχαρη": "0 1",
+  };
+  const sugarValues = {
+    "Επιλέξτε ζάχαρη": "0 1",
+    "0 4": true,
+    "0 5": false,
   };
   const fixedValues = [
     { extra_id: "7", extra_price: 0 },
@@ -78,6 +87,7 @@ describe("extraUtils", () => {
       },
     ],
   };
+  const categoryEidosZaxarhs = "Επιλέξτε είδος ζάχαρης";
   const fixedItem = {
     id: 1,
     name: "Esspresso",
@@ -160,5 +170,21 @@ describe("extraUtils", () => {
   it("combinedPriceId works correctly", () => {
     expect(combinedPriceId(0.1, 1)).toEqual("10 1");
     expect(combinedPriceId(null, 1)).toEqual("0 1");
+  });
+
+  it("disableSugars works correctly", () => {
+    expect(disableSugars(values2, mockSetValue)).toEqual(true);
+    expect(disableSugars(sugarValues, mockSetValue)).toEqual(undefined);
+  });
+
+  it("disableSugars works correctly", () => {
+    expect(checkIfSketos(item.extra_categories[0].name, undefined)).toEqual(
+      false
+    );
+    expect(checkIfSketos(item.extra_categories[0].name, {})).toEqual(false);
+    expect(checkIfSketos(item.extra_categories[0].name, values2)).toEqual(
+      false
+    );
+    expect(checkIfSketos(categoryEidosZaxarhs, values2)).toEqual(true);
   });
 });

@@ -1,5 +1,30 @@
 const C = {
+  // Urls
+  URL: "http://localhost:3000",
   API_URL: "https://qr-order-api.herokuapp.com/api",
+  LOGIN_PATH: "/authentication",
+  MENU_PATH: "/umbrella",
+  ITEM_PATH: "/item",
+  CART_PATH: "/cart",
+  CHECKOUT_PATH: "/checkout",
+  FINAL_PATH: "/final",
+
+  // API Endpoints
+  REGISTER_ENDPOINT: "/auth/register",
+  MENU_ENDPOINT: "/menu",
+  CART_ENDPOINT: "/cart",
+  ORDER_ENDPOINT: "/order_item",
+
+  // Roles
+  CUSTOMER_ROLE: "customer",
+
+  // Local Storage Variables
+  JWT_TOKEN: "jwtToken",
+  ORDER_ID: "orderId",
+
+  // Error action types
+  SET_ERROR: "SET_ERROR",
+  RESET_ERROR: "RESET_ERROR",
 
   //Auth action types
   GET_TOKEN: "GET_TOKEN",

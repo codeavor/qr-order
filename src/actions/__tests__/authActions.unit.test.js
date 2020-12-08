@@ -16,7 +16,7 @@ describe("Auth Actions", () => {
   describe("getToken action creator", () => {
     it("dispatches GET_TOKEN action and returns data on success", async () => {
       const mockData = { token: "12345", orderId: 1 };
-
+      const routerData = { args: [C.MENU_PATH], method: "push" };
       mockAxios.mockImplementationOnce(() =>
         Promise.resolve({
           data: mockData,
@@ -26,16 +26,14 @@ describe("Auth Actions", () => {
       await store.dispatch(getToken(1));
 
       const expectedActions = [
-        { type: C.GET_TOKEN },
-        { type: C.GET_TOKEN_SUCCESS, payload: mockData.orderId },
+        { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
       ];
-
       expect(store.getActions()).toEqual(expectedActions);
     });
 
     it("dispatches GET_TOKEN action and returns an error", async () => {
       const errorMsg = "Something bad happened :(";
-
+      const routerData = { args: ["/"], method: "push" };
       mockAxios.mockImplementationOnce(() =>
         Promise.reject({
           response: {
@@ -50,8 +48,8 @@ describe("Auth Actions", () => {
         await store.dispatch(getToken(1));
       } catch {
         const expectedActions = [
-          { type: C.GET_TOKEN },
-          { type: C.GET_TOKEN_FAILURE, payload: errorMsg },
+          { type: C.GET_TOKEN_FAILURE },
+          { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
         expect(store.getActions()).toEqual(expectedActions);

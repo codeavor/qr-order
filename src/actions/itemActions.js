@@ -1,6 +1,7 @@
 import axios from "axios";
 import C from "../constants";
 import { fixItem, getInitializedExtras } from "../utils/extra/extraUtils";
+import { handleError } from "./errorActions";
 
 export const getItemRequest = () => {
   return {
@@ -15,10 +16,9 @@ export const getItemSuccess = (item) => {
   };
 };
 
-export const getItemFailure = (error) => {
+export const getItemFailure = () => {
   return {
     type: C.GET_ITEM_FAILURE,
-    payload: error,
   };
 };
 
@@ -33,14 +33,15 @@ export const getItem = (id) => {
   return function (dispatch) {
     dispatch(getItemRequest());
     axios
-      .get(C.API_URL + "/menu/" + id)
+      .get(`${C.API_URL + C.MENU_ENDPOINT}/${id}`)
       .then((response) => {
         const item = fixItem(response.data);
         dispatch(getItemSuccess(item));
         dispatch(setExtraValues(getInitializedExtras(item.extra_categories)));
       })
       .catch((error) => {
-        dispatch(getItemFailure(JSON.stringify(error)));
+        dispatch(getItemFailure());
+        dispatch(handleError(error.response.data.error));
       });
   };
 };

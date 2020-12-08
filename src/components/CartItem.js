@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 
 import { totalItemPrice } from "../utils/cart/cartUtils";
+import { Divider } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   smallButton: {
@@ -60,63 +61,63 @@ export default function CartItem({
         className={classes.smallButton}
         {...props}
       >
-        {symbol}
+        <Typography>{symbol}</Typography>
       </Button>
     );
   };
 
   return (
-    <div style={{ maxWidth: "300px" }} data-testid="cart-item">
-      <List>
-        <ListItem>
-          <ListItemText
-            disableTypography
-            primary={<Typography>{name}</Typography>}
-            secondary={
-              <>
-                <Typography>{extras.join(", ")}</Typography>
-                <Box
-                  display="flex"
-                  flexDirection="col"
-                  flexWrap="nowrap"
-                  alignItems="center"
-                >
-                  <Box>
-                    <QuantityButton
-                      data-testid="increase-quantity"
-                      symbol="+"
-                      onClick={() => changeQuantity(quantity + 1, id)}
-                    />
-                    <Box
-                      display="inline"
-                      px={2}
-                      data-testid="cart-item-quantity"
-                    >
-                      {quantity}
-                    </Box>
-                    <QuantityButton
-                      data-testid="decrease-quantity"
-                      symbol="-"
-                      onClick={() => changeQuantity(quantity - 1, id)}
-                    />
-                    <IconButton
-                      data-testid="delete-item"
-                      aria-label="delete"
-                      onClick={() => deleteOrderItem(id)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
+    <List data-testid="cart-item">
+      <ListItem>
+        <ListItemText
+          disableTypography
+          primary={<Typography>{name}</Typography>}
+          secondary={
+            <React.Fragment>
+              <Typography variant="body2" color="textSecondary">
+                {extras.join(", ")}
+              </Typography>
+              <Box
+                display="flex"
+                flexDirection="col"
+                flexWrap="nowrap"
+                alignItems="center"
+              >
+                <Box>
+                  <QuantityButton
+                    data-testid="increase-quantity"
+                    symbol="+"
+                    onClick={() => changeQuantity(quantity + 1, id)}
+                  />
+                  <Box display="inline" px={2} data-testid="cart-item-quantity">
+                    <Typography display="inline">{quantity}</Typography>
                   </Box>
-                  <Typography className={classes.grow} />
-                  <Typography>
-                    {totalItemPrice(price, extraPrice, quantity).toFixed(2)}€
-                  </Typography>
+                  <QuantityButton
+                    data-testid="decrease-quantity"
+                    symbol="-"
+                    onClick={() => changeQuantity(quantity - 1, id)}
+                  />
+                  <IconButton
+                    data-testid="delete-item"
+                    aria-label="delete"
+                    onClick={() => deleteOrderItem(id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
                 </Box>
-              </>
-            }
-          />
-        </ListItem>
-      </List>
-    </div>
+                <Typography className={classes.grow} />
+                <Typography>
+                  {totalItemPrice(price, extraPrice, quantity)
+                    .toFixed(2)
+                    .replace(".", ",")}
+                  €
+                </Typography>
+              </Box>
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+      <Divider />
+    </List>
   );
 }

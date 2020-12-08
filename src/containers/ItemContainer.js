@@ -5,12 +5,12 @@ import { connect } from "react-redux";
 
 import { getItem } from "../actions/itemActions";
 import { addItemToCart } from "../actions/cartActions";
-import Error from "../components/Error";
 import ItemArea from "../components/ItemArea";
 import Loading from "../components/Loading";
 import NavBar from "../components/NavBar";
+import C from "../constants";
 
-export function ItemContainer({ itemData, getItem, userData, addItemToCart }) {
+export function ItemContainer({ itemData, getItem, addItemToCart }) {
   const { id } = useParams();
 
   useEffect(() => {
@@ -19,25 +19,22 @@ export function ItemContainer({ itemData, getItem, userData, addItemToCart }) {
 
   return itemData.loading ? (
     <Loading />
-  ) : itemData.error ? (
-    <Error error={itemData.error} />
   ) : (
-    <div>
+    <React.Fragment>
       <NavBar back={true} text={itemData.item.name} search={false} />
       <ItemArea
         initialValues={itemData.extraValues}
         item={itemData.item}
-        orderId={userData.orderId}
+        orderId={window.localStorage.getItem(C.ORDER_ID)}
         addItemToCart={addItemToCart}
       />
-    </div>
+    </React.Fragment>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
     itemData: state.item,
-    userData: state.user,
   };
 };
 

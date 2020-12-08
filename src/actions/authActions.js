@@ -1,50 +1,31 @@
 import axios from "axios";
 import C from "../constants";
 import setAuthorizationToken from "../utils/auth/setAuthorizationToken";
-
-export const getTokenRequest = () => {
-  return {
-    type: C.GET_TOKEN,
-  };
-};
-
-export const getTokenSuccess = (orderId) => {
-  return {
-    type: C.GET_TOKEN_SUCCESS,
-    payload: orderId,
-  };
-};
-
-export const getTokenFailure = (error) => {
-  return {
-    type: C.GET_TOKEN_FAILURE,
-    payload: error,
-  };
-};
+import { push } from "connected-react-router";
+import { handleError } from "./errorActions";
 
 export const getToken = (id) => {
   const options = {
-    url: C.API_URL + "/auth/register",
+    url: C.API_URL + C.REGISTER_ENDPOINT,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     data: {
       umbrella_id: id,
-      role_name: "customer",
+      role_name: C.CUSTOMER_ROLE,
     },
   };
 
   return function (dispatch) {
-    dispatch(getTokenRequest());
     axios(options)
       .then((response) => {
         const { token, orderId } = response.data;
-        setAuthorizationToken(token);
-        dispatch(getTokenSuccess(orderId));
+        setAuthorizationToken(token, orderId);
+        dispatch(push(C.MENU_PATH));
       })
       .catch((error) => {
-        dispatch(getTokenFailure(JSON.stringify(error.response.data.error)));
+        dispatch(handleError(error.response.data.error));
       });
   };
 };

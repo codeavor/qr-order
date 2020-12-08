@@ -21,11 +21,8 @@ function App() {
       <ProtectedRoute path="/cart" component={CartContainer} />
       <ProtectedRoute path="/checkout" component={CheckoutContainer} />
       <ProtectedRoute path="/final" component={FinalContainer} />
-      {/* <Route component={pageNotFoundContainer} /> */}
     </Switch>
   );
 }
 
 export default App;
-
-// TODO: change umbrella to menu, everywhere

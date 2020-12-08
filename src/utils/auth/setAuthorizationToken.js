@@ -1,10 +1,13 @@
 import axios from "axios";
+import C from "../../constants";
+import { removeToken } from "./removeToken";
 
-export default function setAutorizationToken(token) {
-  if (token) {
-    window.localStorage.setItem("jwtToken", token);
+export default function setAutorizationToken(token, orderId) {
+  if (token && orderId) {
+    window.localStorage.setItem(C.JWT_TOKEN, token);
+    window.localStorage.setItem(C.ORDER_ID, orderId);
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   } else {
-    delete axios.defaults.headers.common["Authorization"];
+    removeToken(token, orderId);
   }
 }

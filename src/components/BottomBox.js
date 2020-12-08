@@ -16,7 +16,7 @@ BottomBox.propTypes = {
   price: PropTypes.string,
   route: PropTypes.string,
   addItemToCart: PropTypes.func,
-  orderId: PropTypes.number,
+  orderId: PropTypes.string,
   itemId: PropTypes.number,
   values: PropTypes.object,
 };
@@ -72,7 +72,7 @@ export default function BottomBox({
       data-testid="bottom-box"
     >
       {quantity ? (
-        <>
+        <React.Fragment>
           <Box pr={2}>
             <QuantityButton
               setQuantityNum={setQuantityNum}
@@ -81,26 +81,25 @@ export default function BottomBox({
           </Box>
           <Box pl={2}>
             <BottomButton
-              data-testid="bottom-button"
-              onClick={() =>
-                addItemToCart(orderId, itemId, quantityNum, extrasId)
-              }
               text={text}
               price={parseFloat(totalPrice)}
               route={route}
+              onClick={() =>
+                addItemToCart(orderId, itemId, quantityNum, extrasId)
+              }
             />
           </Box>
-        </>
+        </React.Fragment>
       ) : (
         <Box pl={0}>
           <BottomButton
             text={text}
             price={parseFloat(price)}
+            route={route}
+            disable={disable}
             onClick={() =>
               completeOrder !== undefined ? completeOrder(orderId) : null
             }
-            route={route}
-            disable={disable}
           />
         </Box>
       )}

@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import configureStore, { history } from "./store";
 
-const store = configureStore(/* provide initial state if any */);
+const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>

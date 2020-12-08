@@ -6,7 +6,6 @@ describe("item Reducer", () => {
     item: null,
     extraValues: {},
     loading: true,
-    error: "",
   };
 
   it("returns the initial state when an action type is not passed", () => {
@@ -21,7 +20,6 @@ describe("item Reducer", () => {
       item: null,
       extraValues: {},
       loading: true,
-      error: "",
     });
   });
 
@@ -43,7 +41,6 @@ describe("item Reducer", () => {
       },
       extraValues: {},
       loading: false,
-      error: "",
     });
   });
 
@@ -57,7 +54,6 @@ describe("item Reducer", () => {
       item: null,
       extraValues: {},
       loading: false,
-      error: "Error",
     });
   });
 
@@ -71,7 +67,6 @@ describe("item Reducer", () => {
       item: null,
       extraValues: { "Επιλεξτε ζαχαρη": "0 1" },
       loading: true,
-      error: "",
     });
   });
 });

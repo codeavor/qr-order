@@ -1,11 +1,9 @@
 import React from "react";
-import List from "@material-ui/core/List";
+import { ListItemAvatar, ListItemSecondaryAction } from "@material-ui/core";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 
 import { totalItemPrice } from "../utils/cart/cartUtils";
 
@@ -30,35 +28,19 @@ export default function CheckoutItem({
   price,
 }) {
   return (
-    <div style={{ maxWidth: "300px" }} data-testid="checkout-item">
-      <List>
-        <ListItem>
-          <ListItemText
-            disableTypography
-            primary={
-              <Typography>
-                {quantity}X {name}
-              </Typography>
-            }
-            secondary={
-              <>
-                <Typography>{extras.join(", ")}</Typography>
-                <Box
-                  display="flex"
-                  flexDirection="col"
-                  wrap="nowrap"
-                  alignItems="center"
-                >
-                  <Typography>
-                    {totalItemPrice(price, extraPrice, quantity).toFixed(2)}€
-                  </Typography>
-                </Box>
-              </>
-            }
-          />
-        </ListItem>
-        <Divider display="flex" wrap="nowrap" />
-      </List>
-    </div>
+    <ListItem data-testid="checkout-item" ContainerComponent="div">
+      <ListItemAvatar>
+        <Typography>{quantity}x</Typography>
+      </ListItemAvatar>
+      <ListItemText primary={name} secondary={extras.join(", ")} />
+      <ListItemSecondaryAction>
+        <Typography>
+          {totalItemPrice(price, extraPrice, quantity)
+            .toFixed(2)
+            .replace(".", ",")}
+          €
+        </Typography>
+      </ListItemSecondaryAction>
+    </ListItem>
   );
 }

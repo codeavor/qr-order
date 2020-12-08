@@ -44,8 +44,8 @@ export default function CategoriesBar({ menu }) {
   };
 
   return (
-    <>
-      <AppBar position="sticky" color="default" className={classes.appBar}>
+    <React.Fragment>
+      <AppBar color="default" className={classes.appBar}>
         <Tabs
           data-testid="categories-bar"
           position="sticky"
@@ -73,6 +73,6 @@ export default function CategoriesBar({ menu }) {
         </Tabs>
       </AppBar>
       <BackToTopButton handleBackToTop={handleBackToTop} />
-    </>
+    </React.Fragment>
   );
 }
