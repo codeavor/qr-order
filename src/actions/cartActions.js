@@ -74,7 +74,7 @@ export const changeQuantity = (quantity, orderItemId) => {
 export const orderComplete = (orderId) => {
   return function (dispatch) {
     axios
-      .put(`${C.API_URL + C.CART_ENDPOINT}/${orderId}?order_complete=${true}`)
+      .put(`${C.API_URL + C.CART_ENDPOINT}/${orderId}?order_complete=sent`)
       .then(() => {
         removeToken();
       })
