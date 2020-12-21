@@ -24,7 +24,7 @@ describe("Testing /checkout", () => {
 
   it("Shows the checkout", () => {
     apiMock(
-      `${C.CART_ENDPOINT}/1?order_complete=true`,
+      `${C.CART_ENDPOINT}/1?order_complete=sent`,
       "PUT",
       {},
       "completeOrder"

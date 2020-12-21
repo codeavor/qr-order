@@ -1,5 +1,6 @@
 import axios from "axios";
 import C from "../../constants";
+import { removeToken } from "./removeToken";
 
 export function isAuthenticated() {
   let token = window.localStorage.getItem(C.JWT_TOKEN);
@@ -7,7 +8,7 @@ export function isAuthenticated() {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     return true;
   } else {
-    delete axios.defaults.headers.common["Authorization"];
+    removeToken();
     return false;
   }
 }
