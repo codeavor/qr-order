@@ -41,13 +41,12 @@ export default function CheckoutArea({ cart }) {
         <List className={classes.item}>
           {cart.map((cartItem) => (
             <CheckoutItem
-              name={cartItem.name}
+              item_name={cartItem.item_name}
+              notes={cartItem.notes}
               extras={cartItem.extras}
-              extraPrice={cartItem.extra_price}
               quantity={cartItem.quantity}
               price={cartItem.price}
-              id={cartItem.order_item_id}
-              key={cartItem.order_item_id}
+              key={cartItem.id}
             />
           ))}
         </List>
