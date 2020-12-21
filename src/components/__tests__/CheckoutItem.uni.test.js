@@ -4,11 +4,22 @@ import CheckoutItem from "../CheckoutItem";
 
 describe("CheckoutItem", () => {
   const props = {
-    name: "Espresso",
-    extras: ["Γλυκός", "Καστανή Ζάχαρη"],
-    extraPrice: [1.0, 0],
+    item_name: "Espresso",
+    extras: [
+      {
+        id: 2,
+        name: "Καστανή Ζάχαρη",
+        price: 1.0,
+      },
+      {
+        id: 4,
+        name: "Σαντιγύ",
+        price: 0,
+      },
+    ],
     quantity: 2,
     price: "1",
+    notes: "",
   };
 
   afterEach(cleanup);
@@ -23,6 +34,6 @@ describe("CheckoutItem", () => {
   it("renders a <CheckoutItem/> component without props", () => {
     const { queryAllByTestId } = render(<CheckoutItem />);
 
-    expect(queryAllByTestId(/cart-item/i)).toBeTruthy();
+    expect(queryAllByTestId(/checkout-item/i)).toBeTruthy();
   });
 });

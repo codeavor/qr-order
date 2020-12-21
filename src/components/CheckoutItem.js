@@ -8,12 +8,11 @@ import Typography from "@material-ui/core/Typography";
 import { totalItemPrice } from "../utils/cart/cartUtils";
 
 CheckoutItem.propTypes = {
-  name: PropTypes.string,
+  item_name: PropTypes.string,
+  notes: PropTypes.string,
   extras: PropTypes.array,
-  extraPrice: PropTypes.array,
   quantity: PropTypes.number,
   price: PropTypes.string,
-  id: PropTypes.number,
 };
 
 CheckoutItem.defaultProps = {
@@ -21,9 +20,9 @@ CheckoutItem.defaultProps = {
 };
 
 export default function CheckoutItem({
-  name,
+  item_name,
+  notes,
   extras,
-  extraPrice,
   quantity,
   price,
 }) {
@@ -32,12 +31,18 @@ export default function CheckoutItem({
       <ListItemAvatar>
         <Typography>{quantity}x</Typography>
       </ListItemAvatar>
-      <ListItemText primary={name} secondary={extras.join(", ")} />
+      <ListItemText
+        primary={item_name}
+        secondary={
+          <span>
+            {extras.map((extra) => extra.name).join(", ")}
+            {notes === "" || notes === null ? "" : ", " + notes}
+          </span>
+        }
+      />
       <ListItemSecondaryAction>
         <Typography>
-          {totalItemPrice(price, extraPrice, quantity)
-            .toFixed(2)
-            .replace(".", ",")}
+          {totalItemPrice(price, extras, quantity).toFixed(2).replace(".", ",")}
           €
         </Typography>
       </ListItemSecondaryAction>

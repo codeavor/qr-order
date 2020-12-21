@@ -7,9 +7,20 @@ describe("CartItem", () => {
   const mockChangeQuantity = jest.fn();
 
   const props = {
-    name: "Espresso",
-    extras: ["Γλυκός", "Καστανή Ζάχαρη"],
-    extraPrice: [1.0, 0],
+    item_name: "Espresso",
+    extras: [
+      {
+        id: 2,
+        name: "Καστανή Ζάχαρη",
+        price: 1.0,
+      },
+      {
+        id: 4,
+        name: "Σαντιγύ",
+        price: 0,
+      },
+    ],
+    notes: "",
     quantity: 2,
     price: "1",
     id: 57,

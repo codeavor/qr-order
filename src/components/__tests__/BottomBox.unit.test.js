@@ -19,6 +19,7 @@ describe("BottomBox", () => {
     orderId: "1",
     itemId: 1,
     values: { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" },
+    notes: "random notes",
   };
 
   const props2 = {

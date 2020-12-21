@@ -85,7 +85,7 @@ export const orderComplete = (orderId) => {
   };
 };
 
-export const addItemToCart = (orderId, itemId, quantity, extrasId) => {
+export const addItemToCart = (orderId, itemId, quantity, extrasId, notes) => {
   const options = {
     url: C.API_URL + C.ORDER_ENDPOINT,
     method: "POST",
@@ -97,6 +97,7 @@ export const addItemToCart = (orderId, itemId, quantity, extrasId) => {
       item_id: itemId,
       quantity: quantity,
       extras_id: extrasId,
+      notes: notes,
     },
   };
 

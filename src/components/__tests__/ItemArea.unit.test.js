@@ -1,6 +1,11 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
-import { render, wait } from "@testing-library/react";
+import {
+  fireEvent,
+  getByPlaceholderText,
+  render,
+  wait,
+} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ItemArea from "../ItemArea";
 
@@ -96,7 +101,7 @@ describe("ItemArea", () => {
   };
 
   it("renders a <ItemArea/> component with expected props", async () => {
-    const { getAllByTestId, getByTestId } = render(
+    const { getAllByTestId, getByTestId, getByPlaceholderText } = render(
       <MemoryRouter>
         <ItemArea {...props} />
       </MemoryRouter>
@@ -106,11 +111,15 @@ describe("ItemArea", () => {
         props.item.extra_categories.length
       );
       expect(getByTestId("bottom-box")).toBeTruthy();
+      fireEvent.change(getByPlaceholderText("Ειδικές Οδηγίες:"), {
+        target: { value: "23" },
+      });
+      expect(getByPlaceholderText("Ειδικές Οδηγίες:").value).toBe("23");
     });
   });
 
   it("renders a <ItemArea/> component with expected props and no values", async () => {
-    const { getAllByTestId, getByTestId } = render(
+    const { getAllByTestId, getByTestId, getByPlaceholderText } = render(
       <MemoryRouter>
         <ItemArea {...noValuesProps} />
       </MemoryRouter>
@@ -120,11 +129,15 @@ describe("ItemArea", () => {
         noValuesProps.item.extra_categories.length
       );
       expect(getByTestId("bottom-box")).toBeTruthy();
+      fireEvent.change(getByPlaceholderText("Ειδικές Οδηγίες:"), {
+        target: { value: "23" },
+      });
+      expect(getByPlaceholderText("Ειδικές Οδηγίες:").value).toBe("23");
     });
   });
 
   it("renders a <ItemArea/> component without props", async () => {
-    const { queryAllByTestId, getByTestId } = render(
+    const { queryAllByTestId, getByTestId, getByPlaceholderText } = render(
       <MemoryRouter>
         <ItemArea />
       </MemoryRouter>
@@ -132,6 +145,10 @@ describe("ItemArea", () => {
     await wait(() => {
       expect(queryAllByTestId("extra-category")).toHaveLength(0);
       expect(getByTestId("bottom-box")).toBeTruthy();
+      fireEvent.change(getByPlaceholderText("Ειδικές Οδηγίες:"), {
+        target: { value: "23" },
+      });
+      expect(getByPlaceholderText("Ειδικές Οδηγίες:").value).toBe("23");
     });
   });
 });

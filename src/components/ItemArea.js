@@ -10,6 +10,7 @@ import BottomBox from "./BottomBox";
 import C from "../constants";
 import { checkIfSketos, disableSugars } from "../utils/extra/extraUtils";
 import { Box } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -19,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+  },
+  textField: {
+    margin: "20px 0 20px 0",
   },
 }));
 
@@ -40,7 +44,13 @@ export default function ItemArea({
   addItemToCart,
   orderId,
 }) {
+  const [notes, setNotes] = React.useState("");
   const classes = useStyles();
+
+  function handleTextChange(event) {
+    setNotes(event.target.value);
+  }
+
   return (
     <Formik enableReinitialize={true} initialValues={initialValues}>
       {(props) => {
@@ -63,6 +73,17 @@ export default function ItemArea({
                     }
                   />
                 ))}
+                <TextField
+                  name={"notes"}
+                  className={classes.textField}
+                  variant="outlined"
+                  multiline
+                  placeholder="Ειδικές Οδηγίες:"
+                  rows={3}
+                  fullWidth={true}
+                  onChange={handleTextChange}
+                  value={notes}
+                />
               </Container>
             </Box>
             <BottomBox
@@ -74,6 +95,7 @@ export default function ItemArea({
               orderId={orderId}
               itemId={item.id}
               values={values}
+              notes={notes}
             />
           </Form>
         );

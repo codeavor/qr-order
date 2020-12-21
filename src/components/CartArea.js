@@ -19,13 +19,13 @@ export default function CartArea({ cart, deleteOrderItem, changeQuantity }) {
     <Container data-testid="cart-area" style={{ marginBottom: "30px" }}>
       {cart.map((cartItem) => (
         <CartItem
-          name={cartItem.name}
+          item_name={cartItem.item_name}
+          notes={cartItem.notes}
           extras={cartItem.extras}
-          extraPrice={cartItem.extra_price}
           quantity={cartItem.quantity}
           price={cartItem.price}
-          id={cartItem.order_item_id}
-          key={cartItem.order_item_id}
+          id={cartItem.id}
+          key={cartItem.id}
           deleteOrderItem={deleteOrderItem}
           changeQuantity={changeQuantity}
         />

@@ -29,7 +29,7 @@ export function CheckoutContainer({ cartData, getCart, orderComplete }) {
       </Box>
       <BottomBox
         text={"Checkout"}
-        price={totalCartPrice(cartData.cart)}
+        price={"" + totalCartPrice(cartData.cart)}
         completeOrder={orderComplete}
         orderId={window.localStorage.getItem(C.ORDER_ID)}
         route={C.FINAL_PATH}

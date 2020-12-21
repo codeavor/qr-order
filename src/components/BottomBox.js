@@ -19,6 +19,7 @@ BottomBox.propTypes = {
   orderId: PropTypes.string,
   itemId: PropTypes.number,
   values: PropTypes.object,
+  notes: PropTypes.string,
 };
 
 BottomBox.defaultProps = {
@@ -49,6 +50,7 @@ export default function BottomBox({
   disable,
   values,
   completeOrder,
+  notes,
 }) {
   const classes = useStyles();
   const [quantityNum, setQuantityNum] = React.useState(1);
@@ -85,7 +87,7 @@ export default function BottomBox({
               price={parseFloat(totalPrice)}
               route={route}
               onClick={() =>
-                addItemToCart(orderId, itemId, quantityNum, extrasId)
+                addItemToCart(orderId, itemId, quantityNum, extrasId, notes)
               }
             />
           </Box>
