@@ -1,4 +1,9 @@
-import { fixCart, totalItemPrice, totalCartPrice } from "../cartUtils";
+import {
+  fixCart,
+  totalItemPrice,
+  totalCartPrice,
+  showExtras,
+} from "../cartUtils";
 
 describe("cartUtils", () => {
   const cart = [
@@ -129,5 +134,17 @@ describe("cartUtils", () => {
   it("totalCartPrice works correctly", () => {
     expect(totalCartPrice(fixedCart)).toEqual(10.7);
     expect(totalCartPrice([])).toEqual(0);
+  });
+
+  it("showExtras works correctly", () => {
+    expect(showExtras(fixedCart[1].extras, fixedCart[1].notes)).toEqual(
+      "Καστανή Ζάχαρη, Σαντιγύ, extra notes"
+    );
+    expect(showExtras(fixedCart[1].extras, null)).toEqual(
+      "Καστανή Ζάχαρη, Σαντιγύ"
+    );
+    expect(showExtras(fixedCart[1].extras, "")).toEqual(
+      "Καστανή Ζάχαρη, Σαντιγύ"
+    );
   });
 });

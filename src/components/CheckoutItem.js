@@ -5,7 +5,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 
-import { totalItemPrice } from "../utils/cart/cartUtils";
+import { showExtras, totalItemPrice } from "../utils/cart/cartUtils";
 
 CheckoutItem.propTypes = {
   item_name: PropTypes.string,
@@ -31,15 +31,7 @@ export default function CheckoutItem({
       <ListItemAvatar>
         <Typography>{quantity}x</Typography>
       </ListItemAvatar>
-      <ListItemText
-        primary={item_name}
-        secondary={
-          <span>
-            {extras.map((extra) => extra.name).join(", ")}
-            {notes === "" || notes === null ? "" : ", " + notes}
-          </span>
-        }
-      />
+      <ListItemText primary={item_name} secondary={showExtras(extras, notes)} />
       <ListItemSecondaryAction>
         <Typography>
           {totalItemPrice(price, extras, quantity).toFixed(2).replace(".", ",")}

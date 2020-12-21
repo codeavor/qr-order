@@ -10,7 +10,7 @@ import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 
-import { totalItemPrice } from "../utils/cart/cartUtils";
+import { showExtras, totalItemPrice } from "../utils/cart/cartUtils";
 import { Divider } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -75,8 +75,7 @@ export default function CartItem({
           secondary={
             <React.Fragment>
               <Typography variant="body2" color="textSecondary">
-                {extras.map((extra) => extra.name).join(", ")}
-                {notes === "" || notes === null ? "" : ", " + notes}
+                {showExtras(extras, notes)}
               </Typography>
               <Box
                 display="flex"

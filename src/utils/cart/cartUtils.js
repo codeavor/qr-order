@@ -39,3 +39,17 @@ export function totalCartPrice(cart) {
   }
   return sum;
 }
+
+/**
+ * Combines extras with notes.
+ * @param  {Array<Object>} extras
+ * @param  {String} notes
+ * @return {String}
+ */
+export function showExtras(extras, notes) {
+  let tempExtras = extras.map((extra) => extra.name).join(", ");
+  if (notes === "" || notes === null) {
+    return tempExtras;
+  }
+  return tempExtras + ", " + notes;
+}
