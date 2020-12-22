@@ -39,4 +39,20 @@ describe("Testing /authentication/:id", () => {
 
     cy.url().should("eq", `${C.URL}/`);
   });
+
+  it("Authenticating and redirecting to orders", () => {
+    cy.fixture("auth_mock_data.json").then((rc) => {
+      apiMock(
+        C.REGISTER_ENDPOINT,
+        "POST",
+        rc.registerKitchen,
+        "registerKitchen"
+      );
+    });
+
+    cy.visit(`${C.URL + C.LOGIN_PATH}/0`);
+    cy.findByTestId("loading").should("exist");
+    cy.wait("@registerKitchen");
+    cy.url().should("eq", C.URL + C.ORDERS_PATH);
+  });
 });

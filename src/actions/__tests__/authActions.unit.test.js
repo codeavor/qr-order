@@ -14,8 +14,12 @@ describe("Auth Actions", () => {
   });
 
   describe("getToken action creator", () => {
-    it("dispatches GET_TOKEN action and returns data on success", async () => {
-      const mockData = { token: "12345", orderId: 1 };
+    it("dispatches GET_TOKEN action with umbrellaId 1", async () => {
+      const mockData = {
+        token: "12345",
+        orderId: 1,
+        role_name: C.CUSTOMER_ROLE,
+      };
       const routerData = { args: [C.MENU_PATH], method: "push" };
       mockAxios.mockImplementationOnce(() =>
         Promise.resolve({
@@ -23,7 +27,28 @@ describe("Auth Actions", () => {
         })
       );
 
-      await store.dispatch(getToken(1));
+      await store.dispatch(getToken("1"));
+
+      const expectedActions = [
+        { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
+      ];
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+
+    it("dispatches GET_TOKEN action with umbrellaId 0", async () => {
+      const mockData = {
+        token: "12345",
+        orderId: 1,
+        role_name: C.KITCHEN_ROLE,
+      };
+      const routerData = { args: [C.ORDERS_PATH], method: "push" };
+      mockAxios.mockImplementationOnce(() =>
+        Promise.resolve({
+          data: mockData,
+        })
+      );
+
+      await store.dispatch(getToken("0"));
 
       const expectedActions = [
         { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },

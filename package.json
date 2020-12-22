@@ -63,8 +63,8 @@
   },
   "jest": {
     "coverageReporters": [
-      "lcov",
-      "json"
+      "json",
+      "lcov"
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
@@ -77,7 +77,6 @@
   "nyc": {
     "report-dir": "coverage/integration",
     "reporter": [
-      "text",
       "json",
       "lcov"
     ],

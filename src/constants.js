@@ -8,6 +8,7 @@ const C = {
   CART_PATH: "/cart",
   CHECKOUT_PATH: "/checkout",
   FINAL_PATH: "/final",
+  ORDERS_PATH: "/orders",
 
   // API Endpoints
   REGISTER_ENDPOINT: "/auth/register",
@@ -17,10 +18,13 @@ const C = {
 
   // Roles
   CUSTOMER_ROLE: "customer",
+  KITCHEN_ROLE: "kitchen",
 
   // Local Storage Variables
   JWT_TOKEN: "jwtToken",
   ORDER_ID: "orderId",
+  USERTYPE_ID: "userTypeID",
+  ROLE: "role",
 
   // Error action types
   SET_ERROR: "SET_ERROR",

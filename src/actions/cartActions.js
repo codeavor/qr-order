@@ -1,4 +1,5 @@
 import axios from "axios";
+import { push } from "connected-react-router";
 import C from "../constants";
 import { removeToken } from "../utils/auth/removeToken";
 import { fixCart } from "../utils/cart/cartUtils";
@@ -71,12 +72,13 @@ export const changeQuantity = (quantity, orderItemId) => {
   };
 };
 
-export const orderComplete = (orderId) => {
+export const orderComplete = (orderId, role) => {
   return function (dispatch) {
     axios
       .put(`${C.API_URL + C.CART_ENDPOINT}/${orderId}?order_complete=sent`)
       .then(() => {
-        removeToken();
+        if (role === C.CUSTOMER_ROLE) removeToken();
+        else dispatch(push(C.ORDERS_PATH));
       })
       .catch((error) => {
         dispatch(getCartError());

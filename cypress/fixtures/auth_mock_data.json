@@ -1,7 +1,13 @@
 {
     "register": {
         "token": 12345,
-        "orderId": 1
+        "orderId": 1,
+        "role_name": "customer"
+    },
+    "registerKitchen": {
+        "token": 12345,
+        "userTypeId": 10,
+        "role_name": "kitchen"
     },
     "wrongToken": {
         "token": "",
