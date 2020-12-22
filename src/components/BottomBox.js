@@ -9,6 +9,7 @@ import {
   getExtrasId,
   getExtrasPrice,
 } from "../utils/extra/extraUtils";
+import C from "../constants";
 
 BottomBox.propTypes = {
   text: PropTypes.string,
@@ -100,7 +101,9 @@ export default function BottomBox({
             route={route}
             disable={disable}
             onClick={() =>
-              completeOrder !== undefined ? completeOrder(orderId) : null
+              completeOrder !== undefined
+                ? completeOrder(orderId, window.localStorage.getItem(C.ROLE))
+                : null
             }
           />
         </Box>

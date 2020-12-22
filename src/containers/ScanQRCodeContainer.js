@@ -29,13 +29,7 @@ export function ScanQRCodeContainer({ errorData }) {
           alt="qr code"
         />
       </Grid>
-      <Snackbar
-        open={open}
-        data-testid="error"
-        autoHideDuration={8000}
-        message={errorData.error}
-        onClose={() => setOpen(false)}
-      >
+      <Snackbar open={open} data-testid="error" message={errorData.error}>
         <Alert
           severity="error"
           action={

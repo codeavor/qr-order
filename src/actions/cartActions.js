@@ -72,13 +72,12 @@ export const changeQuantity = (quantity, orderItemId) => {
   };
 };
 
-export const orderComplete = (orderId) => {
+export const orderComplete = (orderId, role) => {
   return function (dispatch) {
     axios
       .put(`${C.API_URL + C.CART_ENDPOINT}/${orderId}?order_complete=sent`)
       .then(() => {
-        if (window.localStorage.getItem(C.ROLE) === C.CUSTOMER_ROLE)
-          removeToken();
+        if (role === C.CUSTOMER_ROLE) removeToken();
         else dispatch(push(C.ORDERS_PATH));
       })
       .catch((error) => {

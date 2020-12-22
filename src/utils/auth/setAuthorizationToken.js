@@ -1,7 +1,7 @@
 import axios from "axios";
 import C from "../../constants";
 
-export function setAutorizationToken(token, id, role) {
+export default function setAutorizationToken(token, id, role) {
   window.localStorage.setItem(C.JWT_TOKEN, token);
   window.localStorage.setItem(C.ROLE, role);
   role === C.CUSTOMER_ROLE ? setOrderId(id) : setUserTypeId(id);

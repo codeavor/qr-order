@@ -10,7 +10,8 @@ Cypress.Commands.add("visitMenuPage", () => {
 });
 
 Cypress.Commands.add("register", () => {
-  cy.setLocalStorage("jwtToken", 12345);
-  cy.setLocalStorage("orderId", 1);
+  cy.setLocalStorage(C.JWT_TOKEN, 12345);
+  cy.setLocalStorage(C.ORDER_ID, 1);
+  cy.setLocalStorage(C.ROLE, C.CUSTOMER_ROLE);
   cy.saveLocalStorage();
 });

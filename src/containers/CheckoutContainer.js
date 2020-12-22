@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCart: (orderId) => dispatch(getCart(orderId)),
-    orderComplete: (orderId) => dispatch(orderComplete(orderId)),
+    orderComplete: (orderId, role) => dispatch(orderComplete(orderId, role)),
   };
 };
 
