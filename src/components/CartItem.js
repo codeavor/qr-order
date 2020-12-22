@@ -10,7 +10,7 @@ import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 
-import { totalItemPrice } from "../utils/cart/cartUtils";
+import { showExtras, totalItemPrice } from "../utils/cart/cartUtils";
 import { Divider } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 CartItem.propTypes = {
-  name: PropTypes.string,
+  item_name: PropTypes.string,
+  notes: PropTypes.string,
   extras: PropTypes.array,
-  extraPrice: PropTypes.array,
   quantity: PropTypes.number,
   price: PropTypes.string,
   id: PropTypes.number,
@@ -43,9 +43,9 @@ CartItem.defaultProps = {
 };
 
 export default function CartItem({
-  name,
+  item_name,
+  notes,
   extras,
-  extraPrice,
   quantity,
   price,
   id,
@@ -71,11 +71,11 @@ export default function CartItem({
       <ListItem>
         <ListItemText
           disableTypography
-          primary={<Typography>{name}</Typography>}
+          primary={<Typography>{item_name}</Typography>}
           secondary={
             <React.Fragment>
               <Typography variant="body2" color="textSecondary">
-                {extras.join(", ")}
+                {showExtras(extras, notes)}
               </Typography>
               <Box
                 display="flex"
@@ -107,7 +107,7 @@ export default function CartItem({
                 </Box>
                 <Typography className={classes.grow} />
                 <Typography>
-                  {totalItemPrice(price, extraPrice, quantity)
+                  {totalItemPrice(price, extras, quantity)
                     .toFixed(2)
                     .replace(".", ",")}
                   €

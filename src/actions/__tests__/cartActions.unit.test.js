@@ -24,20 +24,58 @@ describe("cartActions", () => {
     it("dispatches getCart action and returns data on success", async () => {
       const mockData = [
         {
-          order_item_id: 57,
-          quantity: 2,
-          extras: "Γλυκός",
-          extra_price: null,
-          name: "Espresso",
-          price: "1",
+          id: 58,
+          order_id: 1,
+          item_id: 1,
+          quantity: 3,
+          item_name: "Espresso",
+          price: "1.80",
+          description: "random text",
+          notes: "extra notes",
+          extras: [
+            {
+              id: 2,
+              name: "Καστανή Ζάχαρη",
+              price: "0",
+            },
+            {
+              id: 4,
+              name: "Σαντιγύ",
+              price: "0.1",
+            },
+          ],
         },
         {
-          order_item_id: 57,
+          id: 57,
+          order_id: 1,
+          item_id: 1,
           quantity: 2,
-          extras: "Καστανή Ζάχαρη",
-          extra_price: null,
-          name: "Espresso",
+          item_name: "Espresso",
           price: "1",
+          description: "random text",
+          notes: "extra notes",
+          extras: [
+            {
+              id: 1,
+              name: "Γλυκός",
+              price: "1.0",
+            },
+            {
+              id: 2,
+              name: "Καστανή Ζάχαρη",
+              price: "0",
+            },
+            {
+              id: 3,
+              name: "Σιρόπι φράουλα",
+              price: "0.2",
+            },
+            {
+              id: 4,
+              name: "Σαντιγύ",
+              price: "0.3",
+            },
+          ],
         },
       ];
 
@@ -88,20 +126,58 @@ describe("cartActions", () => {
     it("dispatches deleteOrderItem action and returns data on success", async () => {
       const mockData = [
         {
-          order_item_id: 57,
-          quantity: 2,
-          extras: "Γλυκός",
-          extra_price: null,
-          name: "Espresso",
-          price: "1",
+          id: 58,
+          order_id: 1,
+          item_id: 1,
+          quantity: 3,
+          item_name: "Espresso",
+          price: "1.80",
+          description: "random text",
+          notes: "extra notes",
+          extras: [
+            {
+              id: 2,
+              name: "Καστανή Ζάχαρη",
+              price: "0",
+            },
+            {
+              id: 4,
+              name: "Σαντιγύ",
+              price: "0.1",
+            },
+          ],
         },
         {
-          order_item_id: 57,
+          id: 57,
+          order_id: 1,
+          item_id: 1,
           quantity: 2,
-          extras: "Καστανή Ζάχαρη",
-          extra_price: null,
-          name: "Espresso",
+          item_name: "Espresso",
           price: "1",
+          description: "random text",
+          notes: "extra notes",
+          extras: [
+            {
+              id: 1,
+              name: "Γλυκός",
+              price: "1.0",
+            },
+            {
+              id: 2,
+              name: "Καστανή Ζάχαρη",
+              price: "0",
+            },
+            {
+              id: 3,
+              name: "Σιρόπι φράουλα",
+              price: "0.2",
+            },
+            {
+              id: 4,
+              name: "Σαντιγύ",
+              price: "0.3",
+            },
+          ],
         },
       ];
 
@@ -111,7 +187,7 @@ describe("cartActions", () => {
         })
       );
 
-      await store.dispatch(deleteOrderItem(1));
+      await store.dispatch(deleteOrderItem(57));
 
       const expectedActions = [
         { type: C.GET_CART_SUCCESS, payload: fixCart(mockData) },
@@ -150,20 +226,58 @@ describe("cartActions", () => {
     it("dispatches changeQuantity action and returns data on success", async () => {
       const mockData = [
         {
-          order_item_id: 57,
-          quantity: 2,
-          extras: "Γλυκός",
-          extra_price: null,
-          name: "Espresso",
-          price: "1",
+          id: 58,
+          order_id: 1,
+          item_id: 1,
+          quantity: 3,
+          item_name: "Espresso",
+          price: "1.80",
+          description: "random text",
+          notes: "extra notes",
+          extras: [
+            {
+              id: 2,
+              name: "Καστανή Ζάχαρη",
+              price: "0",
+            },
+            {
+              id: 4,
+              name: "Σαντιγύ",
+              price: "0.1",
+            },
+          ],
         },
         {
-          order_item_id: 57,
+          id: 57,
+          order_id: 1,
+          item_id: 1,
           quantity: 2,
-          extras: "Καστανή Ζάχαρη",
-          extra_price: null,
-          name: "Espresso",
+          item_name: "Espresso",
           price: "1",
+          description: "random text",
+          notes: "extra notes",
+          extras: [
+            {
+              id: 1,
+              name: "Γλυκός",
+              price: "1.0",
+            },
+            {
+              id: 2,
+              name: "Καστανή Ζάχαρη",
+              price: "0",
+            },
+            {
+              id: 3,
+              name: "Σιρόπι φράουλα",
+              price: "0.2",
+            },
+            {
+              id: 4,
+              name: "Σαντιγύ",
+              price: "0.3",
+            },
+          ],
         },
       ];
 
@@ -173,7 +287,7 @@ describe("cartActions", () => {
         })
       );
 
-      await store.dispatch(changeQuantity(1, 1));
+      await store.dispatch(changeQuantity(57, 1));
 
       const expectedActions = [
         { type: C.GET_CART_SUCCESS, payload: fixCart(mockData) },
@@ -216,7 +330,7 @@ describe("cartActions", () => {
         })
       );
 
-      await store.dispatch(addItemToCart(1, 1, 2, [5, 6]));
+      await store.dispatch(addItemToCart(1, 1, 2, [5, 6], ""));
     });
 
     it("dispatches addItemToCart action and returns an error", async () => {
@@ -233,7 +347,7 @@ describe("cartActions", () => {
       );
 
       try {
-        await store.dispatch(addItemToCart(1, 1, 2, [5, 6]));
+        await store.dispatch(addItemToCart(1, 1, 2, [5, 6], ""));
       } catch {
         const expectedActions = [
           { type: C.GET_CART_FAILURE },
