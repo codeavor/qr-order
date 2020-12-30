@@ -12,8 +12,14 @@ import { totalCartPrice } from "../utils/cart/cartUtils";
 import BottomBox from "../components/BottomBox";
 import C from "../constants";
 import Box from "@material-ui/core/Box";
+import { changeStatus } from "../actions/kitchenActions";
 
-export function CheckoutContainer({ cartData, getCart, orderComplete }) {
+export function CheckoutContainer({
+  cartData,
+  getCart,
+  orderComplete,
+  changeStatus,
+}) {
   useEffect(() => {
     getCart(window.localStorage.getItem(C.ORDER_ID));
   }, [getCart]);
@@ -30,7 +36,11 @@ export function CheckoutContainer({ cartData, getCart, orderComplete }) {
       <BottomBox
         text={"Checkout"}
         price={"" + totalCartPrice(cartData.cart)}
-        completeOrder={orderComplete}
+        completeOrder={
+          window.localStorage.getItem(C.ROLE) === C.CUSTOMER_ROLE
+            ? orderComplete
+            : changeStatus
+        }
         orderId={window.localStorage.getItem(C.ORDER_ID)}
         route={C.FINAL_PATH}
       />
@@ -48,7 +58,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCart: (orderId) => dispatch(getCart(orderId)),
-    orderComplete: (orderId, role) => dispatch(orderComplete(orderId, role)),
+    orderComplete: (orderId) => dispatch(orderComplete(orderId)),
+    changeStatus: (orderId, status) => dispatch(changeStatus(orderId, status)),
   };
 };
 

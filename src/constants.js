@@ -15,6 +15,7 @@ const C = {
   MENU_ENDPOINT: "/menu",
   CART_ENDPOINT: "/cart",
   ORDER_ENDPOINT: "/order_item",
+  ORDERS_ENDPOINT: "/orders",
 
   // Roles
   CUSTOMER_ROLE: "customer",
@@ -51,10 +52,18 @@ const C = {
   GET_CART_SUCCESS: "GET_CART_SUCCESS",
   GET_CART_FAILURE: "GET_CART_FAILURE",
 
+  //Kitchen action types
+  GET_KITCHEN: "GET_KITCHEN",
+  GET_KITCHEN_SUCCESS: "GET_KITCHEN_SUCCESS",
+  GET_KITCHEN_FAILURE: "GET_KITCHEN_FAILURE",
+
   SUGAR_IDS: ["0 4", "0 5", "0 6"],
   SKETOS_ID: "1",
   EPILEKSTE_EIDOS_ZAXARHS: "Επιλέξτε είδος ζάχαρης",
   EPILEKSTE_ZAXARH: "Επιλέξτε ζάχαρη",
+
+  //Statuses
+  STATUS: ["not_sent", "sent", "processed", "completed"],
 };
 
 export default C;

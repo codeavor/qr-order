@@ -6,7 +6,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
-import SearchIcon from "@material-ui/icons/Search";
+import FastfoodIcon from "@material-ui/icons/Fastfood";
+import LoopIcon from "@material-ui/icons/Loop";
 import PropTypes from "prop-types";
 import { useHistory, withRouter } from "react-router";
 
@@ -23,10 +24,11 @@ const useStyles = makeStyles((theme) => ({
 NavBar.propTypes = {
   back: PropTypes.bool,
   text: PropTypes.string,
-  search: PropTypes.bool,
+  page: PropTypes.string,
+  createOrder: PropTypes.func,
 };
 
-export function NavBar({ back, text, search }) {
+export function NavBar({ back, text, page, createOrder }) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -47,7 +49,7 @@ export function NavBar({ back, text, search }) {
   return (
     <div className={classes.grow}>
       <AppBar
-        position={search ? "static" : "fixed"}
+        position={page === "menu" ? "static" : "fixed"}
         color="default"
         data-testid="nav-bar"
       >
@@ -58,14 +60,24 @@ export function NavBar({ back, text, search }) {
               icon={<KeyboardBackspaceIcon />}
               onClick={() => history.goBack()}
             />
+          ) : page === "kitchen" ? (
+            <BarButton
+              name="status"
+              icon={<LoopIcon style={{ fontSize: "1.8rem" }} />}
+            />
           ) : (
             <BarButton disabled />
           )}
           <div className={classes.grow} />
           <Typography variant="h6">{text}</Typography>
           <div className={classes.grow} />
-          {search ? (
-            <BarButton edge="end" name="search" icon={<SearchIcon />} />
+          {page === "kitchen" ? (
+            <BarButton
+              edge="end"
+              name="take-away"
+              icon={<FastfoodIcon style={{ fontSize: "1.8rem" }} />}
+              onClick={() => createOrder()}
+            />
           ) : (
             <BarButton edge="end" disabled />
           )}

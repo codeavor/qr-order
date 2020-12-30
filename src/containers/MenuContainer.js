@@ -22,7 +22,7 @@ export function MenuContainer({ menuData, cartData, getMenu, getCart }) {
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar back={false} text="Welcome" search={true} />
+      <NavBar back={false} text="Welcome" page="menu" />
       <CategoriesBar menu={menuData.menu} />
       <MenuArea menu={menuData.menu} />
       <BottomBox

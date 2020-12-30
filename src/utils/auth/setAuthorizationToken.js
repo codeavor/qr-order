@@ -13,5 +13,5 @@ export function setOrderId(orderId) {
 }
 
 export function setUserTypeId(userTypeId) {
-  window.localStorage.setItem(C.ORDER_ID, userTypeId);
+  window.localStorage.setItem(C.USERTYPE_ID, userTypeId);
 }
