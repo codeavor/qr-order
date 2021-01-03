@@ -7,6 +7,8 @@ import OrderCard from "../components/OrderCard";
 
 OrderArea.propTypes = {
   orders: PropTypes.array,
+  changeStatus: PropTypes.func,
+  statusFilter: PropTypes.string,
 };
 
 OrderArea.defaultProps = {
@@ -32,17 +34,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function OrderArea({ orders, changeStatus }) {
+export default function OrderArea({ statusFilter, orders, changeStatus }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList}>
-        {orders.map((order) => (
-          <GridListTile className={classes.fullHeight}>
-            <OrderCard order={order} changeStatus={changeStatus} />
-          </GridListTile>
-        ))}
+        {orders
+          .filter((order) => order.order_complete === statusFilter)
+          .map((order) => (
+            <GridListTile
+              key={order.cart[0].order_id}
+              className={classes.fullHeight}
+            >
+              <OrderCard order={order} changeStatus={changeStatus} />
+            </GridListTile>
+          ))}
       </GridList>
     </div>
   );

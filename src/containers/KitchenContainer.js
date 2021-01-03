@@ -17,6 +17,8 @@ export function KitchenContainer({
   createOrder,
   changeStatus,
 }) {
+  const [statusFilter, setStatusFilter] = React.useState("sent");
+
   useEffect(() => {
     getOrders();
   }, [getOrders]);
@@ -25,8 +27,18 @@ export function KitchenContainer({
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar page="kitchen" text="Kitchen" createOrder={createOrder} />
-      <OrderArea orders={kitchenData.orders} changeStatus={changeStatus} />
+      <NavBar
+        statusFilter={statusFilter}
+        setStatusFilter={setStatusFilter}
+        page="kitchen"
+        text="Kitchen"
+        createOrder={createOrder}
+      />
+      <OrderArea
+        statusFilter={statusFilter}
+        orders={kitchenData.orders}
+        changeStatus={changeStatus}
+      />
     </React.Fragment>
   );
 }

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { getCart } from "../actions/cartActions";
+import { removeOrder } from "../actions/kitchenActions";
 import { getMenu } from "../actions/menuActions";
 import BottomBox from "../components/BottomBox";
 import CategoriesBar from "../components/CategoriesBar";
@@ -12,7 +13,13 @@ import NavBar from "../components/NavBar";
 import C from "../constants";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 
-export function MenuContainer({ menuData, cartData, getMenu, getCart }) {
+export function MenuContainer({
+  menuData,
+  cartData,
+  getMenu,
+  getCart,
+  removeOrder,
+}) {
   useEffect(() => {
     getMenu();
     getCart(window.localStorage.getItem(C.ORDER_ID));
@@ -22,7 +29,12 @@ export function MenuContainer({ menuData, cartData, getMenu, getCart }) {
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar back={false} text="Welcome" page="menu" />
+      <NavBar
+        back={true}
+        removeOrder={removeOrder}
+        text="Welcome"
+        page="menu"
+      />
       <CategoriesBar menu={menuData.menu} />
       <MenuArea menu={menuData.menu} />
       <BottomBox
@@ -46,6 +58,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getMenu: () => dispatch(getMenu()),
     getCart: (orderId) => dispatch(getCart(orderId)),
+    removeOrder: (orderId) => dispatch(removeOrder(orderId)),
   };
 };
 

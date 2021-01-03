@@ -10,6 +10,7 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 import LoopIcon from "@material-ui/icons/Loop";
 import PropTypes from "prop-types";
 import { useHistory, withRouter } from "react-router";
+import C from "../constants";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -22,15 +23,40 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 NavBar.propTypes = {
+  statusFilter: PropTypes.string,
+  setStatusFilter: PropTypes.func,
   back: PropTypes.bool,
   text: PropTypes.string,
   page: PropTypes.string,
   createOrder: PropTypes.func,
+  removeOrder: PropTypes.func,
 };
 
-export function NavBar({ back, text, page, createOrder }) {
+export function NavBar({
+  removeOrder,
+  statusFilter,
+  setStatusFilter,
+  back,
+  text,
+  page,
+  createOrder,
+}) {
   const classes = useStyles();
   const history = useHistory();
+
+  const backButton = () => {
+    let orderId = window.localStorage.getItem(C.ORDER_ID);
+
+    if (isTakeAwayMenu()) {
+      removeOrder(orderId);
+    }
+    history.goBack();
+  };
+
+  const isTakeAwayMenu = () => {
+    let role = window.localStorage.getItem(C.ROLE);
+    return role === C.KITCHEN_ROLE && page === "menu";
+  };
 
   const BarButton = ({ edge = "start", name, icon, ...props }) => {
     return (
@@ -58,12 +84,16 @@ export function NavBar({ back, text, page, createOrder }) {
             <BarButton
               name="back"
               icon={<KeyboardBackspaceIcon />}
-              onClick={() => history.goBack()}
+              disabled={page === "menu" && !isTakeAwayMenu()}
+              onClick={() => backButton()}
             />
           ) : page === "kitchen" ? (
             <BarButton
               name="status"
               icon={<LoopIcon style={{ fontSize: "1.8rem" }} />}
+              onClick={() => {
+                setStatusFilter(statusFilter === "sent" ? "processed" : "sent");
+              }}
             />
           ) : (
             <BarButton disabled />

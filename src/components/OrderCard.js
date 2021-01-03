@@ -26,11 +26,16 @@ const useStyles = makeStyles((theme) => ({
 export default function OrderCard({ order, changeStatus }) {
   const classes = useStyles();
 
+  const fixTime = (time) => {
+    // 2020-12-30T12:18:05.000000Z WRONG TIMEZONE
+    return String(time).split("T")[1].split(".")[0];
+  };
+
   return (
     <Card variant="outlined" raised className={classes.root}>
       <CardHeader
-        avatar={<Avatar aria-label="recipe">10</Avatar>}
-        title="12:24:10 AM"
+        avatar={<Avatar aria-label="recipe">{order.umbrella_id}</Avatar>}
+        title={fixTime(order.updated_at)}
         subheader={
           totalCartPrice(order.cart).toFixed(2).replace(".", ",") + "€"
         }

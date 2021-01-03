@@ -73,9 +73,22 @@ export const changeStatus = (orderId, status = "sent") => {
       .put(
         `${C.API_URL + C.ORDERS_ENDPOINT}/${orderId}?order_complete=${status}`
       )
-      .then(() => {
+      .then((response) => {
         if (status === "sent") dispatch(push(C.ORDERS_PATH));
-        else window.location.reload();
+        else dispatch(getKitchenSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(handleError(error.response.data.error));
+      });
+  };
+};
+
+export const removeOrder = (orderId) => {
+  return function (dispatch) {
+    axios
+      .delete(`${C.API_URL + C.ORDERS_ENDPOINT}/${orderId}`)
+      .then(() => {
+        window.localStorage.removeItem(C.ORDER_ID);
       })
       .catch((error) => {
         dispatch(handleError(error.response.data.error));
