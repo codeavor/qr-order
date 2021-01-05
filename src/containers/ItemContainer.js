@@ -21,7 +21,7 @@ export function ItemContainer({ itemData, getItem, addItemToCart }) {
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar back={true} text={itemData.item.name} search={false} />
+      <NavBar back={true} text={itemData.item.name} />
       <ItemArea
         initialValues={itemData.extraValues}
         item={itemData.item}

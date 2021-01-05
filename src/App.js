@@ -10,6 +10,7 @@ import CartContainer from "./containers/CartContainer";
 import CheckoutContainer from "./containers/CheckoutContainer";
 import FinalContainer from "./containers/FinalContainer";
 import ProtectedRoute from "./utils/auth/ProtectedRoute";
+import KitchenContainer from "./containers/KitchenContainer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <ProtectedRoute path="/item/:id" component={ItemContainer} />
       <ProtectedRoute path="/cart" component={CartContainer} />
       <ProtectedRoute path="/checkout" component={CheckoutContainer} />
+      <ProtectedRoute path="/orders" component={KitchenContainer} />
       <ProtectedRoute path="/final" component={FinalContainer} />
     </Switch>
   );

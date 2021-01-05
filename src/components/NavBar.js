@@ -6,9 +6,11 @@ import IconButton from "@material-ui/core/IconButton";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
-import SearchIcon from "@material-ui/icons/Search";
+import FastfoodIcon from "@material-ui/icons/Fastfood";
+import LoopIcon from "@material-ui/icons/Loop";
 import PropTypes from "prop-types";
 import { useHistory, withRouter } from "react-router";
+import C from "../constants";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -21,14 +23,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 NavBar.propTypes = {
+  statusFilter: PropTypes.string,
+  setStatusFilter: PropTypes.func,
   back: PropTypes.bool,
   text: PropTypes.string,
-  search: PropTypes.bool,
+  page: PropTypes.string,
+  createOrder: PropTypes.func,
+  removeOrder: PropTypes.func,
 };
 
-export function NavBar({ back, text, search }) {
+export function NavBar({
+  removeOrder,
+  statusFilter,
+  setStatusFilter,
+  back,
+  text,
+  page,
+  createOrder,
+}) {
   const classes = useStyles();
   const history = useHistory();
+
+  const isTakeAwayMenu = () => {
+    let role = window.localStorage.getItem(C.ROLE);
+    return role === C.KITCHEN_ROLE && page === "menu";
+  };
+
+  const backButton = () => {
+    let orderId = window.localStorage.getItem(C.ORDER_ID);
+
+    if (isTakeAwayMenu()) {
+      removeOrder(orderId);
+      return;
+    }
+    history.goBack();
+  };
 
   const BarButton = ({ edge = "start", name, icon, ...props }) => {
     return (
@@ -47,7 +76,7 @@ export function NavBar({ back, text, search }) {
   return (
     <div className={classes.grow}>
       <AppBar
-        position={search ? "static" : "fixed"}
+        position={page === "menu" ? "static" : "fixed"}
         color="default"
         data-testid="nav-bar"
       >
@@ -56,7 +85,16 @@ export function NavBar({ back, text, search }) {
             <BarButton
               name="back"
               icon={<KeyboardBackspaceIcon />}
-              onClick={() => history.goBack()}
+              disabled={page === "menu" && !isTakeAwayMenu()}
+              onClick={() => backButton()}
+            />
+          ) : page === "kitchen" ? (
+            <BarButton
+              name="status"
+              icon={<LoopIcon style={{ fontSize: "1.8rem" }} />}
+              onClick={() => {
+                setStatusFilter(statusFilter === "sent" ? "processed" : "sent");
+              }}
             />
           ) : (
             <BarButton disabled />
@@ -64,8 +102,15 @@ export function NavBar({ back, text, search }) {
           <div className={classes.grow} />
           <Typography variant="h6">{text}</Typography>
           <div className={classes.grow} />
-          {search ? (
-            <BarButton edge="end" name="search" icon={<SearchIcon />} />
+          {page === "kitchen" ? (
+            <BarButton
+              edge="end"
+              name="take-away"
+              icon={<FastfoodIcon style={{ fontSize: "1.8rem" }} />}
+              onClick={() =>
+                createOrder(window.localStorage.getItem(C.USERTYPE_ID))
+              }
+            />
           ) : (
             <BarButton edge="end" disabled />
           )}

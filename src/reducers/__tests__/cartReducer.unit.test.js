@@ -24,20 +24,26 @@ describe("cart Reducer", () => {
   it("handles GET_CART_SUCCESS as expected", () => {
     const cartResponse = [
       {
-        order_item_id: 57,
-        quantity: 2,
-        extras: "Γλυκός",
-        extra_price: null,
-        name: "Espresso",
-        price: "1",
-      },
-      {
-        order_item_id: 57,
-        quantity: 2,
-        extras: "Καστανή Ζάχαρη",
-        extra_price: null,
-        name: "Espresso",
-        price: "1",
+        id: 58,
+        order_id: 1,
+        item_id: 1,
+        quantity: 3,
+        item_name: "Espresso",
+        price: "1.80",
+        description: "random text",
+        notes: "extra notes",
+        extras: [
+          {
+            id: 2,
+            name: "Καστανή Ζάχαρη",
+            price: "0",
+          },
+          {
+            id: 4,
+            name: "Σαντιγύ",
+            price: "0.1",
+          },
+        ],
       },
     ];
 

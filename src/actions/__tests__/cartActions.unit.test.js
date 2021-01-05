@@ -368,23 +368,8 @@ describe("cartActions", () => {
         })
       );
 
-      await store.dispatch(orderComplete(1, C.CUSTOMER_ROLE));
+      await store.dispatch(orderComplete(1));
       expect(localStorage.clear).toHaveBeenCalled();
-    });
-
-    it("dispatches orderComplete action as the kitchen", async () => {
-      mockAxios.put.mockImplementationOnce(() =>
-        Promise.resolve({
-          data: [],
-        })
-      );
-      const routerData = { args: [C.ORDERS_PATH], method: "push" };
-      const expectedActions = [
-        { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
-      ];
-
-      await store.dispatch(orderComplete(1, C.KITCHEN_ROLE));
-      expect(store.getActions()).toEqual(expectedActions);
     });
 
     it("dispatches orderComplete action and returns an error", async () => {
@@ -401,7 +386,7 @@ describe("cartActions", () => {
       );
 
       try {
-        await store.dispatch(orderComplete(1, C.CUSTOMER_ROLE));
+        await store.dispatch(orderComplete(1));
       } catch {
         const expectedActions = [
           { type: C.GET_CART_FAILURE },
