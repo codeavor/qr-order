@@ -40,7 +40,7 @@ export const getOrders = () => {
   };
 };
 
-export const createOrder = () => {
+export const createOrder = (userId) => {
   const options = {
     url: C.API_URL + C.ORDERS_ENDPOINT,
     method: "POST",
@@ -48,12 +48,11 @@ export const createOrder = () => {
       "Content-Type": "application/json",
     },
     data: {
-      user_id: window.localStorage.getItem(C.USERTYPE_ID),
+      user_id: userId,
     },
   };
 
   return function (dispatch) {
-    dispatch(getKitchenRequest());
     axios(options)
       .then((response) => {
         setOrderId(response.data.order_id);
@@ -78,6 +77,7 @@ export const changeStatus = (orderId, status = "sent") => {
         else dispatch(getKitchenSuccess(response.data));
       })
       .catch((error) => {
+        dispatch(getKitchenFailure());
         dispatch(handleError(error.response.data.error));
       });
   };
@@ -89,8 +89,10 @@ export const removeOrder = (orderId) => {
       .delete(`${C.API_URL + C.ORDERS_ENDPOINT}/${orderId}`)
       .then(() => {
         window.localStorage.removeItem(C.ORDER_ID);
+        dispatch(push(C.ORDERS_PATH));
       })
       .catch((error) => {
+        dispatch(getKitchenFailure());
         dispatch(handleError(error.response.data.error));
       });
   };

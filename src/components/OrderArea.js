@@ -13,6 +13,8 @@ OrderArea.propTypes = {
 
 OrderArea.defaultProps = {
   orders: [],
+  changeStatus: () => {},
+  statusFilter: "",
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "nowrap",
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: "translateZ(0)",
+    width: "100%",
   },
   fullHeight: {
     height: "100vh !important",
@@ -38,7 +41,7 @@ export default function OrderArea({ statusFilter, orders, changeStatus }) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div data-testid="order-area" className={classes.root}>
       <GridList className={classes.gridList}>
         {orders
           .filter((order) => order.order_complete === statusFilter)

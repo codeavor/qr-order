@@ -52,7 +52,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getOrders: () => dispatch(getOrders()),
-    createOrder: () => dispatch(createOrder()),
+    createOrder: (userId) => dispatch(createOrder(userId)),
     changeStatus: (orderId, status) => dispatch(changeStatus(orderId, status)),
   };
 };

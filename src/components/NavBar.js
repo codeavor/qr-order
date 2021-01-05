@@ -44,18 +44,19 @@ export function NavBar({
   const classes = useStyles();
   const history = useHistory();
 
+  const isTakeAwayMenu = () => {
+    let role = window.localStorage.getItem(C.ROLE);
+    return role === C.KITCHEN_ROLE && page === "menu";
+  };
+
   const backButton = () => {
     let orderId = window.localStorage.getItem(C.ORDER_ID);
 
     if (isTakeAwayMenu()) {
       removeOrder(orderId);
+      return;
     }
     history.goBack();
-  };
-
-  const isTakeAwayMenu = () => {
-    let role = window.localStorage.getItem(C.ROLE);
-    return role === C.KITCHEN_ROLE && page === "menu";
   };
 
   const BarButton = ({ edge = "start", name, icon, ...props }) => {
@@ -106,7 +107,9 @@ export function NavBar({
               edge="end"
               name="take-away"
               icon={<FastfoodIcon style={{ fontSize: "1.8rem" }} />}
-              onClick={() => createOrder()}
+              onClick={() =>
+                createOrder(window.localStorage.getItem(C.USERTYPE_ID))
+              }
             />
           ) : (
             <BarButton edge="end" disabled />
