@@ -61,6 +61,8 @@ export default function CategoriesBar({ menu }) {
             <Tab
               data-testid={`tab-${index}`}
               className={classes.tabText}
+              disableFocusRipple={true}
+              disableRipple={true}
               label={category.name}
               key={category.id}
               component={Link}

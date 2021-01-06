@@ -28,6 +28,8 @@ export default function BottomButton({
     <Button
       data-testid="bottom-button"
       variant="contained"
+      disableFocusRipple={true}
+      disableRipple={true}
       color="primary"
       startIcon={<ShoppingCartIcon data-testid="cart-icon" />}
       component={Link}

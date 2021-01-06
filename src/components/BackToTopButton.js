@@ -41,7 +41,13 @@ export default function BackToTopButton({ handleBackToTop }) {
         role="presentation"
         className={classes.backButton}
       >
-        <Fab color="primary" size="small" aria-label="scroll-back-to-top">
+        <Fab
+          color="primary"
+          size="small"
+          aria-label="scroll-back-to-top"
+          disableFocusRipple={true}
+          disableRipple={true}
+        >
           <KeyboardArrowUpIcon />
         </Fab>
       </div>

@@ -64,6 +64,8 @@ export function NavBar({
       <IconButton
         edge={edge}
         className={classes.menuButton}
+        disableFocusRipple={true}
+        disableRipple={true}
         aria-label={`${name}-button`}
         data-testid={`${name}-button`}
         {...props}

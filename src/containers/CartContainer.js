@@ -7,7 +7,6 @@ import {
   deleteOrderItem,
   changeQuantity,
 } from "../actions/cartActions";
-import BackToTopButton from "../components/BackToTopButton";
 import Loading from "../components/Loading";
 import CartArea from "../components/CartArea";
 import NavBar from "../components/NavBar";
@@ -44,7 +43,6 @@ export function CartContainer({
         price={"" + totalCartPrice(cartData.cart)}
         route={C.CHECKOUT_PATH}
       />
-      <BackToTopButton />
     </React.Fragment>
   );
 }

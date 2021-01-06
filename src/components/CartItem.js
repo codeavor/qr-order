@@ -57,6 +57,8 @@ export default function CartItem({
     return (
       <Button
         size="small"
+        disableFocusRipple={true}
+        disableRipple={true}
         variant="outlined"
         className={classes.smallButton}
         {...props}
@@ -100,6 +102,8 @@ export default function CartItem({
                   <IconButton
                     data-testid="delete-item"
                     aria-label="delete"
+                    disableFocusRipple={true}
+                    disableRipple={true}
                     onClick={() => deleteOrderItem(id)}
                   >
                     <DeleteIcon />

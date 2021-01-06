@@ -30,6 +30,8 @@ export default function QuantityButton({ setQuantityNum, quantityNum }) {
     <ButtonGroup data-testid="quantity-button-group">
       <Button
         data-testid="minus-quantity-button"
+        disableFocusRipple={true}
+        disableRipple={true}
         size="small"
         aria-label="reduce"
         variant="contained"
@@ -42,6 +44,8 @@ export default function QuantityButton({ setQuantityNum, quantityNum }) {
       </Button>
       <Button
         className={classes.quantityDisabledButton}
+        disableFocusRipple={true}
+        disableRipple={true}
         data-testid="quantity-value-button"
         size="small"
         disabled
@@ -50,6 +54,8 @@ export default function QuantityButton({ setQuantityNum, quantityNum }) {
       </Button>
       <Button
         data-testid="plus-quantity-button"
+        disableFocusRipple={true}
+        disableRipple={true}
         size="small"
         aria-label="increase"
         variant="contained"

@@ -48,7 +48,12 @@ export default function ItemArea({
   const classes = useStyles();
 
   return (
-    <Formik enableReinitialize={true} initialValues={initialValues}>
+    <Formik
+      enableReinitialize={true}
+      initialValues={initialValues}
+      validateOnChange={false}
+      validateOnBlur={false}
+    >
       {(props) => {
         const { values, handleChange, setFieldValue, setValues } = props;
         return (
