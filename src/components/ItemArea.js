@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
@@ -44,12 +44,8 @@ export default function ItemArea({
   addItemToCart,
   orderId,
 }) {
-  const [notes, setNotes] = React.useState("");
+  const notesRef = useRef();
   const classes = useStyles();
-
-  function handleTextChange(event) {
-    setNotes(event.target.value);
-  }
 
   return (
     <Formik enableReinitialize={true} initialValues={initialValues}>
@@ -81,8 +77,7 @@ export default function ItemArea({
                   placeholder="Ειδικές Οδηγίες:"
                   rows={3}
                   fullWidth={true}
-                  onChange={handleTextChange}
-                  value={notes}
+                  inputRef={notesRef}
                 />
               </Container>
             </Box>
@@ -95,7 +90,7 @@ export default function ItemArea({
               orderId={orderId}
               itemId={item.id}
               values={values}
-              notes={notes}
+              notes={notesRef}
             />
           </Form>
         );

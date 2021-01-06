@@ -19,7 +19,7 @@ BottomBox.propTypes = {
   orderId: PropTypes.string,
   itemId: PropTypes.number,
   values: PropTypes.object,
-  notes: PropTypes.string,
+  notes: PropTypes.any,
 };
 
 BottomBox.defaultProps = {
@@ -87,7 +87,13 @@ export default function BottomBox({
               price={parseFloat(totalPrice)}
               route={route}
               onClick={() =>
-                addItemToCart(orderId, itemId, quantityNum, extrasId, notes)
+                addItemToCart(
+                  orderId,
+                  itemId,
+                  quantityNum,
+                  extrasId,
+                  notes !== null ? notes.current.value : ""
+                )
               }
             />
           </Box>
