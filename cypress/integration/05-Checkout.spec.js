@@ -37,7 +37,6 @@ describe("Testing /checkout", () => {
     cy.wait("@getCart");
     cy.url().should("eq", C.URL + C.CHECKOUT_PATH);
 
-    cy.findByTestId("payment-options").should("exist");
     cy.findAllByTestId("checkout-item").should("have.length", 2);
     cy.findByTestId("bottom-button").should("exist");
     cy.findByTestId("bottom-button").click();

@@ -7,7 +7,6 @@ import BackToTopButton from "../components/BackToTopButton";
 import Loading from "../components/Loading";
 import CheckoutArea from "../components/CheckoutArea";
 import NavBar from "../components/NavBar";
-import CheckoutPayment from "../components/CheckoutPayment";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 import BottomBox from "../components/BottomBox";
 import C from "../constants";
@@ -29,8 +28,7 @@ export function CheckoutContainer({
   ) : (
     <React.Fragment>
       <NavBar back={true} text="Checkout" />
-      <Box p={5} my={5}>
-        <CheckoutPayment />
+      <Box py={5} my={5}>
         <CheckoutArea cart={cartData.cart} />
       </Box>
       <BottomBox
