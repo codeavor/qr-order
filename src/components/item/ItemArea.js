@@ -55,15 +55,13 @@ export default function ItemArea({
       validateOnBlur={false}
     >
       {(props) => {
-        const { values, handleChange, setFieldValue, setValues } = props;
+        const { values, setValues } = props;
         return (
           <Form>
             <Box mt={5} pt={5}>
               <Container className={classes.section} data-testid="item-area">
                 {item.extra_categories.map((extra_category) => (
                   <ExtraCategory
-                    setFieldValue={setFieldValue}
-                    handleChange={handleChange}
                     setValues={setValues}
                     extra_category={extra_category}
                     key={extra_category.id}

@@ -2,6 +2,7 @@ import React from "react";
 
 import FormGroup from "@material-ui/core/FormGroup";
 import Checkbox from "@material-ui/core/Checkbox";
+import { useFormikContext } from "formik";
 import PropTypes from "prop-types";
 
 import Extras from "./Extras";
@@ -9,23 +10,16 @@ import { combinedPriceId } from "../../utils/extra/extraUtils";
 
 ExtraCheckBox.propTypes = {
   extra_category: PropTypes.object,
-  values: PropTypes.object,
-  setFieldValue: PropTypes.func,
   disabled: PropTypes.bool,
 };
 
 ExtraCheckBox.defaultProps = {
   extra_category: { extras: [] },
-  values: {},
   disabled: false,
 };
 
-export default function ExtraCheckBox({
-  extra_category,
-  values,
-  disabled,
-  setFieldValue,
-}) {
+export default function ExtraCheckBox({ extra_category, disabled }) {
+  const { values, setFieldValue } = useFormikContext();
   const isChecked = (extra) => {
     let valuesKey = combinedPriceId(extra.price, extra.id);
 
@@ -46,6 +40,7 @@ export default function ExtraCheckBox({
           controlComponent={
             <Checkbox
               checked={isChecked(extra)}
+              disableRipple={true}
               onChange={() => {
                 setFieldValue(
                   combinedPriceId(extra.price, extra.id),
