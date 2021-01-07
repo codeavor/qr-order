@@ -38,13 +38,13 @@ describe("Testing /cart", () => {
 
   it("Deletes an item and reduces quantity", () => {
     apiMock(
-      `${C.ORDER_ENDPOINT}/57`,
+      `${C.ORDER_ITEM_ENDPOINT}/57`,
       "DELETE",
       mockData.deleteOrderItem,
       "delete"
     );
     apiMock(
-      `${C.ORDER_ENDPOINT}/58?quantity=2`,
+      `${C.ORDER_ITEM_ENDPOINT}/58?quantity=2`,
       "PUT",
       mockData.changeQuantity,
       "changeQuantity"

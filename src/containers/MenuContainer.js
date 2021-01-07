@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { getCart } from "../actions/cartActions";
-import { removeOrder } from "../actions/kitchenActions";
+import { removeOrder } from "../actions/ordersActions";
 import { getMenu } from "../actions/menuActions";
 import BottomBox from "../components/common/BottomBox";
 import Loading from "../components/common/Loading";

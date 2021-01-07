@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import { connect } from "react-redux";
 
 import { getCart, orderComplete } from "../actions/cartActions";
-import { changeStatus } from "../actions/kitchenActions";
+import { changeStatus } from "../actions/ordersActions";
 import CheckoutArea from "../components/checkout/CheckoutArea";
 import BottomBox from "../components/common/BottomBox";
 import Loading from "../components/common/Loading";

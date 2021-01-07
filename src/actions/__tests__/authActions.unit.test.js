@@ -41,7 +41,7 @@ describe("Auth Actions", () => {
         orderId: 1,
         role_name: C.KITCHEN_ROLE,
       };
-      const routerData = { args: [C.ORDERS_PATH], method: "push" };
+      const routerData = { args: [C.KITCHEN_PATH], method: "push" };
       mockAxios.mockImplementationOnce(() =>
         Promise.resolve({
           data: mockData,

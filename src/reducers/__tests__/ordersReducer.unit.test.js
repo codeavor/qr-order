@@ -1,19 +1,19 @@
 import C from "../../constants";
-import kitchenReducer from "../kitchenReducer";
+import ordersReducer from "../ordersReducer";
 
-describe("kitchen Reducer", () => {
+describe("ordersReducer", () => {
   const initialState = {
     orders: [],
     loading: true,
   };
 
   it("returns the initial state when an action type is not passed", () => {
-    const reducer = kitchenReducer(undefined, {});
+    const reducer = ordersReducer(undefined, {});
     expect(reducer).toEqual(initialState);
   });
 
-  it("handles GET_KITCHEN as expected", () => {
-    const reducer = kitchenReducer(initialState, { type: C.GET_KITCHEN });
+  it("handles GET_ORDERS as expected", () => {
+    const reducer = ordersReducer(initialState, { type: C.GET_ORDERS });
 
     expect(reducer).toEqual({
       orders: [],
@@ -21,7 +21,7 @@ describe("kitchen Reducer", () => {
     });
   });
 
-  it("handles GET_KITCHEN_SUCCESS as expected", () => {
+  it("handles GET_ORDERS_SUCCESS as expected", () => {
     const ordersResponse = [
       {
         cart: [
@@ -89,8 +89,8 @@ describe("kitchen Reducer", () => {
       },
     ];
 
-    const reducer = kitchenReducer(initialState, {
-      type: C.GET_KITCHEN_SUCCESS,
+    const reducer = ordersReducer(initialState, {
+      type: C.GET_ORDERS_SUCCESS,
       payload: ordersResponse,
     });
 
@@ -100,9 +100,9 @@ describe("kitchen Reducer", () => {
     });
   });
 
-  it("handles GET_KITCHEN_FAILURE as expected", () => {
-    const reducer = kitchenReducer(initialState, {
-      type: C.GET_KITCHEN_FAILURE,
+  it("handles GET_ORDERS_FAILURE as expected", () => {
+    const reducer = ordersReducer(initialState, {
+      type: C.GET_ORDERS_FAILURE,
       payload: "Error",
     });
 

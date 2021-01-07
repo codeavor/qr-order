@@ -7,18 +7,18 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case C.GET_KITCHEN:
+    case C.GET_ORDERS:
       return {
         ...state,
         loading: true,
       };
-    case C.GET_KITCHEN_SUCCESS:
+    case C.GET_ORDERS_SUCCESS:
       return {
         ...state,
         orders: payload,
         loading: false,
       };
-    case C.GET_KITCHEN_FAILURE:
+    case C.GET_ORDERS_FAILURE:
       return {
         ...state,
         orders: [],

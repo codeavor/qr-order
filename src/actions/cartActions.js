@@ -42,7 +42,7 @@ export const getCart = (orderId) => {
 export const deleteOrderItem = (orderItemId) => {
   return function (dispatch) {
     axios
-      .delete(`${C.API_URL + C.ORDER_ENDPOINT}/${orderItemId}`)
+      .delete(`${C.API_URL + C.ORDER_ITEM_ENDPOINT}/${orderItemId}`)
       .then((response) => {
         const cart = fixCart(response.data);
         dispatch(getCartSuccess(cart));
@@ -58,7 +58,9 @@ export const changeQuantity = (quantity, orderItemId) => {
   return function (dispatch) {
     axios
       .put(
-        `${C.API_URL + C.ORDER_ENDPOINT}/${orderItemId}?quantity=${quantity}`
+        `${
+          C.API_URL + C.ORDER_ITEM_ENDPOINT
+        }/${orderItemId}?quantity=${quantity}`
       )
       .then((response) => {
         const cart = fixCart(response.data);
@@ -87,7 +89,7 @@ export const orderComplete = (orderId) => {
 
 export const addItemToCart = (orderId, itemId, quantity, extrasId, notes) => {
   const options = {
-    url: C.API_URL + C.ORDER_ENDPOINT,
+    url: C.API_URL + C.ORDER_ITEM_ENDPOINT,
     method: "POST",
     headers: {
       "Content-Type": "application/json",

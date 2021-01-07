@@ -2,17 +2,13 @@ import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
 
-import {
-  changeStatus,
-  createOrder,
-  getOrders,
-} from "../actions/kitchenActions";
+import { changeStatus, createOrder, getOrders } from "../actions/ordersActions";
 import Loading from "../components/common/Loading";
 import NavBar from "../components/common/NavBar";
 import OrderArea from "../components/orders/OrderArea";
 
 export function KitchenContainer({
-  kitchenData,
+  ordersData,
   getOrders,
   createOrder,
   changeStatus,
@@ -23,7 +19,7 @@ export function KitchenContainer({
     getOrders();
   }, [getOrders]);
 
-  return kitchenData.loading ? (
+  return ordersData.loading ? (
     <Loading />
   ) : (
     <React.Fragment>
@@ -36,7 +32,7 @@ export function KitchenContainer({
       />
       <OrderArea
         statusFilter={statusFilter}
-        orders={kitchenData.orders}
+        orders={ordersData.orders}
         changeStatus={changeStatus}
       />
     </React.Fragment>
@@ -45,7 +41,7 @@ export function KitchenContainer({
 
 const mapStateToProps = (state) => {
   return {
-    kitchenData: state.kitchen,
+    ordersData: state.orders,
   };
 };
 

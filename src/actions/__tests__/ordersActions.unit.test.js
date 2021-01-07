@@ -7,11 +7,11 @@ import {
   createOrder,
   getOrders,
   removeOrder,
-} from "../kitchenActions";
+} from "../ordersActions";
 
 const mockStore = configureMockStore([thunk]);
 
-describe("kitchenActions", () => {
+describe("ordersActions", () => {
   let store;
 
   beforeEach(() => {
@@ -96,9 +96,9 @@ describe("kitchenActions", () => {
       await store.dispatch(getOrders());
 
       const expectedActions = [
-        { type: C.GET_KITCHEN },
+        { type: C.GET_ORDERS },
         { type: C.RESET_ERROR },
-        { type: C.GET_KITCHEN_SUCCESS, payload: mockData },
+        { type: C.GET_ORDERS_SUCCESS, payload: mockData },
       ];
 
       expect(store.getActions()).toEqual(expectedActions);
@@ -121,8 +121,8 @@ describe("kitchenActions", () => {
         await store.dispatch(getOrders());
       } catch {
         const expectedActions = [
-          { type: C.GET_KITCHEN },
-          { type: C.GET_KITCHEN_FAILURE },
+          { type: C.GET_ORDERS },
+          { type: C.GET_ORDERS_FAILURE },
           { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
@@ -171,7 +171,7 @@ describe("kitchenActions", () => {
         await store.dispatch(createOrder(1));
       } catch {
         const expectedActions = [
-          { type: C.GET_KITCHEN_FAILURE },
+          { type: C.GET_ORDERS_FAILURE },
           { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
@@ -248,7 +248,7 @@ describe("kitchenActions", () => {
       },
     ];
     it("dispatches changeStatus (to sent) action and returns data on success", async () => {
-      const routerData = { args: [C.ORDERS_PATH], method: "push" };
+      const routerData = { args: [C.KITCHEN_PATH], method: "push" };
 
       mockAxios.put.mockImplementationOnce(() =>
         Promise.resolve({
@@ -275,7 +275,7 @@ describe("kitchenActions", () => {
       await store.dispatch(changeStatus(57, "processed"));
 
       const expectedActions = [
-        { type: C.GET_KITCHEN_SUCCESS, payload: mockData },
+        { type: C.GET_ORDERS_SUCCESS, payload: mockData },
       ];
 
       expect(store.getActions()).toEqual(expectedActions);
@@ -298,7 +298,7 @@ describe("kitchenActions", () => {
         await store.dispatch(changeStatus(57));
       } catch {
         const expectedActions = [
-          { type: C.GET_KITCHEN_FAILURE, payload: errorMsg },
+          { type: C.GET_ORDERS_FAILURE, payload: errorMsg },
           { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 
@@ -309,7 +309,7 @@ describe("kitchenActions", () => {
 
   describe("removeOrder action", () => {
     it("dispatches removeOrder action", async () => {
-      const routerData = { args: [C.ORDERS_PATH], method: "push" };
+      const routerData = { args: [C.KITCHEN_PATH], method: "push" };
       jest.spyOn(window.localStorage.__proto__, "removeItem");
       window.localStorage.__proto__.setItem = jest.fn();
 
@@ -345,7 +345,7 @@ describe("kitchenActions", () => {
         await store.dispatch(removeOrder(57));
       } catch {
         const expectedActions = [
-          { type: C.GET_KITCHEN_FAILURE },
+          { type: C.GET_ORDERS_FAILURE },
           { type: "@@router/CALL_HISTORY_METHOD", payload: routerData },
         ];
 

@@ -11,18 +11,19 @@ import CheckoutContainer from "./containers/CheckoutContainer";
 import FinalContainer from "./containers/FinalContainer";
 import ProtectedRoute from "./utils/auth/ProtectedRoute";
 import KitchenContainer from "./containers/KitchenContainer";
+import C from "./constants";
 
 function App() {
   return (
     <Switch>
       <Route path="/" exact component={ScanQRCodeContainer} />
-      <Route path="/authentication/:id" component={AuthenticationContainer} />
-      <ProtectedRoute path="/menu" component={MenuContainer} />
-      <ProtectedRoute path="/item/:id" component={ItemContainer} />
-      <ProtectedRoute path="/cart" component={CartContainer} />
-      <ProtectedRoute path="/checkout" component={CheckoutContainer} />
-      <ProtectedRoute path="/orders" component={KitchenContainer} />
-      <ProtectedRoute path="/final" component={FinalContainer} />
+      <Route path={`${C.LOGIN_PATH}/:id`} component={AuthenticationContainer} />
+      <ProtectedRoute path={C.MENU_PATH} component={MenuContainer} />
+      <ProtectedRoute path={`${C.ITEM_PATH}/:id`} component={ItemContainer} />
+      <ProtectedRoute path={C.CART_PATH} component={CartContainer} />
+      <ProtectedRoute path={C.CHECKOUT_PATH} component={CheckoutContainer} />
+      <ProtectedRoute path={C.KITCHEN_PATH} component={KitchenContainer} />
+      <ProtectedRoute path={C.FINAL_PATH} component={FinalContainer} />
     </Switch>
   );
 }
