@@ -6,8 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import PropTypes from "prop-types";
-import { useHistory, withRouter } from "react-router";
-import NavBarButton from "./NavBarButton";
+import NavBarButton from "../common/NavBarButton";
+import C from "../../constants";
 
 const useStyles = makeStyles(() => ({
   grow: {
@@ -15,21 +15,31 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-NavBar.propTypes = {
+MenuNavBar.propTypes = {
   text: PropTypes.string,
+  removeOrder: PropTypes.func,
 };
 
-export function NavBar({ text }) {
+MenuNavBar.defaultProps = {
+  removeOrder: () => {},
+};
+
+export default function MenuNavBar({ text, removeOrder }) {
   const classes = useStyles();
-  const history = useHistory();
+  const orderId = window.localStorage.getItem(C.ORDER_ID);
+
+  const isCustomer = () => {
+    return window.localStorage.getItem(C.ROLE) === C.CUSTOMER_ROLE;
+  };
 
   return (
-    <AppBar position="fixed" color="default" data-testid="nav-bar">
+    <AppBar position="static" color="default" data-testid="nav-bar">
       <Toolbar>
         <NavBarButton
           name="back"
           icon={<KeyboardBackspaceIcon />}
-          onClick={() => history.goBack()}
+          disabled={isCustomer()}
+          onClick={() => removeOrder(orderId)}
         />
         <div className={classes.grow} />
         <Typography variant="h6">{text}</Typography>
@@ -39,5 +49,3 @@ export function NavBar({ text }) {
     </AppBar>
   );
 }
-
-export default withRouter(NavBar);

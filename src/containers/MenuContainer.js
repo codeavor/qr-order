@@ -7,11 +7,11 @@ import { removeOrder } from "../actions/ordersActions";
 import { getMenu } from "../actions/menuActions";
 import BottomBox from "../components/common/BottomBox";
 import Loading from "../components/common/Loading";
-import NavBar from "../components/common/NavBar";
 import CategoriesBar from "../components/menu/CategoriesBar";
 import MenuArea from "../components/menu/MenuArea";
 import C from "../constants";
 import { totalCartPrice } from "../utils/cart/cartUtils";
+import MenuNavBar from "../components/menu/MenuNavBar";
 
 export function MenuContainer({
   menuData,
@@ -29,12 +29,7 @@ export function MenuContainer({
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar
-        back={true}
-        removeOrder={removeOrder}
-        text="Welcome"
-        page="menu"
-      />
+      <MenuNavBar text="Welcome" removeOrder={removeOrder} />
       <CategoriesBar menu={menuData.menu} />
       <MenuArea menu={menuData.menu} />
       <BottomBox

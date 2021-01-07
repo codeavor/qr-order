@@ -26,7 +26,7 @@ export function CheckoutContainer({
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar back={true} text="Checkout" />
+      <NavBar text="Checkout" />
       <Box py={5} my={5}>
         <CheckoutArea cart={cartData.cart} />
       </Box>

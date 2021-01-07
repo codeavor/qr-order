@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { changeStatus, createOrder, getOrders } from "../actions/ordersActions";
 import Loading from "../components/common/Loading";
-import NavBar from "../components/common/NavBar";
+import KitchenNavBar from "../components/orders/KitchenNavBar";
 import OrderArea from "../components/orders/OrderArea";
 
 export function KitchenContainer({
@@ -23,10 +23,9 @@ export function KitchenContainer({
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar
+      <KitchenNavBar
         statusFilter={statusFilter}
         setStatusFilter={setStatusFilter}
-        page="kitchen"
         text="Kitchen"
         createOrder={createOrder}
       />

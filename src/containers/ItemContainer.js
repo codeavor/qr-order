@@ -8,7 +8,6 @@ import { getItem } from "../actions/itemActions";
 import Loading from "../components/common/Loading";
 import NavBar from "../components/common/NavBar";
 import ItemArea from "../components/item/ItemArea";
-import C from "../constants";
 
 export function ItemContainer({ itemData, getItem, addItemToCart }) {
   const { id } = useParams();
@@ -21,7 +20,7 @@ export function ItemContainer({ itemData, getItem, addItemToCart }) {
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar back={true} text={itemData.item.name} />
+      <NavBar text={itemData.item.name} />
       <ItemArea
         initialValues={itemData.extraValues}
         item={itemData.item}

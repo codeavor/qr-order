@@ -45,7 +45,7 @@ export function CartContainer({
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar back={true} text="My Cart" />
+      <NavBar text="My Cart" />
       {cartData.cart.length !== 0 ? (
         <Box py={5} mt={5}>
           <CartArea

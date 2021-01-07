@@ -6,7 +6,7 @@ import NavBar from "../components/common/NavBar";
 export function FinalContainer() {
   return (
     <React.Fragment>
-      <NavBar back={true} text="Order Completed!" />
+      <NavBar text="Order Completed!" />
       <Grid
         container
         justify="center"
