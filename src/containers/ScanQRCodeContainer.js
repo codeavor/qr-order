@@ -16,7 +16,7 @@ export function ScanQRCodeContainer({ errorData }) {
 
   return (
     <React.Fragment>
-      <NavBar text="Scan QR Code!" />
+      <NavBar text="Scan QR Code!" back={false} />
       <Grid
         container
         justify="center"
