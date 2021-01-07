@@ -13,6 +13,7 @@ QuantityButton.propTypes = {
 };
 
 QuantityButton.defaultProps = {
+  setQuantityNum: () => {},
   quantityNum: 1,
 };
 

@@ -14,9 +14,9 @@ OrderArea.propTypes = {
 };
 
 OrderArea.defaultProps = {
+  statusFilter: "",
   orders: [],
   changeStatus: () => {},
-  statusFilter: "",
 };
 
 const useStyles = makeStyles((theme) => ({

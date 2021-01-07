@@ -38,7 +38,6 @@ export function CheckoutContainer({
             ? orderComplete
             : changeStatus
         }
-        orderId={window.localStorage.getItem(C.ORDER_ID)}
         route={C.FINAL_PATH}
       />
     </React.Fragment>

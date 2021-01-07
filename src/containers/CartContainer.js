@@ -1,19 +1,35 @@
 import React, { useEffect } from "react";
 
-import { Box } from "@material-ui/core";
 import { connect } from "react-redux";
+
+import Box from "@material-ui/core/Box";
+import CartArea from "../components/cart/CartArea";
+import BottomBox from "../components/common/BottomBox";
+import NavBar from "../components/common/NavBar";
+import Loading from "../components/common/Loading";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import C from "../constants";
 
 import {
   getCart,
   deleteOrderItem,
   changeQuantity,
 } from "../actions/cartActions";
-import CartArea from "../components/cart/CartArea";
-import BottomBox from "../components/common/BottomBox";
-import NavBar from "../components/common/NavBar";
-import Loading from "../components/common/Loading";
-import C from "../constants";
 import { totalCartPrice } from "../utils/cart/cartUtils";
+
+const EmptyCart = () => {
+  return (
+    <Grid
+      container
+      justify="center"
+      alignItems="center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Typography>Cart is empty!</Typography>
+    </Grid>
+  );
+};
 
 export function CartContainer({
   cartData,
@@ -30,15 +46,19 @@ export function CartContainer({
   ) : (
     <React.Fragment>
       <NavBar back={true} text="My Cart" />
-      <Box py={5} mt={5}>
-        <CartArea
-          cart={cartData.cart}
-          deleteOrderItem={deleteOrderItem}
-          changeQuantity={changeQuantity}
-        />
-      </Box>
+      {cartData.cart.length !== 0 ? (
+        <Box py={5} mt={5}>
+          <CartArea
+            cart={cartData.cart}
+            deleteOrderItem={deleteOrderItem}
+            changeQuantity={changeQuantity}
+          />
+        </Box>
+      ) : (
+        <EmptyCart />
+      )}
       <BottomBox
-        disable={totalCartPrice(cartData.cart) === 0}
+        disable={cartData.cart.length === 0}
         text={"Continue"}
         price={"" + totalCartPrice(cartData.cart)}
         route={C.CHECKOUT_PATH}

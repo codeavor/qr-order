@@ -11,6 +11,7 @@ import {
   getExtrasId,
   getExtrasPrice,
 } from "../../utils/extra/extraUtils";
+import C from "../../constants";
 
 BottomBox.propTypes = {
   text: PropTypes.string,
@@ -18,7 +19,6 @@ BottomBox.propTypes = {
   price: PropTypes.string,
   route: PropTypes.string,
   addItemToCart: PropTypes.func,
-  orderId: PropTypes.string,
   itemId: PropTypes.number,
   values: PropTypes.object,
   notes: PropTypes.any,
@@ -47,7 +47,6 @@ export default function BottomBox({
   price,
   route,
   addItemToCart,
-  orderId,
   itemId,
   disable,
   values,
@@ -55,6 +54,7 @@ export default function BottomBox({
   notes,
 }) {
   const classes = useStyles();
+  const orderId = window.localStorage.getItem(C.ORDER_ID);
   const [quantityNum, setQuantityNum] = React.useState(1);
   const [totalPrice, setTotalPrice] = React.useState(price);
   const [extrasId, setExtrasId] = React.useState([]);

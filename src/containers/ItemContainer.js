@@ -25,7 +25,6 @@ export function ItemContainer({ itemData, getItem, addItemToCart }) {
       <ItemArea
         initialValues={itemData.extraValues}
         item={itemData.item}
-        orderId={window.localStorage.getItem(C.ORDER_ID)}
         addItemToCart={addItemToCart}
       />
     </React.Fragment>

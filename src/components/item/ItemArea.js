@@ -30,20 +30,15 @@ ItemArea.propTypes = {
   item: PropTypes.object,
   initialValues: PropTypes.object,
   addItemToCart: PropTypes.func,
-  orderId: PropTypes.string,
 };
 
 ItemArea.defaultProps = {
   item: { extra_categories: [] },
   initialValues: {},
+  addItemToCart: () => {},
 };
 
-export default function ItemArea({
-  item,
-  initialValues,
-  addItemToCart,
-  orderId,
-}) {
+export default function ItemArea({ item, initialValues, addItemToCart }) {
   const notesRef = useRef();
   const classes = useStyles();
 
@@ -90,7 +85,6 @@ export default function ItemArea({
               route={C.MENU_PATH}
               quantity={true}
               addItemToCart={addItemToCart}
-              orderId={orderId}
               itemId={item.id}
               values={values}
               notes={notesRef}

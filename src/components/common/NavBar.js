@@ -23,13 +23,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 NavBar.propTypes = {
+  removeOrder: PropTypes.func,
   statusFilter: PropTypes.string,
   setStatusFilter: PropTypes.func,
   back: PropTypes.bool,
   text: PropTypes.string,
   page: PropTypes.string,
   createOrder: PropTypes.func,
-  removeOrder: PropTypes.func,
 };
 
 export function NavBar({
@@ -45,12 +45,12 @@ export function NavBar({
   const history = useHistory();
 
   const isTakeAwayMenu = () => {
-    let role = window.localStorage.getItem(C.ROLE);
+    const role = window.localStorage.getItem(C.ROLE);
     return role === C.KITCHEN_ROLE && page === "menu";
   };
 
   const backButton = () => {
-    let orderId = window.localStorage.getItem(C.ORDER_ID);
+    const orderId = window.localStorage.getItem(C.ORDER_ID);
 
     if (isTakeAwayMenu()) {
       removeOrder(orderId);
