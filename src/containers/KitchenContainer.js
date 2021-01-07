@@ -7,9 +7,9 @@ import {
   createOrder,
   getOrders,
 } from "../actions/kitchenActions";
-import Loading from "../components/Loading";
-import NavBar from "../components/NavBar";
-import OrderArea from "../components/OrderArea";
+import Loading from "../components/common/Loading";
+import NavBar from "../components/common/NavBar";
+import OrderArea from "../components/orders/OrderArea";
 
 export function KitchenContainer({
   kitchenData,

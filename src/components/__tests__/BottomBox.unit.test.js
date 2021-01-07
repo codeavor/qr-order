@@ -1,10 +1,10 @@
 import React from "react";
+import createShallow from "@material-ui/core/test-utils/createShallow";
+import { fireEvent, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import BottomBox from "../BottomBox";
-import { createShallow } from "@material-ui/core/test-utils";
-import QuantityButton from "../QuantityButton";
 import BottomButton from "../BottomButton";
-import { fireEvent, render } from "@testing-library/react";
+import QuantityButton from "../QuantityButton";
 
 describe("BottomBox", () => {
   const mockAddItemToCart = jest.fn();

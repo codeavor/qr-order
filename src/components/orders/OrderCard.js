@@ -1,17 +1,18 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
+
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardHeader from "@material-ui/core/CardHeader";
+import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
-import C from "../constants";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import PropTypes from "prop-types";
 
-import CheckoutItem from "./CheckoutItem";
-import { Divider } from "@material-ui/core";
-import { totalCartPrice } from "../utils/cart/cartUtils";
+import CheckoutItem from "../checkout/CheckoutItem";
+import { totalCartPrice } from "../../utils/cart/cartUtils";
+import C from "../../constants";
 
 const useStyles = makeStyles(() => ({
   root: {

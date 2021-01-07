@@ -1,11 +1,11 @@
 import React from "react";
 
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
 
 QuantityButton.propTypes = {
   setQuantityNum: PropTypes.func,

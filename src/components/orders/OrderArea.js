@@ -1,9 +1,11 @@
 import React from "react";
 
-import { GridList, GridListTile } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import PropTypes from "prop-types";
-import OrderCard from "../components/OrderCard";
+
+import OrderCard from "./OrderCard";
 
 OrderArea.propTypes = {
   orders: PropTypes.array,

@@ -1,17 +1,18 @@
 import React from "react";
+
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import PropTypes from "prop-types";
 
-import { showExtras, totalItemPrice } from "../utils/cart/cartUtils";
-import { Divider } from "@material-ui/core";
+import { showExtras, totalItemPrice } from "../../utils/cart/cartUtils";
 
 const useStyles = makeStyles((theme) => ({
   smallButton: {

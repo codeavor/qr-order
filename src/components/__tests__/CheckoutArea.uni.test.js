@@ -1,5 +1,5 @@
 import React from "react";
-import { createShallow } from "@material-ui/core/test-utils";
+import createShallow from "@material-ui/core/test-utils/createShallow";
 import CheckoutArea from "../CheckoutArea";
 import CheckoutItem from "../CheckoutItem";
 

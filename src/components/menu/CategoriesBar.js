@@ -1,14 +1,14 @@
 import React from "react";
 
 import AppBar from "@material-ui/core/AppBar";
-import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 import * as Scroll from "react-scroll";
 
-import BackToTopButton from "./BackToTopButton";
+import BackToTopButton from "../common/BackToTopButton";
 
 const useStyles = makeStyles((theme) => ({
   tabText: {

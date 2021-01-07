@@ -1,16 +1,16 @@
 import React, { useRef } from "react";
 
+import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
-import { makeStyles } from "@material-ui/core/styles";
-
-import PropTypes from "prop-types";
-import ExtraCategory from "./ExtraCategory";
-import { Formik, Form } from "formik";
-import BottomBox from "./BottomBox";
-import C from "../constants";
-import { checkIfSketos, disableSugars } from "../utils/extra/extraUtils";
-import { Box } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import { Formik, Form } from "formik";
+import PropTypes from "prop-types";
+
+import ExtraCategory from "./ExtraCategory";
+import BottomBox from "../common/BottomBox";
+import C from "../../constants";
+import { checkIfSketos, disableSugars } from "../../utils/extra/extraUtils";
 
 const useStyles = makeStyles((theme) => ({
   section: {

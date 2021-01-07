@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 
+import { Box } from "@material-ui/core";
 import { connect } from "react-redux";
 
 import {
@@ -7,13 +8,12 @@ import {
   deleteOrderItem,
   changeQuantity,
 } from "../actions/cartActions";
-import Loading from "../components/Loading";
-import CartArea from "../components/CartArea";
-import NavBar from "../components/NavBar";
-import { totalCartPrice } from "../utils/cart/cartUtils";
-import BottomBox from "../components/BottomBox";
+import CartArea from "../components/cart/CartArea";
+import BottomBox from "../components/common/BottomBox";
+import NavBar from "../components/common/NavBar";
+import Loading from "../components/common/Loading";
 import C from "../constants";
-import { Box } from "@material-ui/core";
+import { totalCartPrice } from "../utils/cart/cartUtils";
 
 export function CartContainer({
   cartData,

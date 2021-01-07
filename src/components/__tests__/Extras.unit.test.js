@@ -1,8 +1,8 @@
 import React from "react";
-import { MemoryRouter } from "react-router-dom";
+import CheckBox from "@material-ui/icons/CheckBox";
 import { cleanup, render } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import Extra from "../Extras";
-import { CheckBox } from "@material-ui/icons";
 
 describe("Extra", () => {
   const props = {

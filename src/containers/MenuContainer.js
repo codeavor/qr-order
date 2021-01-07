@@ -5,11 +5,11 @@ import { connect } from "react-redux";
 import { getCart } from "../actions/cartActions";
 import { removeOrder } from "../actions/kitchenActions";
 import { getMenu } from "../actions/menuActions";
-import BottomBox from "../components/BottomBox";
-import CategoriesBar from "../components/CategoriesBar";
-import Loading from "../components/Loading";
-import MenuArea from "../components/MenuArea";
-import NavBar from "../components/NavBar";
+import BottomBox from "../components/common/BottomBox";
+import Loading from "../components/common/Loading";
+import NavBar from "../components/common/NavBar";
+import CategoriesBar from "../components/menu/CategoriesBar";
+import MenuArea from "../components/menu/MenuArea";
 import C from "../constants";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 

@@ -1,8 +1,8 @@
 import axios from "axios";
+import { handleError } from "./errorActions";
 import C from "../constants";
 import { removeToken } from "../utils/auth/removeToken";
 import { fixCart } from "../utils/cart/cartUtils";
-import { handleError } from "./errorActions";
 
 export const getCartRequest = () => {
   return {

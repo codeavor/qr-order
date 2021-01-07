@@ -1,14 +1,16 @@
 import React from "react";
+
 import Box from "@material-ui/core/Box";
-import QuantityButton from "../components/QuantityButton";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import PropTypes from "prop-types";
-import BottomButton from "../components/BottomButton";
-import { makeStyles } from "@material-ui/core/styles";
+
+import BottomButton from "./BottomButton";
+import QuantityButton from "./QuantityButton";
 import {
   fixExtras,
   getExtrasId,
   getExtrasPrice,
-} from "../utils/extra/extraUtils";
+} from "../../utils/extra/extraUtils";
 
 BottomBox.propTypes = {
   text: PropTypes.string,

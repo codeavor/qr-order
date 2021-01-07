@@ -5,7 +5,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import PropTypes from "prop-types";
 
 import Extras from "./Extras";
-import { combinedPriceId } from "../utils/extra/extraUtils";
+import { combinedPriceId } from "../../utils/extra/extraUtils";
 
 ExtraCheckBox.propTypes = {
   extra_category: PropTypes.object,

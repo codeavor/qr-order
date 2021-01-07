@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 
+import Box from "@material-ui/core/Box";
 import { connect } from "react-redux";
 
 import { getCart, orderComplete } from "../actions/cartActions";
-import BackToTopButton from "../components/BackToTopButton";
-import Loading from "../components/Loading";
-import CheckoutArea from "../components/CheckoutArea";
-import NavBar from "../components/NavBar";
-import { totalCartPrice } from "../utils/cart/cartUtils";
-import BottomBox from "../components/BottomBox";
-import C from "../constants";
-import Box from "@material-ui/core/Box";
 import { changeStatus } from "../actions/kitchenActions";
+import CheckoutArea from "../components/checkout/CheckoutArea";
+import BottomBox from "../components/common/BottomBox";
+import Loading from "../components/common/Loading";
+import NavBar from "../components/common/NavBar";
+import C from "../constants";
+import { totalCartPrice } from "../utils/cart/cartUtils";
 
 export function CheckoutContainer({
   cartData,
@@ -42,7 +41,6 @@ export function CheckoutContainer({
         orderId={window.localStorage.getItem(C.ORDER_ID)}
         route={C.FINAL_PATH}
       />
-      <BackToTopButton />
     </React.Fragment>
   );
 }

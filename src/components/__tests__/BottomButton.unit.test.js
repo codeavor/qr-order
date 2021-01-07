@@ -1,6 +1,6 @@
 import React from "react";
-import { MemoryRouter } from "react-router-dom";
 import { cleanup, render } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import BottomButton from "../BottomButton";
 
 describe("BottomButton", () => {

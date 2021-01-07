@@ -1,8 +1,8 @@
 import axios from "axios";
-import C from "../constants";
-import { handleError, resetError } from "../actions/errorActions";
-import { setOrderId } from "../utils/auth/setAuthorizationToken";
 import { push } from "connected-react-router";
+import { handleError, resetError } from "../actions/errorActions";
+import C from "../constants";
+import { setOrderId } from "../utils/auth/setAuthorizationToken";
 
 export const getKitchenRequest = () => {
   return {

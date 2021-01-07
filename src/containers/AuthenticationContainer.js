@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { getToken } from "../actions/authActions";
-import Loading from "../components/Loading";
+import Loading from "../components/common/Loading";
 
 export function AuthenticationContainer({ getToken }) {
   const { id } = useParams();

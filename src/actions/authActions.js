@@ -1,8 +1,8 @@
 import axios from "axios";
-import C from "../constants";
-import setAuthorizationToken from "../utils/auth/setAuthorizationToken";
 import { push } from "connected-react-router";
 import { handleError } from "./errorActions";
+import C from "../constants";
+import setAuthorizationToken from "../utils/auth/setAuthorizationToken";
 
 export const getToken = (id) => {
   const options = {

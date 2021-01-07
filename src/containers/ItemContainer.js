@@ -3,11 +3,11 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getItem } from "../actions/itemActions";
 import { addItemToCart } from "../actions/cartActions";
-import ItemArea from "../components/ItemArea";
-import Loading from "../components/Loading";
-import NavBar from "../components/NavBar";
+import { getItem } from "../actions/itemActions";
+import Loading from "../components/common/Loading";
+import NavBar from "../components/common/NavBar";
+import ItemArea from "../components/item/ItemArea";
 import C from "../constants";
 
 export function ItemContainer({ itemData, getItem, addItemToCart }) {

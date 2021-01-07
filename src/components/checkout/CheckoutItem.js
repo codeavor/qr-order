@@ -1,11 +1,13 @@
 import React from "react";
-import { ListItemAvatar, ListItemSecondaryAction } from "@material-ui/core";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import PropTypes from "prop-types";
-import Typography from "@material-ui/core/Typography";
 
-import { showExtras, totalItemPrice } from "../utils/cart/cartUtils";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
+
+import { showExtras, totalItemPrice } from "../../utils/cart/cartUtils";
 
 CheckoutItem.propTypes = {
   item_name: PropTypes.string,

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import NavBar from "../components/NavBar";
 import { connect } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
+import NavBar from "../components/common/NavBar";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;

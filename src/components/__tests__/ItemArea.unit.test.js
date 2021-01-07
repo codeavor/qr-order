@@ -1,11 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
-import {
-  fireEvent,
-  getByPlaceholderText,
-  render,
-  wait,
-} from "@testing-library/react";
+import { fireEvent, render, wait } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ItemArea from "../ItemArea";
 
