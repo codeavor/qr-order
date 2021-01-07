@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-scroll";
 import * as Scroll from "react-scroll";
 
-import BackToTopButton from "../common/BackToTopButton";
+import BackToTopButton from "./BackToTopButton";
 
 const useStyles = makeStyles((theme) => ({
   tabText: {

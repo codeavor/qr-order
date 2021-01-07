@@ -8,7 +8,7 @@ import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 
 import ExtraCategory from "./ExtraCategory";
-import BottomBox from "../common/BottomBox";
+import ItemBottomBox from "./ItemBottomBox";
 import C from "../../constants";
 import { checkIfSketos, disableSugars } from "../../utils/extra/extraUtils";
 
@@ -79,11 +79,10 @@ export default function ItemArea({ item, initialValues, addItemToCart }) {
                 />
               </Container>
             </Box>
-            <BottomBox
+            <ItemBottomBox
               text={"Add To Cart"}
               price={item.price}
               route={C.MENU_PATH}
-              quantity={true}
               addItemToCart={addItemToCart}
               itemId={item.id}
               values={values}

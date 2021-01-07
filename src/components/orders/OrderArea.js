@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-around",
     overflow: "hidden",
   },
   gridList: {
@@ -33,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   fullHeight: {
-    height: "100vh !important",
+    height: "98vh !important",
     paddingRight: "0.5em !important",
     paddingLeft: "0.5em !important",
   },

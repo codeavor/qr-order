@@ -54,7 +54,7 @@ export default function CartItem({
   changeQuantity,
 }) {
   const classes = useStyles();
-  const QuantityButton = ({ symbol, ...props }) => {
+  const CartQuantityButton = ({ symbol, ...props }) => {
     return (
       <Button
         size="small"
@@ -87,7 +87,7 @@ export default function CartItem({
                 alignItems="center"
               >
                 <Box>
-                  <QuantityButton
+                  <CartQuantityButton
                     data-testid="increase-quantity"
                     symbol="+"
                     onClick={() => changeQuantity(quantity + 1, id)}
@@ -95,7 +95,7 @@ export default function CartItem({
                   <Box display="inline" px={2} data-testid="cart-item-quantity">
                     <Typography display="inline">{quantity}</Typography>
                   </Box>
-                  <QuantityButton
+                  <CartQuantityButton
                     data-testid="decrease-quantity"
                     symbol="-"
                     onClick={() => changeQuantity(quantity - 1, id)}

@@ -9,9 +9,9 @@ import BottomBox from "../components/common/BottomBox";
 import Loading from "../components/common/Loading";
 import CategoriesBar from "../components/menu/CategoriesBar";
 import MenuArea from "../components/menu/MenuArea";
+import MenuNavBar from "../components/menu/MenuNavBar";
 import C from "../constants";
 import { totalCartPrice } from "../utils/cart/cartUtils";
-import MenuNavBar from "../components/menu/MenuNavBar";
 
 export function MenuContainer({
   menuData,
@@ -36,7 +36,6 @@ export function MenuContainer({
         text="Cart"
         price={"" + totalCartPrice(cartData.cart)}
         route={C.CART_PATH}
-        quantity={false}
       />
     </React.Fragment>
   );

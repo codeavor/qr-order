@@ -58,10 +58,10 @@ export function CartContainer({
         <EmptyCart />
       )}
       <BottomBox
-        disable={cartData.cart.length === 0}
         text={"Continue"}
         price={"" + totalCartPrice(cartData.cart)}
         route={C.CHECKOUT_PATH}
+        disabled={cartData.cart.length === 0}
       />
     </React.Fragment>
   );

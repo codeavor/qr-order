@@ -18,9 +18,11 @@ export function CheckoutContainer({
   orderComplete,
   changeStatus,
 }) {
+  const isCustomer = window.localStorage.getItem(C.ROLE) === C.CUSTOMER_ROLE;
+  const orderId = window.localStorage.getItem(C.ORDER_ID);
   useEffect(() => {
-    getCart(window.localStorage.getItem(C.ORDER_ID));
-  }, [getCart]);
+    getCart(orderId);
+  }, [getCart, orderId]);
 
   return cartData.loading ? (
     <Loading />
@@ -33,12 +35,10 @@ export function CheckoutContainer({
       <BottomBox
         text={"Checkout"}
         price={"" + totalCartPrice(cartData.cart)}
-        completeOrder={
-          window.localStorage.getItem(C.ROLE) === C.CUSTOMER_ROLE
-            ? orderComplete
-            : changeStatus
-        }
         route={C.FINAL_PATH}
+        onClick={() =>
+          isCustomer ? orderComplete(orderId) : changeStatus(orderId)
+        }
       />
     </React.Fragment>
   );
