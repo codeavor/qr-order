@@ -6,6 +6,7 @@ import { getCart } from "../actions/cartActions";
 import { removeOrder } from "../actions/ordersActions";
 import { getMenu } from "../actions/menuActions";
 import BottomBox from "../components/common/BottomBox";
+import BottomButton from "../components/common/BottomButton";
 import Loading from "../components/common/Loading";
 import CategoriesBar from "../components/menu/CategoriesBar";
 import MenuArea from "../components/menu/MenuArea";
@@ -32,11 +33,13 @@ export function MenuContainer({
       <MenuNavBar text="Welcome" removeOrder={removeOrder} />
       <CategoriesBar menu={menuData.menu} />
       <MenuArea menu={menuData.menu} />
-      <BottomBox
-        text="Cart"
-        price={"" + totalCartPrice(cartData.cart)}
-        route={C.CART_PATH}
-      />
+      <BottomBox>
+        <BottomButton
+          text="Cart"
+          price={totalCartPrice(cartData.cart)}
+          route={C.CART_PATH}
+        />
+      </BottomBox>
     </React.Fragment>
   );
 }

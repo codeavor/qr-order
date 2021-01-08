@@ -1,6 +1,6 @@
 import React from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
-import BackToTopButton from "../menu/BackToTopButton";
+import BackToTopButton from "../BackToTopButton";
 
 describe("BackToTopButton", () => {
   const mockFunction = jest.fn();

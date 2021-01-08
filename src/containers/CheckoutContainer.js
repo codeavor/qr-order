@@ -7,6 +7,7 @@ import { getCart, orderComplete } from "../actions/cartActions";
 import { changeStatus } from "../actions/ordersActions";
 import CheckoutArea from "../components/checkout/CheckoutArea";
 import BottomBox from "../components/common/BottomBox";
+import BottomButton from "../components/common/BottomButton";
 import Loading from "../components/common/Loading";
 import NavBar from "../components/common/NavBar";
 import C from "../constants";
@@ -32,14 +33,16 @@ export function CheckoutContainer({
       <Box py={5} my={5}>
         <CheckoutArea cart={cartData.cart} />
       </Box>
-      <BottomBox
-        text={"Checkout"}
-        price={"" + totalCartPrice(cartData.cart)}
-        route={C.FINAL_PATH}
-        onClick={() =>
-          isCustomer ? orderComplete(orderId) : changeStatus(orderId)
-        }
-      />
+      <BottomBox>
+        <BottomButton
+          text={"Checkout"}
+          price={totalCartPrice(cartData.cart)}
+          route={C.FINAL_PATH}
+          onClick={() =>
+            isCustomer ? orderComplete(orderId) : changeStatus(orderId)
+          }
+        />
+      </BottomBox>
     </React.Fragment>
   );
 }

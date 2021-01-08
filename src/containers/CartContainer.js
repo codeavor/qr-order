@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Box from "@material-ui/core/Box";
 import CartArea from "../components/cart/CartArea";
 import BottomBox from "../components/common/BottomBox";
+import BottomButton from "../components/common/BottomButton";
 import NavBar from "../components/common/NavBar";
 import Loading from "../components/common/Loading";
 import Grid from "@material-ui/core/Grid";
@@ -22,6 +23,7 @@ const EmptyCart = () => {
   return (
     <Grid
       container
+      data-testid="empty-cart"
       justify="center"
       alignItems="center"
       style={{ minHeight: "100vh" }}
@@ -57,12 +59,14 @@ export function CartContainer({
       ) : (
         <EmptyCart />
       )}
-      <BottomBox
-        text={"Continue"}
-        price={"" + totalCartPrice(cartData.cart)}
-        route={C.CHECKOUT_PATH}
-        disabled={cartData.cart.length === 0}
-      />
+      <BottomBox>
+        <BottomButton
+          text={"Continue"}
+          price={totalCartPrice(cartData.cart)}
+          route={C.CHECKOUT_PATH}
+          disabled={cartData.cart.length === 0}
+        />
+      </BottomBox>
     </React.Fragment>
   );
 }

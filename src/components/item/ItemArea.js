@@ -8,7 +8,8 @@ import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 
 import ExtraCategory from "./ExtraCategory";
-import ItemBottomBox from "./ItemBottomBox";
+import ItemBottomButtons from "./ItemBottomButtons";
+import BottomBox from "../common/BottomBox";
 import C from "../../constants";
 import { checkIfSketos, disableSugars } from "../../utils/extra/extraUtils";
 
@@ -57,14 +58,12 @@ export default function ItemArea({ item, initialValues, addItemToCart }) {
               <Container className={classes.section} data-testid="item-area">
                 {item.extra_categories.map((extra_category) => (
                   <ExtraCategory
-                    setValues={setValues}
                     extra_category={extra_category}
-                    key={extra_category.id}
-                    values={values}
                     disabled={
                       checkIfSketos(extra_category.name, values) &&
                       disableSugars(values, setValues)
                     }
+                    key={extra_category.id}
                   />
                 ))}
                 <TextField
@@ -79,15 +78,17 @@ export default function ItemArea({ item, initialValues, addItemToCart }) {
                 />
               </Container>
             </Box>
-            <ItemBottomBox
-              text={"Add To Cart"}
-              price={item.price}
-              route={C.MENU_PATH}
-              addItemToCart={addItemToCart}
-              itemId={item.id}
-              values={values}
-              notes={notesRef}
-            />
+            <BottomBox>
+              <ItemBottomButtons
+                text={"Add To Cart"}
+                price={item.price}
+                route={C.MENU_PATH}
+                addItemToCart={addItemToCart}
+                itemId={item.id}
+                values={values}
+                notes={notesRef}
+              />
+            </BottomBox>
           </Form>
         );
       }}

@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import ExtraCheckBox from "./ExtraCheckBox";
 import ExtraRadioGroup from "./ExtraRadioGroup";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   categoryName: {
     textTransform: "capitalize",
     fontWeight: "bold",
@@ -34,6 +34,16 @@ ExtraCategory.defaultProps = {
 export default function ExtraCategory({ extra_category, disabled }) {
   const classes = useStyles();
 
+  const controlType = (extra_category, disabled) => {
+    if (extra_category.type === "checkBox") {
+      return (
+        <ExtraCheckBox extra_category={extra_category} disabled={disabled} />
+      );
+    } else if (extra_category.type === "radioButton") {
+      return <ExtraRadioGroup extra_category={extra_category} />;
+    }
+  };
+
   return (
     <FormControl
       disabled={disabled}
@@ -46,11 +56,7 @@ export default function ExtraCategory({ extra_category, disabled }) {
           {extra_category.name}
         </Typography>
       </FormLabel>
-      {extra_category.type === "checkBox" ? (
-        <ExtraCheckBox extra_category={extra_category} disabled={disabled} />
-      ) : extra_category.type === "radioButton" ? (
-        <ExtraRadioGroup extra_category={extra_category} />
-      ) : null}
+      {controlType(extra_category, disabled)}
     </FormControl>
   );
 }

@@ -1,7 +1,6 @@
 import React from "react";
 
 import Box from "@material-ui/core/Box";
-import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import PropTypes from "prop-types";
@@ -37,17 +36,14 @@ export default function CheckoutArea({ cart }) {
     <Box px={2} className={classes.box} data-testid="checkout-area">
       <List className={classes.item}>
         {cart.map((cartItem) => (
-          <React.Fragment>
-            <CheckoutItem
-              item_name={cartItem.item_name}
-              notes={cartItem.notes}
-              extras={cartItem.extras}
-              quantity={cartItem.quantity}
-              price={cartItem.price}
-              key={cartItem.id}
-            />
-            <Divider />
-          </React.Fragment>
+          <CheckoutItem
+            item_name={cartItem.item_name}
+            notes={cartItem.notes}
+            extras={cartItem.extras}
+            quantity={cartItem.quantity}
+            price={cartItem.price}
+            key={cartItem.id}
+          />
         ))}
       </List>
     </Box>

@@ -1,5 +1,6 @@
 import React from "react";
 
+import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
@@ -29,17 +30,25 @@ export default function CheckoutItem({
   price,
 }) {
   return (
-    <ListItem data-testid="checkout-item" ContainerComponent="div">
-      <ListItemAvatar>
-        <Typography>{quantity}x</Typography>
-      </ListItemAvatar>
-      <ListItemText primary={item_name} secondary={showExtras(extras, notes)} />
-      <ListItemSecondaryAction>
-        <Typography>
-          {totalItemPrice(price, extras, quantity).toFixed(2).replace(".", ",")}
-          €
-        </Typography>
-      </ListItemSecondaryAction>
-    </ListItem>
+    <React.Fragment>
+      <ListItem data-testid="checkout-item" ContainerComponent="div">
+        <ListItemAvatar>
+          <Typography>{quantity}x</Typography>
+        </ListItemAvatar>
+        <ListItemText
+          primary={item_name}
+          secondary={showExtras(extras, notes)}
+        />
+        <ListItemSecondaryAction>
+          <Typography>
+            {totalItemPrice(price, extras, quantity)
+              .toFixed(2)
+              .replace(".", ",")}
+            €
+          </Typography>
+        </ListItemSecondaryAction>
+      </ListItem>
+      <Divider />
+    </React.Fragment>
   );
 }

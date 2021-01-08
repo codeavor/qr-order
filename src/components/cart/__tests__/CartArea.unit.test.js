@@ -1,10 +1,12 @@
 import React from "react";
 import createShallow from "@material-ui/core/test-utils/createShallow";
-import CheckoutArea from "../CheckoutArea";
-import CheckoutItem from "../CheckoutItem";
+import CartArea from "../CartArea";
+import CartItem from "../CartItem";
 
-describe("CheckoutArea", () => {
-  const fixedCart = [
+describe("CartArea", () => {
+  const mockDeleteOrderItem = jest.fn();
+  const mockChangeQuantity = jest.fn();
+  const cart = [
     {
       id: 57,
       order_id: 1,
@@ -62,26 +64,28 @@ describe("CheckoutArea", () => {
   ];
 
   const props = {
-    cart: fixedCart,
+    cart: cart,
+    deleteOrderItem: mockDeleteOrderItem,
+    changeQuantity: mockChangeQuantity,
   };
 
   let shallow;
 
   beforeEach(() => {
-    shallow = createShallow({ untilSelector: CheckoutItem });
+    shallow = createShallow({ untilSelector: CartItem });
   });
 
-  it("renders a <CheckoutArea/> component with expected props", () => {
-    const wrapper = shallow(<CheckoutArea {...props} />);
+  it("renders a <CartArea/> component with expected props", () => {
+    const wrapper = shallow(<CartArea {...props} />);
 
-    const CheckoutItems = wrapper.find(CheckoutItem);
-    expect(CheckoutItems).toHaveLength(fixedCart.length);
+    const CartItems = wrapper.find(CartItem);
+    expect(CartItems).toHaveLength(cart.length);
   });
 
-  it("renders a <CheckoutArea/> component without props", () => {
-    const wrapper = shallow(<CheckoutArea />);
+  it("renders a <CartArea/> component without props", () => {
+    const wrapper = shallow(<CartArea />);
 
-    const CheckoutItems = wrapper.find(CheckoutItem);
-    expect(CheckoutItems).toHaveLength(0);
+    const CartItems = wrapper.find(CartItem);
+    expect(CartItems).toHaveLength(0);
   });
 });

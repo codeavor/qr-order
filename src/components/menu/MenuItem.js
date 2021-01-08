@@ -30,7 +30,7 @@ MenuItem.defaultProps = {
 
 export default function MenuItem({ item }) {
   const classes = useStyles();
-  const itemUrl = "item/" + item.id;
+  const itemUrl = `item/${item.id}`;
 
   return (
     <div className={classes.root}>

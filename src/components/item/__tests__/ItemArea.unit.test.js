@@ -41,7 +41,7 @@ describe("ItemArea", () => {
         {
           id: 8,
           name: "Επιλέξτε είδος ζάχαρης",
-          type: "radioButton",
+          type: "checkbox",
           extras: [
             {
               id: 5,

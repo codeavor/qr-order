@@ -4,23 +4,12 @@ import Box from "@material-ui/core/Box";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import PropTypes from "prop-types";
 
-import BottomButton from "./BottomButton";
-
 BottomBox.propTypes = {
-  text: PropTypes.string,
-  price: PropTypes.string,
-  route: PropTypes.string,
-  completeOrder: PropTypes.func,
-};
-
-BottomBox.defaultProps = {
-  price: "0",
-  route: "/",
-  values: {},
+  children: PropTypes.node,
 };
 
 const useStyles = makeStyles((theme) => ({
-  quantityCounter: {
+  bottomBox: {
     position: "fixed",
     bottom: theme.spacing(0),
     zIndex: "1",
@@ -29,12 +18,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BottomBox({ text, price, route, ...props }) {
+export default function BottomBox({ children }) {
   const classes = useStyles();
 
   return (
     <Box
-      className={classes.quantityCounter}
+      className={classes.bottomBox}
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -42,14 +31,7 @@ export default function BottomBox({ text, price, route, ...props }) {
       boxShadow={3}
       data-testid="bottom-box"
     >
-      <Box pl={0}>
-        <BottomButton
-          text={text}
-          price={parseFloat(price)}
-          route={route}
-          {...props}
-        />
-      </Box>
+      {children}
     </Box>
   );
 }

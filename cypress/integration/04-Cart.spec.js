@@ -18,10 +18,26 @@ describe("Testing /cart", () => {
   beforeEach(() => {
     cy.server();
     cy.restoreLocalStorage();
+    apiMock(C.MENU_ENDPOINT, "GET", mockData.getMenu, "getMenu");
+  });
+
+  it("Shows an empty cart", () => {
+    apiMock(`${C.CART_ENDPOINT}/1`, "GET", mockData.getEmptyCart, "getCart");
+
+    cy.visitMenuPage();
+
+    cy.findByTestId("bottom-button").click();
+
+    cy.wait("@getCart");
+    cy.url().should("eq", C.URL + C.CART_PATH);
+
+    cy.findByTestId("nav-bar").should("exist");
+    cy.findByTestId("empty-cart").should("exist");
+    cy.findByTestId("cart-area").should("not.exist");
+    cy.findByTestId("bottom-button").should("exist");
   });
 
   it("Shows the cart", () => {
-    apiMock(C.MENU_ENDPOINT, "GET", mockData.getMenu, "getMenu");
     apiMock(`${C.CART_ENDPOINT}/1`, "GET", mockData.getCart, "getCart");
 
     cy.visitMenuPage();

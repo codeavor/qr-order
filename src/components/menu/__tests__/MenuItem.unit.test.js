@@ -36,6 +36,4 @@ describe("MenuItem", () => {
 
     expect(queryByTestId(/menu-item/i)).toBeTruthy();
   });
-
-  // TODO: add test case for clicking Button and redirecting
 });
