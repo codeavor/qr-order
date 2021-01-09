@@ -33,11 +33,11 @@ Web app that lets you order just by scanning a QR Code.
 
 Every time a pull request opens:
 
-- project gets tested and has its test coverage report sent to [Code Climate](https://codeclimate.com/github/codeavor/qr-order) using Github Actions (with [this](test.yml) script),
+- project gets tested and has its test coverage report sent to [Code Climate](https://codeclimate.com/github/codeavor/qr-order) using Github Actions (with [this](.github/workflows/test.yml) script),
 - Code Climate tests the code for Duplication/Complexity/Maintainability issues,
 - Netlify creates a deploy preview.
 
 When a pull request gets merged into master:
 
-- using [this](coverage-master.yml) script, a new test coverage report is created and sent to Code Climate,
+- using [this](.github/workflows/coverage-master.yml) script, a new test coverage report is created and sent to Code Climate,
 - app gets deployed to Netlify.
