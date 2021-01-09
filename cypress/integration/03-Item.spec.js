@@ -26,7 +26,7 @@ describe("Testing /item", () => {
   });
 
   it("Shows the item", () => {
-    apiMock(`${C.CART_ENDPOINT}/1`, "GET", mockData.emptyCart, "getCart");
+    apiMock(`${C.CART_ENDPOINT}/1`, "GET", mockData.getEmptyCart, "getCart");
     apiMock(`${C.MENU_ENDPOINT}/1`, "GET", mockData.getItem, "getItem");
 
     cy.visitMenuPage();
@@ -95,7 +95,7 @@ describe("Testing /item", () => {
   });
 
   it("Add item to cart", () => {
-    apiMock(C.ORDER_ENDPOINT, "POST", {}, "addItem");
+    apiMock(C.ORDER_ITEM_ENDPOINT, "POST", {}, "addItem");
     apiMock(
       `${C.CART_ENDPOINT}/1`,
       "GET",

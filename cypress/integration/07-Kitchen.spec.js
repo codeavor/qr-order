@@ -3,7 +3,7 @@ import C from "../../src/constants";
 
 describe("Testing /orders", () => {
   let mockFiles = [
-    "kitchen_mock_data.json",
+    "orders_mock_data.json",
     "menu_mock_data.json",
     "cart_mock_data.json",
   ];
@@ -81,7 +81,7 @@ describe("Testing /orders", () => {
     cy.findAllByTestId("back-button").first().click();
     cy.wait("@deleteOrder");
     cy.wait("@getOrders");
-    cy.url().should("eq", C.URL + C.ORDERS_PATH);
+    cy.url().should("eq", C.URL + C.KITCHEN_PATH);
   });
 
   it("Complete an order as kitchen, redirect back to orders when complete", () => {
@@ -111,6 +111,6 @@ describe("Testing /orders", () => {
     // Complete your order
     cy.findByTestId("bottom-button").click();
     cy.wait("@changeStatus");
-    cy.url().should("eq", C.URL + C.ORDERS_PATH);
+    cy.url().should("eq", C.URL + C.KITCHEN_PATH);
   });
 });

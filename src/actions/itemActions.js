@@ -1,7 +1,7 @@
 import axios from "axios";
+import { handleError } from "./errorActions";
 import C from "../constants";
 import { fixItem, getInitializedExtras } from "../utils/extra/extraUtils";
-import { handleError } from "./errorActions";
 
 export const getItemRequest = () => {
   return {

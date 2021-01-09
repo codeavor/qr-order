@@ -1,6 +1,6 @@
 import axios from "axios";
-import C from "../constants";
 import { handleError, resetError } from "../actions/errorActions";
+import C from "../constants";
 
 export const getMenuRequest = () => {
   return {

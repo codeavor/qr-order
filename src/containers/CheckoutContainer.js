@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 
+import Box from "@material-ui/core/Box";
 import { connect } from "react-redux";
 
 import { getCart, orderComplete } from "../actions/cartActions";
-import BackToTopButton from "../components/BackToTopButton";
-import Loading from "../components/Loading";
-import CheckoutArea from "../components/CheckoutArea";
-import NavBar from "../components/NavBar";
-import CheckoutPayment from "../components/CheckoutPayment";
-import { totalCartPrice } from "../utils/cart/cartUtils";
-import BottomBox from "../components/BottomBox";
+import { changeStatus } from "../actions/ordersActions";
+import CheckoutArea from "../components/checkout/CheckoutArea";
+import BottomBox from "../components/common/BottomBox";
+import BottomButton from "../components/common/BottomButton";
+import Loading from "../components/common/Loading";
+import NavBar from "../components/common/NavBar";
 import C from "../constants";
-import Box from "@material-ui/core/Box";
-import { changeStatus } from "../actions/kitchenActions";
+import { totalCartPrice } from "../utils/cart/cartUtils";
 
 export function CheckoutContainer({
   cartData,
@@ -20,31 +19,30 @@ export function CheckoutContainer({
   orderComplete,
   changeStatus,
 }) {
+  const isCustomer = window.localStorage.getItem(C.ROLE) === C.CUSTOMER_ROLE;
+  const orderId = window.localStorage.getItem(C.ORDER_ID);
   useEffect(() => {
-    getCart(window.localStorage.getItem(C.ORDER_ID));
-  }, [getCart]);
+    getCart(orderId);
+  }, [getCart, orderId]);
 
   return cartData.loading ? (
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar back={true} text="Checkout" />
-      <Box p={5} my={5}>
-        <CheckoutPayment />
+      <NavBar text="Checkout" />
+      <Box py={5} my={5}>
         <CheckoutArea cart={cartData.cart} />
       </Box>
-      <BottomBox
-        text={"Checkout"}
-        price={"" + totalCartPrice(cartData.cart)}
-        completeOrder={
-          window.localStorage.getItem(C.ROLE) === C.CUSTOMER_ROLE
-            ? orderComplete
-            : changeStatus
-        }
-        orderId={window.localStorage.getItem(C.ORDER_ID)}
-        route={C.FINAL_PATH}
-      />
-      <BackToTopButton />
+      <BottomBox>
+        <BottomButton
+          text={"Checkout"}
+          price={totalCartPrice(cartData.cart)}
+          route={C.FINAL_PATH}
+          onClick={() =>
+            isCustomer ? orderComplete(orderId) : changeStatus(orderId)
+          }
+        />
+      </BottomBox>
     </React.Fragment>
   );
 }

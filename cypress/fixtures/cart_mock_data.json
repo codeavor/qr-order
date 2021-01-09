@@ -106,7 +106,7 @@
     "getError": {
       "error": "Something went wrong :("
     },
-    "emptyCart": [],
+    "getEmptyCart": [],
     "cartWithOrderItem": [
       {
         "id": 1,

@@ -53,6 +53,6 @@ describe("Testing /authentication/:id", () => {
     cy.visit(`${C.URL + C.LOGIN_PATH}/0`);
     cy.findByTestId("loading").should("exist");
     cy.wait("@registerKitchen");
-    cy.url().should("eq", C.URL + C.ORDERS_PATH);
+    cy.url().should("eq", C.URL + C.KITCHEN_PATH);
   });
 });

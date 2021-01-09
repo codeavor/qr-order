@@ -1,12 +1,12 @@
 import React from "react";
-import NavBar from "../components/NavBar";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import NavBar from "../components/common/NavBar";
 
 export function FinalContainer() {
   return (
     <React.Fragment>
-      <NavBar back={true} text="Transaction Completed!" />
+      <NavBar text="Order Completed!" />
       <Grid
         container
         justify="center"

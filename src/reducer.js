@@ -4,7 +4,7 @@ import menuReducer from "./reducers/menuReducer";
 import itemReducer from "./reducers/itemReducer";
 import cartReducer from "./reducers/cartReducer";
 import errorReducer from "./reducers/errorReducer";
-import kitchenReducer from "./reducers/kitchenReducer";
+import ordersReducer from "./reducers/ordersReducer";
 
 const createRootReducer = (history) =>
   combineReducers({
@@ -13,6 +13,6 @@ const createRootReducer = (history) =>
     menu: menuReducer,
     item: itemReducer,
     cart: cartReducer,
-    kitchen: kitchenReducer,
+    orders: ordersReducer,
   });
 export default createRootReducer;

@@ -10,7 +10,7 @@ Cypress.Commands.add("visitMenuPage", () => {
 });
 
 Cypress.Commands.add("visitKitchenPage", () => {
-  cy.visit(C.URL + C.ORDERS_PATH);
+  cy.visit(C.URL + C.KITCHEN_PATH);
   cy.findByTestId("loading").should("exist");
   cy.wait("@getOrders");
 });

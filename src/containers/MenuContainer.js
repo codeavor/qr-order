@@ -3,13 +3,14 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { getCart } from "../actions/cartActions";
-import { removeOrder } from "../actions/kitchenActions";
+import { removeOrder } from "../actions/ordersActions";
 import { getMenu } from "../actions/menuActions";
-import BottomBox from "../components/BottomBox";
-import CategoriesBar from "../components/CategoriesBar";
-import Loading from "../components/Loading";
-import MenuArea from "../components/MenuArea";
-import NavBar from "../components/NavBar";
+import BottomBox from "../components/common/BottomBox";
+import BottomButton from "../components/common/BottomButton";
+import Loading from "../components/common/Loading";
+import CategoriesBar from "../components/menu/CategoriesBar";
+import MenuArea from "../components/menu/MenuArea";
+import MenuNavBar from "../components/menu/MenuNavBar";
 import C from "../constants";
 import { totalCartPrice } from "../utils/cart/cartUtils";
 
@@ -29,20 +30,16 @@ export function MenuContainer({
     <Loading />
   ) : (
     <React.Fragment>
-      <NavBar
-        back={true}
-        removeOrder={removeOrder}
-        text="Welcome"
-        page="menu"
-      />
+      <MenuNavBar text="Welcome" removeOrder={removeOrder} />
       <CategoriesBar menu={menuData.menu} />
       <MenuArea menu={menuData.menu} />
-      <BottomBox
-        text="Cart"
-        price={"" + totalCartPrice(cartData.cart)}
-        route={C.CART_PATH}
-        quantity={false}
-      />
+      <BottomBox>
+        <BottomButton
+          text="Cart"
+          price={totalCartPrice(cartData.cart)}
+          route={C.CART_PATH}
+        />
+      </BottomBox>
     </React.Fragment>
   );
 }

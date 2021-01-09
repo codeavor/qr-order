@@ -8,13 +8,13 @@ const C = {
   CART_PATH: "/cart",
   CHECKOUT_PATH: "/checkout",
   FINAL_PATH: "/final",
-  ORDERS_PATH: "/orders",
+  KITCHEN_PATH: "/kitchen",
 
   // API Endpoints
   REGISTER_ENDPOINT: "/auth/register",
   MENU_ENDPOINT: "/menu",
   CART_ENDPOINT: "/cart",
-  ORDER_ENDPOINT: "/order_item",
+  ORDER_ITEM_ENDPOINT: "/order_item",
   ORDERS_ENDPOINT: "/orders",
 
   // Roles
@@ -52,10 +52,10 @@ const C = {
   GET_CART_SUCCESS: "GET_CART_SUCCESS",
   GET_CART_FAILURE: "GET_CART_FAILURE",
 
-  //Kitchen action types
-  GET_KITCHEN: "GET_KITCHEN",
-  GET_KITCHEN_SUCCESS: "GET_KITCHEN_SUCCESS",
-  GET_KITCHEN_FAILURE: "GET_KITCHEN_FAILURE",
+  //Orders action types
+  GET_ORDERS: "GET_ORDERS",
+  GET_ORDERS_SUCCESS: "GET_ORDERS_SUCCESS",
+  GET_ORDERS_FAILURE: "GET_ORDERS_FAILURE",
 
   SUGAR_IDS: ["0 4", "0 5", "0 6"],
   SKETOS_ID: "1",
