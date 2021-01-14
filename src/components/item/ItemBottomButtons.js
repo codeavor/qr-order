@@ -4,6 +4,7 @@ import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 
 import BottomButton from "../common/BottomButton";
+import { useFormContext } from "react-hook-form";
 import QuantityButton from "./QuantityButton";
 import {
   fixExtras,
@@ -18,14 +19,12 @@ ItemBottomButtons.propTypes = {
   route: PropTypes.string,
   addItemToCart: PropTypes.func,
   itemId: PropTypes.number,
-  values: PropTypes.object,
   notes: PropTypes.any,
 };
 
 ItemBottomButtons.defaultProps = {
   price: "0",
   route: "/",
-  values: {},
   addItemToCart: () => {},
   notes: null,
 };
@@ -36,19 +35,19 @@ export default function ItemBottomButtons({
   route,
   addItemToCart,
   itemId,
-  values,
   notes,
 }) {
   const orderId = window.localStorage.getItem(C.ORDER_ID);
   const [quantityNum, setQuantityNum] = useState(1);
   const [totalPrice, setTotalPrice] = useState(price);
   const [extrasId, setExtrasId] = useState([]);
+  const { watch } = useFormContext();
 
   useEffect(() => {
-    let tempExtras = fixExtras(values);
+    let tempExtras = fixExtras(watch());
     setExtrasId(getExtrasId(tempExtras));
     setTotalPrice(getExtrasPrice(tempExtras, price, quantityNum));
-  }, [values, price, quantityNum]);
+  }, [notes, watch, price, quantityNum]);
 
   return (
     <React.Fragment>

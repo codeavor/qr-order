@@ -106,20 +106,17 @@ export function combinedPriceId(price, id) {
 /**
  * Used to disable sugar category if Sketos is checked
  * @param  {Object} values        { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" }
- * @param  {Function} setValues   Function that set the values of Formik
+ * @param  {Function} setValue   Function that set the values of Formik
  * @return {Boolean}
  */
-export function disableSugars(values, setValues) {
-  let changed = false;
+export function disableSugars(values, setValue) {
   let tempValues = { ...values };
   for (let i = 0; i < C.SUGAR_IDS.length; i++) {
     if (tempValues[C.SUGAR_IDS[i]] === true) {
-      tempValues[C.SUGAR_IDS[i]] = false;
-      changed = true;
+      setValue(C.SUGAR_IDS[i], false);
     }
   }
-  if (!changed) return true;
-  setValues(tempValues);
+  return true;
 }
 
 /**
