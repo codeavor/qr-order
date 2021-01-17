@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 
 import ExtraCheckBox from "./ExtraCheckBox";
 import ExtraRadioGroup from "./ExtraRadioGroup";
+import { useFormikContext } from "formik";
 
 const useStyles = makeStyles(() => ({
   categoryName: {
@@ -31,16 +32,32 @@ ExtraCategory.defaultProps = {
   disabled: false,
 };
 
-export default function ExtraCategory({ extra_category, disabled }) {
+function ExtraCategory({ extra_category, disabled }) {
+  const { values, handleChange, setFieldValue } = useFormikContext();
   const classes = useStyles();
 
-  const controlType = (extra_category, disabled) => {
+  const controlType = (extra_category) => {
     if (extra_category.type === "checkBox") {
       return (
-        <ExtraCheckBox extra_category={extra_category} disabled={disabled} />
+        <ExtraCheckBox
+          extra_category={extra_category}
+          values={values}
+          setFieldValue={setFieldValue}
+        />
       );
     } else if (extra_category.type === "radioButton") {
-      return <ExtraRadioGroup extra_category={extra_category} />;
+      // Radio buttons are represented as: Radio Group Name: "price*100 id"
+      const radioGroupValue =
+        values[extra_category.name] === undefined
+          ? ""
+          : values[extra_category.name];
+      return (
+        <ExtraRadioGroup
+          extra_category={extra_category}
+          radioGroupValue={radioGroupValue}
+          handleChange={handleChange}
+        />
+      );
     }
   };
 
@@ -56,7 +73,9 @@ export default function ExtraCategory({ extra_category, disabled }) {
           {extra_category.name}
         </Typography>
       </FormLabel>
-      {controlType(extra_category, disabled)}
+      {controlType(extra_category)}
     </FormControl>
   );
 }
+
+export default memo(ExtraCategory);

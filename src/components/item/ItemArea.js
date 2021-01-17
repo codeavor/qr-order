@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
@@ -8,22 +8,23 @@ import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 
 import ExtraCategory from "./ExtraCategory";
-import ItemBottomButtons from "./ItemBottomButtons";
+import QuantityButton from "./QuantityButton";
 import BottomBox from "../common/BottomBox";
+import BottomButton from "../common/BottomButton";
 import C from "../../constants";
-import { checkIfSketos, disableSugars } from "../../utils/extra/extraUtils";
+import {
+  checkIfSketos,
+  disableSugars,
+  getExtrasPrice,
+} from "../../utils/extra/extraUtils";
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    marginBottom: "60px",
-  },
-  backButton: {
-    position: "fixed",
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
+    marginBottom: "120px",
   },
   textField: {
     margin: "20px 0 20px 0",
+    maxWidth: 390,
   },
 }));
 
@@ -40,6 +41,7 @@ ItemArea.defaultProps = {
 };
 
 export default function ItemArea({ item, initialValues, addItemToCart }) {
+  const [quantityNum, setQuantityNum] = useState(1);
   const notesRef = useRef();
   const classes = useStyles();
 
@@ -72,21 +74,31 @@ export default function ItemArea({ item, initialValues, addItemToCart }) {
                   variant="outlined"
                   multiline
                   placeholder="Ειδικές Οδηγίες:"
-                  rows={3}
+                  rows={2}
                   fullWidth={true}
                   inputRef={notesRef}
                 />
               </Container>
             </Box>
             <BottomBox>
-              <ItemBottomButtons
+              <QuantityButton
+                setQuantityNum={setQuantityNum}
+                quantityNum={quantityNum}
+              />
+              <BottomButton
                 text={"Add To Cart"}
-                price={item.price}
+                price={parseFloat(
+                  getExtrasPrice(values, item.price, quantityNum)
+                )}
                 route={C.MENU_PATH}
-                addItemToCart={addItemToCart}
-                itemId={item.id}
-                values={values}
-                notes={notesRef}
+                onClick={() =>
+                  addItemToCart(
+                    item.id,
+                    quantityNum,
+                    values,
+                    notesRef !== null ? notesRef.current.value : ""
+                  )
+                }
               />
             </BottomBox>
           </Form>

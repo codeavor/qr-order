@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import Box from "@material-ui/core/Box";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -34,7 +34,7 @@ Extra.defaultProps = {
   controlComponent: <CheckBox />,
 };
 
-export default function Extra({ extra, controlComponent }) {
+function Extra({ extra, controlComponent }) {
   let price = extra.price === null ? 0 : extra.price;
   const classes = useStyles();
 
@@ -65,3 +65,21 @@ export default function Extra({ extra, controlComponent }) {
     </Box>
   );
 }
+
+const extrasAreEqual = (prevProps, nextProps) => {
+  const isCheckboxAndCheckedAreEqual = (prevComponent, nextComponent) => {
+    if (prevComponent.props.checked !== undefined)
+      return prevComponent.props.checked === nextComponent.props.checked;
+    else return true;
+  };
+
+  return (
+    prevProps.extra.id === nextProps.extra.id &&
+    isCheckboxAndCheckedAreEqual(
+      prevProps.controlComponent,
+      nextProps.controlComponent
+    )
+  );
+};
+
+export default memo(Extra, extrasAreEqual);

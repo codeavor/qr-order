@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 
 import BottomButton from "../common/BottomButton";
@@ -39,41 +40,27 @@ export default function ItemBottomButtons({
   values,
   notes,
 }) {
-  const orderId = window.localStorage.getItem(C.ORDER_ID);
   const [quantityNum, setQuantityNum] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(price);
-  const [extrasId, setExtrasId] = useState([]);
-
-  useEffect(() => {
-    let tempExtras = fixExtras(values);
-    setExtrasId(getExtrasId(tempExtras));
-    setTotalPrice(getExtrasPrice(tempExtras, price, quantityNum));
-  }, [values, price, quantityNum]);
 
   return (
     <React.Fragment>
-      <Box pr={2}>
-        <QuantityButton
-          setQuantityNum={setQuantityNum}
-          quantityNum={quantityNum}
-        />
-      </Box>
-      <Box pl={2}>
-        <BottomButton
-          text={text}
-          price={parseFloat(totalPrice)}
-          route={route}
-          onClick={() =>
-            addItemToCart(
-              orderId,
-              itemId,
-              quantityNum,
-              extrasId,
-              notes !== null ? notes.current.value : ""
-            )
-          }
-        />
-      </Box>
+      <QuantityButton
+        setQuantityNum={setQuantityNum}
+        quantityNum={quantityNum}
+      />
+      <BottomButton
+        text={text}
+        price={parseFloat(getExtrasPrice(values, price, quantityNum))}
+        route={route}
+        onClick={() =>
+          addItemToCart(
+            itemId,
+            quantityNum,
+            values,
+            notes !== null ? notes.current.value : ""
+          )
+        }
+      />
     </React.Fragment>
   );
 }

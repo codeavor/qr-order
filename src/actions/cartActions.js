@@ -3,6 +3,7 @@ import { handleError } from "./errorActions";
 import C from "../constants";
 import { removeToken } from "../utils/auth/removeToken";
 import { fixCart } from "../utils/cart/cartUtils";
+import { getExtrasId } from "../utils/extra/extraUtils";
 
 export const getCartRequest = () => {
   return {
@@ -87,7 +88,7 @@ export const orderComplete = (orderId) => {
   };
 };
 
-export const addItemToCart = (orderId, itemId, quantity, extrasId, notes) => {
+export const addItemToCart = (itemId, quantity, values, notes) => {
   const options = {
     url: C.API_URL + C.ORDER_ITEM_ENDPOINT,
     method: "POST",
@@ -95,10 +96,10 @@ export const addItemToCart = (orderId, itemId, quantity, extrasId, notes) => {
       "Content-Type": "application/json",
     },
     data: {
-      order_id: orderId,
+      order_id: window.localStorage.getItem(C.ORDER_ID),
       item_id: itemId,
       quantity: quantity,
-      extras_id: extrasId,
+      extras_id: getExtrasId(values),
       notes: notes,
     },
   };

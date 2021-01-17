@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 
-import { useFormikContext } from "formik";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
 import PropTypes from "prop-types";
 
 import Extras from "./Extras";
-import { Radio, RadioGroup } from "@material-ui/core";
 
 ExtraRadioGroup.propTypes = {
   extra_category: PropTypes.object,
@@ -14,19 +14,9 @@ ExtraRadioGroup.defaultProps = {
   extra_category: { extras: [] },
 };
 
-export default function ExtraRadioGroup({ extra_category }) {
-  const { values, handleChange } = useFormikContext();
-
+function ExtraRadioGroup({ extra_category, radioGroupValue, handleChange }) {
   return (
-    <RadioGroup
-      name={extra_category.name}
-      // Radio buttons are represented as: Radio Group Name: "price*100 id"
-      value={
-        values[extra_category.name] === undefined
-          ? ""
-          : values[extra_category.name]
-      }
-    >
+    <RadioGroup name={extra_category.name} value={radioGroupValue}>
       {extra_category.extras.map((extra) => (
         <Extras
           extra={extra}
@@ -39,3 +29,13 @@ export default function ExtraRadioGroup({ extra_category }) {
     </RadioGroup>
   );
 }
+
+const extraRadioGroupsAreEqual = (prevProps, nextProps) => {
+  return (
+    prevProps.radioGroupValue === nextProps.radioGroupValue &&
+    prevProps.handleChange === nextProps.handleChange &&
+    prevProps.extra_category.id === nextProps.extra_category.id
+  );
+};
+
+export default memo(ExtraRadioGroup, extraRadioGroupsAreEqual);

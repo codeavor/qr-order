@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
@@ -24,15 +24,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function QuantityButton({ setQuantityNum, quantityNum }) {
+function QuantityButton({ setQuantityNum, quantityNum }) {
   const classes = useStyles();
 
   return (
-    <ButtonGroup data-testid="quantity-button-group">
+    <ButtonGroup
+      data-testid="quantity-button-group"
+      disableFocusRipple={true}
+      disableRipple={true}
+    >
       <Button
         data-testid="minus-quantity-button"
-        disableFocusRipple={true}
-        disableRipple={true}
         size="small"
         aria-label="reduce"
         variant="contained"
@@ -45,8 +47,6 @@ export default function QuantityButton({ setQuantityNum, quantityNum }) {
       </Button>
       <Button
         className={classes.quantityDisabledButton}
-        disableFocusRipple={true}
-        disableRipple={true}
         data-testid="quantity-value-button"
         size="small"
         disabled
@@ -55,8 +55,6 @@ export default function QuantityButton({ setQuantityNum, quantityNum }) {
       </Button>
       <Button
         data-testid="plus-quantity-button"
-        disableFocusRipple={true}
-        disableRipple={true}
         size="small"
         aria-label="increase"
         variant="contained"
@@ -70,3 +68,5 @@ export default function QuantityButton({ setQuantityNum, quantityNum }) {
     </ButtonGroup>
   );
 }
+
+export default memo(QuantityButton);

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Children } from "react";
 
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import PropTypes from "prop-types";
 
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(0),
     zIndex: "1",
     width: "100%",
-    height: 60,
+    padding: "1em 0 1em 0",
   },
 }));
 
@@ -31,7 +32,11 @@ export default function BottomBox({ children }) {
       boxShadow={3}
       data-testid="bottom-box"
     >
-      {children}
+      <Grid container justify="center" alignItems="center" spacing={2}>
+        {Children.map(children, (child) => (
+          <Grid item>{child}</Grid>
+        ))}
+      </Grid>
     </Box>
   );
 }
