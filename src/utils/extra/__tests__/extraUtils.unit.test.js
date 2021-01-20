@@ -149,12 +149,12 @@ describe("extraUtils", () => {
   });
 
   it("getExtrasId works correctly", () => {
-    expect(getExtrasId(fixedValues)).toEqual(extrasId);
+    expect(getExtrasId(values)).toEqual(extrasId);
     expect(getExtrasId([])).toEqual([]);
   });
 
   it("getExtrasPrice works correctly", () => {
-    expect(getExtrasPrice(fixedValues, 1, 1)).toEqual(1);
+    expect(getExtrasPrice(values, 1, 1)).toEqual(1);
     expect(getExtrasPrice([], 1, 1)).toEqual(1);
     expect(getExtrasPrice([], undefined, undefined)).toEqual(0);
   });
@@ -174,7 +174,7 @@ describe("extraUtils", () => {
 
   it("disableSugars works correctly", () => {
     expect(disableSugars(values2, mockSetValue)).toEqual(true);
-    expect(disableSugars(sugarValues, mockSetValue)).toEqual(undefined);
+    expect(disableSugars(sugarValues, mockSetValue)).toEqual(true);
   });
 
   it("disableSugars works correctly", () => {

@@ -35,10 +35,11 @@ export function fixExtras(extras) {
 
 /**
  * Returns only the ids of the selected extras.
- * @param  {Array} extras   [{ extra_id: "7", extra_price: 0 },{ extra_id: "1", extra_price: 0 },]
+ * @param  {Array} values   {Επιλέξτε μέγεθος: "0 7", "20 10": true, ...}
  * @return {Array}         [{ extra_id: "7" },{ extra_id: "1" },]
  */
-export function getExtrasId(extras) {
+export function getExtrasId(values) {
+  const extras = fixExtras(values);
   if (Array.isArray(extras) && extras.length === 0) return [];
   let extrasIdArray = extras.map((extra) => {
     return { extra_id: extra.extra_id };
@@ -48,12 +49,13 @@ export function getExtrasId(extras) {
 
 /**
  * Returns only the ids of the selected extras.
- * @param  {Array} extras       [{ extra_id: "7", extra_price: 0 },{ extra_id: "1", extra_price: 0 },]
+ * @param  {Array} values       {Επιλέξτε μέγεθος: "0 7", "20 10": true, ...}
  * @param  {String} itemPrice   "1"
  * @param  {Integer} quantity   1
  * @return {Float}              1.2
  */
-export function getExtrasPrice(extras, itemPrice, quantity) {
+export function getExtrasPrice(values, itemPrice, quantity) {
+  const extras = fixExtras(values);
   if (Array.isArray(extras) && extras.length === 0)
     if (itemPrice !== undefined && quantity !== undefined)
       return parseFloat(itemPrice) * parseInt(quantity, 10);
@@ -106,20 +108,17 @@ export function combinedPriceId(price, id) {
 /**
  * Used to disable sugar category if Sketos is checked
  * @param  {Object} values        { "Επιλέξτε μέγεθος": "0 7", "Επιλέξτε ζάχαρη": "0 1" }
- * @param  {Function} setValues   Function that set the values of Formik
+ * @param  {Function} setValue   Function that set the values of Formik
  * @return {Boolean}
  */
-export function disableSugars(values, setValues) {
-  let changed = false;
+export function disableSugars(values, setValue) {
   let tempValues = { ...values };
   for (let i = 0; i < C.SUGAR_IDS.length; i++) {
     if (tempValues[C.SUGAR_IDS[i]] === true) {
-      tempValues[C.SUGAR_IDS[i]] = false;
-      changed = true;
+      setValue(C.SUGAR_IDS[i], false);
     }
   }
-  if (!changed) return true;
-  setValues(tempValues);
+  return true;
 }
 
 /**

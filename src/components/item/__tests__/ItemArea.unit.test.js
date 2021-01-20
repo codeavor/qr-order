@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
-import { fireEvent, render, wait } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import ItemArea from "../ItemArea";
 
@@ -95,55 +95,49 @@ describe("ItemArea", () => {
     orderId: "1",
   };
 
-  it("renders a <ItemArea/> component with expected props", async () => {
+  it("renders a <ItemArea/> component with expected props", () => {
     const { getAllByTestId, getByTestId, getByPlaceholderText } = render(
       <MemoryRouter>
         <ItemArea {...props} />
       </MemoryRouter>
     );
-    await wait(() => {
-      expect(getAllByTestId("extra-category")).toHaveLength(
-        props.item.extra_categories.length
-      );
-      expect(getByTestId("bottom-box")).toBeTruthy();
-      fireEvent.change(getByPlaceholderText("Ειδικές Οδηγίες:"), {
-        target: { value: "23" },
-      });
-      expect(getByPlaceholderText("Ειδικές Οδηγίες:").value).toBe("23");
+    expect(getAllByTestId("extra-category")).toHaveLength(
+      props.item.extra_categories.length
+    );
+    expect(getByTestId("bottom-box")).toBeTruthy();
+    fireEvent.change(getByPlaceholderText("Ειδικές Οδηγίες:"), {
+      target: { value: "23" },
     });
+    expect(getByPlaceholderText("Ειδικές Οδηγίες:").value).toBe("23");
   });
 
-  it("renders a <ItemArea/> component with expected props and no values", async () => {
+  it("renders a <ItemArea/> component with expected props and no values", () => {
     const { getAllByTestId, getByTestId, getByPlaceholderText } = render(
       <MemoryRouter>
         <ItemArea {...noValuesProps} />
       </MemoryRouter>
     );
-    await wait(() => {
-      expect(getAllByTestId("extra-category")).toHaveLength(
-        noValuesProps.item.extra_categories.length
-      );
-      expect(getByTestId("bottom-box")).toBeTruthy();
-      fireEvent.change(getByPlaceholderText("Ειδικές Οδηγίες:"), {
-        target: { value: "23" },
-      });
-      expect(getByPlaceholderText("Ειδικές Οδηγίες:").value).toBe("23");
+    expect(getAllByTestId("extra-category")).toHaveLength(
+      noValuesProps.item.extra_categories.length
+    );
+    expect(getByTestId("bottom-box")).toBeTruthy();
+    fireEvent.change(getByPlaceholderText("Ειδικές Οδηγίες:"), {
+      target: { value: "23" },
     });
+    expect(getByPlaceholderText("Ειδικές Οδηγίες:").value).toBe("23");
   });
 
-  it("renders a <ItemArea/> component without props", async () => {
+  it("renders a <ItemArea/> component without props", () => {
     const { queryAllByTestId, getByTestId, getByPlaceholderText } = render(
       <MemoryRouter>
         <ItemArea />
       </MemoryRouter>
     );
-    await wait(() => {
-      expect(queryAllByTestId("extra-category")).toHaveLength(0);
-      expect(getByTestId("bottom-box")).toBeTruthy();
-      fireEvent.change(getByPlaceholderText("Ειδικές Οδηγίες:"), {
-        target: { value: "23" },
-      });
-      expect(getByPlaceholderText("Ειδικές Οδηγίες:").value).toBe("23");
+    expect(queryAllByTestId("extra-category")).toHaveLength(0);
+    expect(getByTestId("bottom-box")).toBeTruthy();
+    fireEvent.change(getByPlaceholderText("Ειδικές Οδηγίες:"), {
+      target: { value: "23" },
     });
+    expect(getByPlaceholderText("Ειδικές Οδηγίες:").value).toBe("23");
   });
 });

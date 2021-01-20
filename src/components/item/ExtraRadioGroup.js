@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useFormikContext } from "formik";
+import { useFormContext } from "react-hook-form";
 import PropTypes from "prop-types";
 
 import Extras from "./Extras";
@@ -15,24 +15,27 @@ ExtraRadioGroup.defaultProps = {
 };
 
 export default function ExtraRadioGroup({ extra_category }) {
-  const { values, handleChange } = useFormikContext();
+  const { register, watch, setValue } = useFormContext();
+
+  const handleChange = (event) => {
+    setValue(event.target.name, event.target.value);
+  };
 
   return (
     <RadioGroup
       name={extra_category.name}
       // Radio buttons are represented as: Radio Group Name: "price*100 id"
       value={
-        values[extra_category.name] === undefined
+        watch(extra_category.name) === undefined
           ? ""
-          : values[extra_category.name]
+          : watch(extra_category.name)
       }
+      onChange={handleChange}
     >
       {extra_category.extras.map((extra) => (
         <Extras
           extra={extra}
-          controlComponent={
-            <Radio disableRipple={true} onChange={handleChange} />
-          }
+          controlComponent={<Radio disableRipple={true} inputRef={register} />}
           key={extra.id}
         />
       ))}
