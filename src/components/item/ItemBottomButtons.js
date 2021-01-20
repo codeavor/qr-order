@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
@@ -6,11 +6,7 @@ import PropTypes from "prop-types";
 import BottomButton from "../common/BottomButton";
 import { useFormContext } from "react-hook-form";
 import QuantityButton from "./QuantityButton";
-import {
-  fixExtras,
-  getExtrasId,
-  getExtrasPrice,
-} from "../../utils/extra/extraUtils";
+import { getExtrasId, getExtrasPrice } from "../../utils/extra/extraUtils";
 import C from "../../constants";
 
 ItemBottomButtons.propTypes = {
@@ -39,15 +35,7 @@ export default function ItemBottomButtons({
 }) {
   const orderId = window.localStorage.getItem(C.ORDER_ID);
   const [quantityNum, setQuantityNum] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(price);
-  const [extrasId, setExtrasId] = useState([]);
   const { watch } = useFormContext();
-
-  useEffect(() => {
-    let tempExtras = fixExtras(watch());
-    setExtrasId(getExtrasId(tempExtras));
-    setTotalPrice(getExtrasPrice(tempExtras, price, quantityNum));
-  }, [notes, watch, price, quantityNum]);
 
   return (
     <React.Fragment>
@@ -60,14 +48,14 @@ export default function ItemBottomButtons({
       <Box pl={2}>
         <BottomButton
           text={text}
-          price={parseFloat(totalPrice)}
+          price={parseFloat(getExtrasPrice(watch(), price, quantityNum))}
           route={route}
           onClick={() =>
             addItemToCart(
               orderId,
               itemId,
               quantityNum,
-              extrasId,
+              getExtrasId(watch()),
               notes !== null ? notes.current.value : ""
             )
           }

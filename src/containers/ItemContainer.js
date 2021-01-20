@@ -16,7 +16,7 @@ export function ItemContainer({ itemData, getItem, addItemToCart }) {
     getItem(id);
   }, [getItem, id]);
 
-  return itemData.loading ? (
+  return itemData.loading || Object.keys(itemData.extraValues).length === 0 ? (
     <Loading />
   ) : (
     <React.Fragment>

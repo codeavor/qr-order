@@ -34,11 +34,9 @@ ExtraCategory.defaultProps = {
 export default function ExtraCategory({ extra_category, disabled }) {
   const classes = useStyles();
 
-  const controlType = (extra_category, disabled) => {
+  const controlType = (extra_category) => {
     if (extra_category.type === "checkBox") {
-      return (
-        <ExtraCheckBox extra_category={extra_category} disabled={disabled} />
-      );
+      return <ExtraCheckBox extra_category={extra_category} />;
     } else if (extra_category.type === "radioButton") {
       return <ExtraRadioGroup extra_category={extra_category} />;
     }
@@ -56,7 +54,7 @@ export default function ExtraCategory({ extra_category, disabled }) {
           {extra_category.name}
         </Typography>
       </FormLabel>
-      {controlType(extra_category, disabled)}
+      {controlType(extra_category)}
     </FormControl>
   );
 }

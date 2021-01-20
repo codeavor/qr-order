@@ -76,7 +76,7 @@ describe("Testing /item", () => {
       .closest("label")
       .should("not.have.class", "Mui-disabled");
 
-    cy.get("input[value='0 4'][type='checkBox']").click();
+    cy.get("input[id='0 4'][type='checkBox']").click();
 
     // Check if sugar's getting disabled
     cy.get("input[value='0 1'][type='radio']").click();
@@ -85,8 +85,8 @@ describe("Testing /item", () => {
       .should("have.class", "Mui-disabled");
 
     // Check if checkbox is clicked and changes price
-    cy.get("input[value='20 10'][type='checkbox']").click();
-    cy.get("input[value='20 10'][type='checkbox']")
+    cy.get("input[id='20 10'][type='checkbox']").click();
+    cy.get("input[id='20 10'][type='checkbox']")
       .parent()
       .parent()
       .should("have.class", "Mui-checked");

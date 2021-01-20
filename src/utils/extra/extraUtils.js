@@ -35,10 +35,11 @@ export function fixExtras(extras) {
 
 /**
  * Returns only the ids of the selected extras.
- * @param  {Array} extras   [{ extra_id: "7", extra_price: 0 },{ extra_id: "1", extra_price: 0 },]
+ * @param  {Array} values   {Επιλέξτε μέγεθος: "0 7", "20 10": true, ...}
  * @return {Array}         [{ extra_id: "7" },{ extra_id: "1" },]
  */
-export function getExtrasId(extras) {
+export function getExtrasId(values) {
+  const extras = fixExtras(values);
   if (Array.isArray(extras) && extras.length === 0) return [];
   let extrasIdArray = extras.map((extra) => {
     return { extra_id: extra.extra_id };
@@ -48,12 +49,13 @@ export function getExtrasId(extras) {
 
 /**
  * Returns only the ids of the selected extras.
- * @param  {Array} extras       [{ extra_id: "7", extra_price: 0 },{ extra_id: "1", extra_price: 0 },]
+ * @param  {Array} values       {Επιλέξτε μέγεθος: "0 7", "20 10": true, ...}
  * @param  {String} itemPrice   "1"
  * @param  {Integer} quantity   1
  * @return {Float}              1.2
  */
-export function getExtrasPrice(extras, itemPrice, quantity) {
+export function getExtrasPrice(values, itemPrice, quantity) {
+  const extras = fixExtras(values);
   if (Array.isArray(extras) && extras.length === 0)
     if (itemPrice !== undefined && quantity !== undefined)
       return parseFloat(itemPrice) * parseInt(quantity, 10);

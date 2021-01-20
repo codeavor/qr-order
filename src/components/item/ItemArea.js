@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
@@ -39,26 +39,16 @@ ItemArea.defaultProps = {
   addItemToCart: () => {},
 };
 
-let renderCount = 0;
-
 export default function ItemArea({ item, initialValues, addItemToCart }) {
-  renderCount++;
   const methods = useForm({
     defaultValues: initialValues,
   });
-  const { reset, watch, setValue } = methods;
+  const { watch, setValue } = methods;
   const notesRef = useRef();
   const classes = useStyles();
 
-  useEffect(() => {
-    if (Object.keys(initialValues).length !== 0) {
-      reset(initialValues);
-    }
-  }, [reset, initialValues]);
-
   return (
     <FormProvider {...methods}>
-      <span className="counter">Render Count: {renderCount}</span>
       <form>
         <Box mt={5} pt={5}>
           <Container className={classes.section} data-testid="item-area">

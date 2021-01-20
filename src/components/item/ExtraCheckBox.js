@@ -10,15 +10,13 @@ import { combinedPriceId } from "../../utils/extra/extraUtils";
 
 ExtraCheckBox.propTypes = {
   extra_category: PropTypes.object,
-  disabled: PropTypes.bool,
 };
 
 ExtraCheckBox.defaultProps = {
   extra_category: { extras: [] },
-  disabled: false,
 };
 
-export default function ExtraCheckBox({ extra_category, disabled }) {
+export default function ExtraCheckBox({ extra_category }) {
   const { control } = useFormContext();
 
   return (
@@ -38,6 +36,7 @@ export default function ExtraCheckBox({ extra_category, disabled }) {
                   onChange={(e) => {
                     props.onChange(e.target.checked);
                   }}
+                  id={combinedPriceId(extra.price, extra.id)}
                 />
               )}
             />

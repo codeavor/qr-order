@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function QuantityButton({ setQuantityNum, quantityNum }) {
+function QuantityButton({ setQuantityNum, quantityNum }) {
   const classes = useStyles();
 
   return (
@@ -70,3 +70,5 @@ export default function QuantityButton({ setQuantityNum, quantityNum }) {
     </ButtonGroup>
   );
 }
+
+export default memo(QuantityButton);
