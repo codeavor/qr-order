@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
@@ -43,9 +43,15 @@ export default function ItemArea({ item, initialValues, addItemToCart }) {
   const methods = useForm({
     defaultValues: initialValues,
   });
-  const { watch, setValue } = methods;
+  const { watch, setValue, reset } = methods;
   const notesRef = useRef();
   const classes = useStyles();
+
+  useEffect(() => {
+    if (Object.keys(initialValues).length !== 0) {
+      reset(initialValues);
+    }
+  }, [reset, initialValues]);
 
   return (
     <FormProvider {...methods}>
